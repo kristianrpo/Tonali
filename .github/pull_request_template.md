@@ -18,5 +18,5 @@
 <!-- Provide any other important details below. You can explain why you had to break a commit for the functionality, or other important things.-->
 
 [1]: https://github.com/kristianrpo/Tonali/pulls
-[2]: ../docs/CommitGuidelines.md
-[3]: ../docs/BranchGuidelines.md
+[2]: https://github.com/kristianrpo/Tonali/wiki/Style-Guidelines#commit-guidelines
+[3]: https://github.com/kristianrpo/Tonali/wiki/Style-Guidelines#branch-guidelines

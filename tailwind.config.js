@@ -4,7 +4,14 @@ module.exports = {
       './resources/js/**/*.vue',
   ],
   theme: {
-      extend: {},
+      extend: {
+        colors: {
+          darkGray: '#353636',
+          brightPink: '#ec3f70',
+          palePink: '#f8afb0',
+          offWhite: '#fcffff',
+        },
+      },
   },
   plugins: [],
 };

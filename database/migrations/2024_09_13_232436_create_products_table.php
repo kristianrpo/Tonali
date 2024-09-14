@@ -18,8 +18,10 @@ return new class extends Migration
             $table->integer('price');
             $table->text('description');
             $table->string('brand');
-            $table->integer('review_count')->nullable()->default(0);
-            $table->integer('total_rating')->nullable()->default(0);
+            $table->integer('stock_quantity');
+            $table->integer('quantity_reviews')->nullable()->default(0);
+            $table->integer('sum_ratings')->nullable()->default(0);
+            //$table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

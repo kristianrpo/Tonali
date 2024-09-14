@@ -18,8 +18,10 @@ class Product extends Model
      * $this->attributes['price'] - decimal - contains the product price with two decimal places (e.g., 19.99)
      * $this->attributes['description'] - text - contains the product description
      * $this->attributes['brand'] - string - contains the product brand name
-     * $this->attributes['review_count'] - int - contains the number of reviews for the product
-     * $this->attributes['total_ratings'] - int - contains the sum of all ratings for the product
+     * $this->attributes['stock_quantity'] - int - contains the product stock quantity
+     * $this->attributes['quantity_reviews'] - int - contains the product review count
+     * $this->attributes['sum_ratings'] - int - contains the product total ratings
+     * $this->attributes['category_id'] - int - contains the product category id
      * $this->attributes['created_at'] - timestamp - contains the product creation date
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      */
@@ -35,6 +37,11 @@ class Product extends Model
             'brand' => 'required',
         ]);
     }
+
+    /*public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }*/
 
     public function getId(): int
     {
@@ -91,24 +98,29 @@ class Product extends Model
         $this->attributes['brand'] = $brand;
     }
 
-    public function getReviewCount(): int
+    public function getStockQuantity(): int
     {
-        return $this->attributes['review_count'];
+        return $this->attributes['stock_quantity'];
     }
 
-    public function setReviewCount(int $reviewCount): void
+    public function setStockQuantity(int $stockQuantity): void
     {
-        $this->attributes['review_count'] = $reviewCount;
+        $this->attributes['stock_quantity'] = $stockQuantity;
     }
 
-    public function getTotalRatings(): int
+    public function getQuantityReviews(): int
     {
-        return $this->attributes['total_ratings'];
+        return $this->attributes['quantity_reviews'];
     }
 
-    public function setTotalRatings(int $totalRatings): void
+    public function getSumRatings(): int
     {
-        $this->attributes['total_ratings'] = $totalRatings;
+        return $this->attributes['sum_ratings'];
+    }
+
+    public function getCategoryId(): int
+    {
+        return $this->attributes['category_id'];
     }
 
     public function getCreatedAt(): mixed

@@ -25,7 +25,7 @@ class Product extends Model
      * $this->attributes['created_at'] - timestamp - contains the product creation date
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      */
-    protected $fillable = ['name', 'image', 'price', 'description', 'brand'];
+    protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
 
     public static function validate(Request $request): void
     {
@@ -35,6 +35,7 @@ class Product extends Model
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'description' => 'required',
             'brand' => 'required',
+            'stock_quantity' => 'required|numeric|gt:0',
         ]);
     }
 

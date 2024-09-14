@@ -22,7 +22,8 @@
                             <input name="name" value="{{ $viewData['product']->getName() }}" type="text" class="form-control">  
                             <input name="price" value="{{ $viewData['product']->getPrice() }}" type="text" class="form-control">
                             <input name="description" value="{{ $viewData['product']->getDescription() }}" type="text" class="form-control">
-                            <input name="brand" value="{{ $viewData['product']->getBrand() }}" type="text" class="form-control">                                           
+                            <input name="brand" value="{{ $viewData['product']->getBrand() }}" type="text" class="form-control">            
+                            <input name="stock_quantity" value="{{ $viewData['product']->getStockQuantity() }}" type="text" class="form-control">                               
                             <input type="submit" class="btn btn-primary" value="Edit" />
                         </form>
                     </div>

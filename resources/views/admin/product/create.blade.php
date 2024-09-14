@@ -22,6 +22,7 @@
                             <input type="text" class="form-control mb-2" placeholder="Enter price" name="price" value="{{ old('price') }}" />
                             <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ old('description') }}" />
                             <input type="text" class="form-control mb-2" placeholder="Enter brand " name="brand" value="{{ old('brand') }}" />
+                            <input type="text" class="form-control mb-2" placeholder="Enter stock quantity" name="stock_quantity" value="{{ old('stock_quantity') }}" />
                             <input type="submit" class="btn btn-primary" value="Send" />
                         </form>
                     </div>

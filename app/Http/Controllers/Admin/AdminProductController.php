@@ -36,6 +36,7 @@ class AdminProductController extends Controller
         $newProduct->setDescription($request->input('description'));
         $newProduct->setPrice($request->input('price'));
         $newProduct->setBrand($request->input('brand'));
+        $newProduct->setStockQuantity($request->input('stock_quantity'));
         $newProduct->save();
         if ($request->hasFile('image')) {
             $imageName = ImageStorage::storeImage($newProduct, $request->file('image'), 'products');
@@ -74,6 +75,7 @@ class AdminProductController extends Controller
         $product->setDescription($request->input('description'));
         $product->setPrice($request->input('price'));
         $product->setBrand($request->input('brand'));
+        $product->setStockQuantity($request->input('stock_quantity'));
         if ($request->hasFile('image')) {
             $imageName = ImageStorage::storeImage($newProduct, $request->file('image'), 'products');
             $product->setImage($imageName);

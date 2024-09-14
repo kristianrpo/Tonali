@@ -45,4 +45,51 @@ class AdminProductController extends Controller
 
         return back();
     }
+
+    public function show(string $id): View
+    {
+        $viewData = [];
+        $product = Product::findOrFail($id);
+        $viewData['title'] = $product->getName();
+        $viewData['product'] = $product;
+
+        return view('admin.product.show')->with('viewData', $viewData);
+    }
+
+    public function edit(string $id): View
+    {
+        $viewData = [];
+        $product = Product::findOrFail($id);
+        $viewData['title'] = 'Edit '.$product->getName();
+        $viewData['product'] = $product;
+
+        return view('admin.product.edit')->with('viewData', $viewData);
+    }
+
+    public function update(Request $request, string $id): RedirectResponse
+    {
+        Product::validate($request);
+        $product = Product::findOrFail($id);
+        $product->setName($request->input('name'));
+        $product->setDescription($request->input('description'));
+        $product->setPrice($request->input('price'));
+        $product->setBrand($request->input('brand'));
+        if ($request->hasFile('image')) {
+            $imageName = ImageStorage::storeImage($newProduct, $request->file('image'), 'products');
+            $product->setImage($imageName);
+        }
+
+        $product->save();
+
+        return redirect()->route('admin.product.show', ['id' => $id]);
+    }
+
+    public function delete(string $id): RedirectResponse
+    {
+        $product = Product::findOrFail($id);
+        ImageStorage::deleteImage($product, 'products');
+        $product->delete();
+
+        return redirect()->route('admin.product.index');
+    }
 }

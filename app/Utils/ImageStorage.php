@@ -16,4 +16,11 @@ class ImageStorage
 
         return $imageName;
     }
+
+    public static function deleteImage($entity, $entityType)
+    {
+        if ($entity->getImage()) {
+            Storage::disk('public')->delete($entityType.'/'.$entity->getImage());
+        }
+    }
 }

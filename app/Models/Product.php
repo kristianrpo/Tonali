@@ -38,6 +38,16 @@ class Product extends Model
             'stock_quantity' => 'required|numeric|gte:0',
         ]);
     }
+    
+    public static function sumPricesByQuantities($products, $productsInSession)
+    {
+        $total = 0;
+        foreach ($products as $product) {
+            $total = $total + ($product->getPrice() * (int) $productsInSession[$product->getId()]);
+        }
+
+        return $total;
+    }
 
     /*public function category()
     {

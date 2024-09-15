@@ -15,3 +15,5 @@ Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\Admin\AdminProduct
 Route::put('/admin/products/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name('admin.product.update');
 Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminProductController@delete')->name('admin.product.delete');
 // });
+
+Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('product.index');

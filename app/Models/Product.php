@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class Product extends Model
 {
-
     /**
      * PRODUCT ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)

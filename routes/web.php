@@ -17,3 +17,4 @@ Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminPr
 // });
 
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('product.index');
+Route::get('/products/search', 'App\Http\Controllers\ProductController@search')->name('product.search');

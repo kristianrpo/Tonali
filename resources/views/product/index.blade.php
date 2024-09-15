@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container mx-auto px-4 py-4 w-4/5">
+    <div class="container mx-auto w-4/5">
         <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ __('product.products') }}</h1>
 
         <div class="mb-6 flex space-x-4">

@@ -124,10 +124,10 @@
             </div>
         </div>
     </nav>
-    <main>
+    <main class="my-12 mx-12">
         @yield('content')
     </main>
-    <footer class="rounded-lg shadow mt-12 bg-brightPink">
+    <footer class="rounded-lg shadow bg-brightPink">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="flex items-center justify-center">
                 <img src="{{ asset('img/logos/light/combinationMark.png') }}" class="h-60"

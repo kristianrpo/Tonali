@@ -80,46 +80,46 @@
                     </li>
                 </ul>
                 @guest
-                <div class="my-2 mx-4 flex justify-center">
-                    <button
-                        class="bg-brightPink text-white hover:bg-black hover:text-white font-bold py-2 px-4 rounded-full">
-                        {{ __('app.get_started') }}
-                    </button>
-                </div>
-                @else
-                <div class="my-2 mx-10 flex justify-center">
-                    <div class="flex items-center space-x-4">
-                        <a href="#" class="text-darkGray hover:text-black">
-                            <div
-                                class="flex items-center justify-center h-10 w-10 rounded-full border-2 border-darkGray hover:bg-palePink">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 512 512"
-                                    id="profile">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z" />
-                                </svg>
-                            </div>
-                        </a>
-                        <a href="#" class="text-darkGray hover:text-black ">
-                            <div
-                                class="flex items-center justify-center h-10 w-10 rounded-full border-2 border-darkGray hover:bg-palePink">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 256 256"
-                                    id="shopping-cart">
-                                    <rect width="256" height="256" fill="none" />
-                                    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="12"
-                                        d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16" />
-                                    <circle cx="80" cy="204" r="20" fill="none" stroke="#000" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="12" />
-                                    <circle cx="184" cy="204" r="20" fill="none" stroke="#000" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="12" />
-                                    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="12"
-                                        d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48" />
-                                </svg>
-                            </div>
-                        </a>
+                    <div class="my-2 mx-4 flex justify-center">
+                        <button
+                            class="bg-brightPink text-white hover:bg-black hover:text-white font-bold py-2 px-4 rounded-full">
+                            {{ __('app.get_started') }}
+                        </button>
                     </div>
-                </div>
+                @else
+                    <div class="my-2 mx-10 flex justify-center">
+                        <div class="flex items-center space-x-4">
+                            <a href="#" class="text-darkGray hover:text-black">
+                                <div
+                                    class="flex items-center justify-center h-10 w-10 rounded-full border-2 border-darkGray hover:bg-palePink">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 512 512"
+                                        id="profile">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z" />
+                                    </svg>
+                                </div>
+                            </a>
+                            <a href="#" class="text-darkGray hover:text-black ">
+                                <div
+                                    class="flex items-center justify-center h-10 w-10 rounded-full border-2 border-darkGray hover:bg-palePink">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 256 256"
+                                        id="shopping-cart">
+                                        <rect width="256" height="256" fill="none" />
+                                        <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="12"
+                                            d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16" />
+                                        <circle cx="80" cy="204" r="20" fill="none" stroke="#000"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+                                        <circle cx="184" cy="204" r="20" fill="none" stroke="#000"
+                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+                                        <path fill="none" stroke="#000" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="12"
+                                            d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48" />
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 @endguest
             </div>
         </div>

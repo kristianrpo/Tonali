@@ -137,7 +137,7 @@ class Product extends Model
     public function getImageUrl(): string
     {
         return $this->attributes['image'] === 'default.png'
-            ? asset('img/product/' . $this->attributes['image'])
-            : asset('storage/products/' . $this->attributes['image']);
+            ? asset('img/product/'.$this->attributes['image'])
+            : asset('storage/products/'.$this->attributes['image']);
     }
 }

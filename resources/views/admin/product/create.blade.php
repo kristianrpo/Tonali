@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
+<div class="container mx-auto px-4">
+    <div class="row justify-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create product</div>
+                <div class="card-header">{{ __('product.create_product') }}</div>
                     <div class="card-body">
                         @if($errors->any())
                             <ul id="errors" class="alert alert-danger list-unstyled">
@@ -13,17 +13,27 @@
                                 @endforeach
                             </ul>
                         @endif
-                        <form method="POST" action="{{ route('admin.product.save') }}"  enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('admin.product.save') }}" enctype="multipart/form-data" class="space-y-4">
                             @csrf
-                                
-                                            
-                            <input type="file" class="form-control mb-2" name="image" />
-                            <input type="text" class="form-control mb-2" placeholder="Enter name" name="name" value="{{ old('name') }}" />
-                            <input type="text" class="form-control mb-2" placeholder="Enter price" name="price" value="{{ old('price') }}" />
-                            <input type="text" class="form-control mb-2" placeholder="Enter description" name="description" value="{{ old('description') }}" />
-                            <input type="text" class="form-control mb-2" placeholder="Enter brand " name="brand" value="{{ old('brand') }}" />
-                            <input type="text" class="form-control mb-2" placeholder="Enter stock quantity" name="stock_quantity" value="{{ old('stock_quantity') }}" />
-                            <input type="submit" class="btn btn-primary" value="Send" />
+
+                            <div>
+                                <label for="image" class="block text-sm font-medium text-gray-700">{{ __('product.select_file') }}</label>
+                                <div class="flex items-center mt-2">
+                                    <label class="cursor-pointer bg-brightPink text-white px-4 py-2 rounded-md hover:bg-black">
+                                        {{ __('product.select_file') }}
+                                        <input type="file" class="hidden" id="image" name="image">
+                                    </label>
+                                    <p id="file-name" class="ml-4 text-gray-500" data-nofile="{{ __('product.no_file_selected') }}">{{ __('product.no_file_selected') }}</p>
+                                </div>
+                            </div>
+
+                            <input type="text" class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink" placeholder="{{ __('product.enter_name') }}" name="name" value="{{ old('name') }}" />
+                            <input type="text" class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink" placeholder="{{ __('product.enter_price') }}" name="price" value="{{ old('price') }}" />
+                            <input type="text" class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink" placeholder="{{ __('product.enter_description') }}" name="description" value="{{ old('description') }}" />
+                            <input type="text" class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink" placeholder="{{ __('product.enter_brand') }}" name="brand" value="{{ old('brand') }}" />
+                            <input type="text" class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink" placeholder="{{ __('product.enter_stock_quantity') }}" name="stock_quantity" value="{{ old('stock_quantity') }}" />
+
+                            <button type="submit" class=" bg-brightPink text-white px-4 py-2 rounded-md hover:bg-black">{{ __('product.send') }}</button>
                         </form>
                     </div>
                 </div>
@@ -31,4 +41,6 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/product.js') }}"></script>
 @endsection

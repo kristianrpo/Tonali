@@ -9,20 +9,20 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{{ $viewData["product"]->getName() }}</h5>
-                    <p class="card-text"><strong>Price:</strong> ${{ $viewData["product"]->getPrice() }}</p>
-                    <p class="card-text"><strong>Description:</strong> {{ $viewData["product"]->getDescription() }}</p>
-                    <p class="card-text"><strong>Brand:</strong> {{ $viewData["product"]->getBrand() }}</p>
-                    <p class="card-text"><strong>Stock Quantity:</strong> {{ $viewData["product"]->getStockQuantity() }}</p>
-                    <p class="card-text"><strong>Created At:</strong> {{ $viewData["product"]->getCreatedAt() }}</p>
-                    <p class="card-text"><strong>Updated At:</strong> {{ $viewData["product"]->getUpdatedAt() }}</p>
+                    <p class="card-text"><strong>{{ __('product.price') }}:</strong> ${{ $viewData["product"]->getPrice() }}</p>
+                    <p class="card-text"><strong>{{ __('product.description') }}:</strong> {{ $viewData["product"]->getDescription() }}</p>
+                    <p class="card-text"><strong>{{ __('product.brand') }}:</strong> {{ $viewData["product"]->getBrand() }}</p>
+                    <p class="card-text"><strong>{{ __('product.stock_quantity') }}:</strong> {{ $viewData["product"]->getStockQuantity() }}</p>
+                    <p class="card-text"><strong>{{ __('product.created_at') }}:</strong> {{ $viewData["product"]->getCreatedAt() }}</p>
+                    <p class="card-text"><strong>{{ __('product.updated_at') }}:</strong> {{ $viewData["product"]->getUpdatedAt() }}</p>
                     <div class="d-flex justify-content-center">
-                        <a href="{{ route('admin.product.edit', ['id'=> $viewData['product']->getId()]) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('admin.product.edit', ['id'=> $viewData['product']->getId()]) }}" class="btn btn-primary">{{ __('product.edit') }}</a>
                     </div>
                     <div class="d-flex justify-content-center mt-4">
                         <form action="{{ route('admin.product.delete', $viewData['product']->getId()) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">{{ __('product.delete') }}</button>
                         </form>
                     </div>
                 </div>

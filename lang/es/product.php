@@ -1,10 +1,25 @@
 <?php
 
 return [
-    'home' => 'Inicio',
-    'makeup' => 'Maquillaje',
-    'category' => 'Categoría',
     'products' => 'Productos',
     'all' => 'Todos',
     'add_to_cart' => 'Agregar al carrito',
+    'price' => 'Precio',
+    'description' => 'Descripción',
+    'brand' => 'Marca',
+    'stock_quantity' => 'Cantidad en stock',
+    'created_at' => 'Creado el',
+    'updated_at' => 'Actualizado el',
+    'create_product' => 'Crear producto',
+    'enter_name' => 'Ingrese nombre',
+    'enter_price' => 'Ingrese precio',
+    'enter_description' => 'Ingrese descripción',
+    'enter_brand' => 'Ingrese marca',
+    'enter_stock_quantity' => 'Ingrese cantidad en stock',
+    'send' => 'Enviar',
+    'select_file' => 'Seleccionar archivo',
+    'no_file_selected' => 'Sin archivos seleccionados',
+    'edit_product' => 'Editar producto',
+    'edit' => 'Editar',
+    'delete' => 'Eliminar',
 ];

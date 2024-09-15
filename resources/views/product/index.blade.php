@@ -1,16 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <div class="container mx-auto px-4 py-4 w-4/5">
-  <nav class="text-gray-500 mb-4">
-    <ol class="list-reset flex">
-      <li><a href="#" class="text-gray-600 hover:text-gray-900">{{ __('product.home') }}</a></li>
-      <li><span class="mx-2">/</span></li>
-      <li><a href="#" class="text-gray-600 hover:text-gray-900">{{ __('product.makeup') }}</a></li>
-      <li><span class="mx-2">/</span></li>
-      <li class="text-gray-700">{{ __('product.category') }}</li>
-    </ol>
-  </nav>
-
   <h1 class="text-3xl font-bold text-gray-800 mb-4">{{ __('product.products') }}</h1>
 
   <div class="mb-6 flex space-x-4">

@@ -28,9 +28,11 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="text" id="search-navbar"
-                        class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-palePink focus:border-palePink"
-                        placeholder="{{ __('app.search') }}">
+                    <form action="{{ route('product.search') }}" method="GET" class="flex items-center">
+                        <input type="text" id="search-navbar"
+                            class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-palePink focus:border-palePink"
+                            placeholder="{{ __('app.search') }}" name="query">
+                    </form>
                 </div>
                 <button data-collapse-toggle="navbar-search" type="button"
                     class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-darkGray hover:text-white focus:outline-none focus:ring-2 focus:ring-gray-200"

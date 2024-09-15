@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'products' => 'Products',
+    'all' => 'All',
+    'add_to_cart' => 'Add to Cart',
+    'price' => 'Price',
+    'description' => 'Description',
+    'brand' => 'Brand',
+    'stock_quantity' => 'Stock quantity',
+    'created_at' => 'Created at',
+    'updated_at' => 'Updated at',
+    'create_product' => 'Create product',
+    'enter_name' => 'Enter name',
+    'enter_price' => 'Enter price',
+    'enter_description' => 'Enter description',
+    'enter_brand' => 'Enter brand',
+    'enter_stock_quantity' => 'Enter stock quantity',
+    'send' => 'Send',
+    'errors' => 'The following errors occurred:',
+    'select_file' => 'Select file',
+    'no_file_selected' => 'No files selected',
+    'edit_product' => 'Edit product',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+];

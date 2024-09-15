@@ -16,9 +16,12 @@
                 <h2 class="text-gray-800 font-semibold">{{ $product->getName() }}</h2>
                 <p class="text-gray-600 text-sm">{{ $product->getBrand() }}</p>
                 <p class="text-gray-600 text-sm">$ {{ $product->getPrice() }}</p>
-                <button class="bg-brightPink text-white text-sm hover:bg-black hover:text-white px-3 py-1 rounded mt-2">
+                <form action="{{ route('cart.add', ['id'=> $product->getId()]) }}" method="POST">
+                  @csrf
+                  <button class="bg-brightPink text-white text-sm hover:bg-black hover:text-white px-3 py-1 rounded mt-2">
                     {{ __('product.add_to_cart') }}
-                </button>
+                  </button>
+                </form>
             </div>
         </div>
         @endforeach

@@ -23,6 +23,7 @@ class ProductController extends Controller
     {
         $query = $request->input('query');
         $products = Product::where('name', 'like', '%' . $query . '%')
+        ->orWhere('brand', 'like', '%' . $query . '%')
         ->get();
         return view('product.index')->with('viewData', ['products' => $products]);
     }

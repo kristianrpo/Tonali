@@ -11,7 +11,7 @@
                     <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm md:p-6">
                         <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                             <div href="#" class="shrink-0 md:order-1">
-                                <img class="h-20 w-20" src="{{ $product->getImageUrl() }}""
+                                <img class="h-20 w-20" src="{{ $product->getImageUrl() }}"
                                     alt="{{ $product->getName() }}" />
                             </div>
                             <div class="flex items-center justify-between md:order-3 md:justify-end">

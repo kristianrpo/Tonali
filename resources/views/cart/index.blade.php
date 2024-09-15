@@ -63,29 +63,30 @@
                 <div class="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
                     <div class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
                         <p class="text-xl font-semibold text-gray-900">{{ __('cart.order_summary') }}</p>
-
                         <div class="space-y-4">
                             <div class="space-y-2">
                                 <table class="w-full mb-5">
                                     <thead>
                                         <tr>
-                                            <th class="text-center font-semibold text-gray-600">{{ __('cart.products') }}
+                                            <th class="text-left font-semibold text-gray-600">{{ __('cart.products') }}
                                             </th>
                                             <th class="text-center font-semibold text-gray-600">{{ __('cart.quantity') }}
                                             </th>
-                                            <th class="text-center font-semibold text-gray-600">{{ __('cart.price') }}</th>
+                                            <th class="text-right font-semibold text-gray-600">{{ __('cart.price') }}
+                                            </th>
                                         </tr>
                                     </thead>
                                     @foreach ($viewData['products'] as $product)
                                         <tbody>
                                             <tr>
-                                                <td class="text-center text-sm text-gray-700 truncate max-w-10">
+                                                <td class="text-left text-sm text-gray-700 truncate max-w-10">
                                                     {{ $product->getName() }}
                                                 </td>
                                                 <td
                                                     class="summary-quantity-{{ $product->getId() }} product-quantity text-center text-sm text-gray-700">
-                                                    {{ session('products')[$product->getId()] }}</td>
-                                                <td class="text-sm text-center text-right text-gray-700">
+                                                    {{ session('products')[$product->getId()] }}
+                                                </td>
+                                                <td class="text-sm text-right text-right text-gray-700">
                                                     {{ formatPrice($product->getPrice()) }}
                                                 </td>
                                             </tr>
@@ -102,8 +103,8 @@
                         </div>
                         <a href="#"
                             class="flex w-full items-center justify-center rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300">
-                            {{ __('cart.purchase') }} </a>
-
+                            {{ __('cart.purchase') }} 
+                        </a>
                         <div class="flex items-center justify-center gap-2">
                             <span class="text-sm font-normal text-gray-500"> {{ __('cart.or') }} </span>
                             <a href="{{ route('product.index') }}" title=""

@@ -13,7 +13,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body>
+<body class = "min-h-screen flex flex-col">
     <nav class="bg-white border-gray-200 shadow-md">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-around mx-auto p-4 cursor-pointer">
             <div class="flex items-center space-x-3 rtl:space-x-reverse hover:text-brightPink">
@@ -127,7 +127,7 @@
     <main class="my-12 mx-12">
         @yield('content')
     </main>
-    <footer class="rounded-lg shadow bg-brightPink">
+    <footer class="shadow bg-brightPink p-4">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="flex items-center justify-center">
                 <img src="{{ asset('img/logos/light/combinationMark.png') }}" class="h-60"

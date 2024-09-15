@@ -14,7 +14,6 @@ class AdminProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['title'] = 'My Products';
         $viewData['products'] = Product::all();
 
         return view('admin.product.index')->with('viewData', $viewData);
@@ -23,7 +22,6 @@ class AdminProductController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['title'] = 'Create Product';
 
         return view('admin.product.create')->with('viewData', $viewData);
     }
@@ -37,6 +35,7 @@ class AdminProductController extends Controller
         $newProduct->setPrice($request->input('price'));
         $newProduct->setBrand($request->input('brand'));
         $newProduct->setStockQuantity($request->input('stock_quantity'));
+        $newProduct->setImage('default.png');
         $newProduct->save();
         if ($request->hasFile('image')) {
             $imageName = ImageStorage::storeImage($newProduct, $request->file('image'), 'products');
@@ -51,7 +50,6 @@ class AdminProductController extends Controller
     {
         $viewData = [];
         $product = Product::findOrFail($id);
-        $viewData['title'] = $product->getName();
         $viewData['product'] = $product;
 
         return view('admin.product.show')->with('viewData', $viewData);
@@ -61,7 +59,6 @@ class AdminProductController extends Controller
     {
         $viewData = [];
         $product = Product::findOrFail($id);
-        $viewData['title'] = 'Edit '.$product->getName();
         $viewData['product'] = $product;
 
         return view('admin.product.edit')->with('viewData', $viewData);
@@ -77,7 +74,7 @@ class AdminProductController extends Controller
         $product->setBrand($request->input('brand'));
         $product->setStockQuantity($request->input('stock_quantity'));
         if ($request->hasFile('image')) {
-            $imageName = ImageStorage::storeImage($newProduct, $request->file('image'), 'products');
+            $imageName = ImageStorage::storeImage($product, $request->file('image'), 'products');
             $product->setImage($imageName);
         }
 

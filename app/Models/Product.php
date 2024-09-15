@@ -35,7 +35,7 @@ class Product extends Model
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'description' => 'required',
             'brand' => 'required',
-            'stock_quantity' => 'required|numeric|gt:0',
+            'stock_quantity' => 'required|numeric|gte:0',
         ]);
     }
 
@@ -69,7 +69,7 @@ class Product extends Model
         $this->attributes['price'] = $price;
     }
 
-    public function getImage(): ?string
+    public function getImage(): string
     {
         return $this->attributes['image'];
     }
@@ -124,13 +124,20 @@ class Product extends Model
         return $this->attributes['category_id'];
     }
 
-    public function getCreatedAt(): mixed
+    public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
     }
 
-    public function getUpdatedAt(): mixed
+    public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function getImageUrl(): string
+    {
+        return $this->attributes['image'] === 'default.png'
+            ? asset('img/product/' . $this->attributes['image'])
+            : asset('storage/products/' . $this->attributes['image']);
     }
 }

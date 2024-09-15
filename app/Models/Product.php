@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class Product extends Model
 {
-    use HasFactory;
 
     /**
      * PRODUCT ATTRIBUTES
@@ -38,7 +36,7 @@ class Product extends Model
             'stock_quantity' => 'required|numeric|gte:0',
         ]);
     }
-    
+
     public static function sumPricesByQuantities($products, $productsInSession)
     {
         $total = 0;

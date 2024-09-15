@@ -137,7 +137,6 @@
             <span class="block text-sm text-offWhite text-center font-bold"> {{ __('app.copyright') }} </span>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </body>
 
 </html>

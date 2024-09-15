@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class ProductController extends Controller
 {
@@ -22,10 +20,10 @@ class ProductController extends Controller
     public function search(Request $request): View
     {
         $query = $request->input('query');
-        $products = Product::where('name', 'like', '%' . $query . '%')
-        ->orWhere('brand', 'like', '%' . $query . '%')
-        ->get();
+        $products = Product::where('name', 'like', '%'.$query.'%')
+            ->orWhere('brand', 'like', '%'.$query.'%')
+            ->get();
+
         return view('product.index')->with('viewData', ['products' => $products]);
     }
-
-}    
+}

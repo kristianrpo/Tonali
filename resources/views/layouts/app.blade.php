@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/52165e5e88.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
     <title>@yield('title', __('app.title'))</title>
 
     @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
 </head>
 
 <body>
@@ -126,7 +127,7 @@
     <main>
         @yield('content')
     </main>
-    <footer class="rounded-lg shadow my-12 bg-brightPink">
+    <footer class="rounded-lg shadow mt-12 bg-brightPink">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="flex items-center justify-center">
                 <img src="{{ asset('img/logos/light/combinationMark.png') }}" class="h-60"

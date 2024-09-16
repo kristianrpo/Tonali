@@ -2,20 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class Product extends Model
 {
-    use HasFactory;
-
     /**
      * PRODUCT ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['name'] - string - contains the product name
      * $this->attributes['image'] - string - contains the product image filename or URL
-     * $this->attributes['price'] - decimal - contains the product price with two decimal places (e.g., 19.99)
+     * $this->attributes['price'] - int - contains the product price 
      * $this->attributes['description'] - text - contains the product description
      * $this->attributes['brand'] - string - contains the product brand name
      * $this->attributes['stock_quantity'] - int - contains the product stock quantity
@@ -27,17 +24,6 @@ class Product extends Model
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
 
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric|gt:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg',
-            'description' => 'required',
-            'brand' => 'required',
-            'stock_quantity' => 'required|numeric|gte:0',
-        ]);
-    }
 
     /*public function category()
     {
@@ -139,5 +125,27 @@ class Product extends Model
         return $this->attributes['image'] === 'default.png'
             ? asset('img/product/'.$this->attributes['image'])
             : asset('storage/products/'.$this->attributes['image']);
+    }
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
+            'description' => 'required',
+            'brand' => 'required',
+            'stock_quantity' => 'required|numeric|gte:0',
+        ]);
+    }
+
+    public static function sumPricesByQuantities($products, $productsInSession)
+    {
+        $total = 0;
+        foreach ($products as $product) {
+            $total = $total + ($product->getPrice() * (int) $productsInSession[$product->getId()]);
+        }
+
+        return $total;
     }
 }

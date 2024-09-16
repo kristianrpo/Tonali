@@ -2,7 +2,7 @@
 
 return [
     'home' => 'Inicio',
-    'about' => 'Acerca de',
+    'create_product' => 'Crear',
     'products' => 'Productos',
     'search' => 'Buscar...',
     'get_started' => 'Empezar',

@@ -22,7 +22,8 @@
                                             </button>
                                             <span data-id="{{ $product->getId() }}"
                                                 class=" product-quantity w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0"
-                                                min="1">{{ session('products')[$product->getId()] }} </span>
+                                                min="1">{{ session('products')[$product->getId()] }} 
+                                            </span>
                                             <button data-id="{{ $product->getId() }}" type="button"
                                                 class="increase-quantity text-offWhite inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border bg-palePink hover:border-darkGray focus:outline-none focus:ring-2 focus:ring-gray-100">
                                                 +
@@ -30,7 +31,8 @@
                                         </div>
                                         <div class="text-end md:order-4 md:w-32">
                                             <p class="text-base font-bold text-gray-900">
-                                                {{ formatPrice($product->getPrice()) }}</p>
+                                                {{ formatPrice($product->getPrice()) }}
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">

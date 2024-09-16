@@ -4,7 +4,7 @@
         <div class="row justify-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('product.create_product') }}</div>
+                    <div class="text-3xl font-bold text-gray-800">{{ __('product.create_product') }}</div>
                     <div class="card-body">
                         @if ($errors->any())
                             <ul id="errors" class="alert alert-danger list-unstyled">
@@ -18,8 +18,7 @@
                             @csrf
 
                             <div>
-                                <label for="image"
-                                    class="block text-sm font-medium text-gray-700">{{ __('product.select_file') }}</label>
+                    
                                 <div class="flex items-center mt-2">
                                     <label
                                         class="cursor-pointer bg-brightPink text-white px-4 py-2 rounded-md hover:bg-black">
@@ -35,7 +34,7 @@
                             <input type="text"
                                 class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink"
                                 placeholder="{{ __('product.enter_name') }}" name="name" value="{{ old('name') }}" />
-                            <input type="text"
+                            <input type="number"
                                 class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink"
                                 placeholder="{{ __('product.enter_price') }}" name="price" value="{{ old('price') }}" />
                             <input type="text"
@@ -46,7 +45,7 @@
                                 class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink"
                                 placeholder="{{ __('product.enter_brand') }}" name="brand"
                                 value="{{ old('brand') }}" />
-                            <input type="text"
+                            <input type="number"
                                 class="form-control mb-2 border border-gray-300 rounded-md p-2 w-full focus:ring-1 focus:ring-brightPink focus:border-brightPink"
                                 placeholder="{{ __('product.enter_stock_quantity') }}" name="stock_quantity"
                                 value="{{ old('stock_quantity') }}" />
@@ -61,5 +60,5 @@
     </div>
     </div>
 
-    <script src="{{ asset('js/product.js') }}"></script>
+    <script src="{{ asset('js/product/loadImage.js') }}"></script>
 @endsection

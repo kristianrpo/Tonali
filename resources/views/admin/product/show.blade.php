@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $viewData['product']->getName() }}</h5>
                         <p class="card-text"><strong>{{ __('product.price') }}:</strong>
-                            ${{ $viewData['product']->getPrice() }}</p>
+                            {{ formatPrice($viewData['product']->getPrice()) }}</p>
                         <p class="card-text"><strong>{{ __('product.description') }}:</strong>
                             {{ $viewData['product']->getDescription() }}</p>
                         <p class="card-text"><strong>{{ __('product.brand') }}:</strong>

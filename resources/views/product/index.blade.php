@@ -12,11 +12,11 @@
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($viewData['products'] as $product)
                     <div class="bg-white shadow rounded-lg overflow-hidden">
-                        <img class="object-cover w-full h-48" src="{{ $product->getImageUrl() }}" alt="Product Image">
+                        <img class="object-cover w-full h-48" src="{{ $product->getImageUrl() }}" alt="{{ $product->getName() }}">
                         <div class="p-4 text-center">
                             <h2 class="text-gray-800 font-semibold">{{ $product->getName() }}</h2>
                             <p class="text-gray-600 text-sm">{{ $product->getBrand() }}</p>
-                            <p class="text-gray-600 text-sm">$ {{ $product->getPrice() }}</p>
+                            <p class="text-gray-600 text-sm">{{ formatPrice($product->getPrice()) }}</p>
                             <form action="{{ route('cart.add', ['id' => $product->getId()]) }}" method="POST">
                                 @csrf
                                 <button

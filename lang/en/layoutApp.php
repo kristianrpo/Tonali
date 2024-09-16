@@ -2,7 +2,7 @@
 
 return [
     'home' => 'Home',
-    'about' => 'About',
+    'create_product' => 'Create',
     'products' => 'Products',
     'search' => 'Search...',
     'get_started' => 'Get started',

@@ -20,8 +20,6 @@
                             @method('PUT')
 
                             <div>
-                                <label for="image"
-                                    class="block text-sm font-medium text-gray-700">{{ __('product.select_file') }}</label>
                                 <div class="flex items-center mt-2">
                                     <label
                                         class="cursor-pointer bg-brightPink text-white px-4 py-2 rounded-md hover:bg-black">
@@ -61,5 +59,5 @@
     </div>
     </div>
 
-    <script src="{{ asset('js/product.js') }}"></script>
+    <script src="{{ asset('js/product/loadImage.js') }}"></script>
 @endsection

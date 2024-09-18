@@ -8,6 +8,7 @@ Route::get('/', function () {
 
 // Route::middleware('admin')->group(function () {
 Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
+Route::get('/admin/products/search', 'App\Http\Controllers\Admin\AdminProductController@search')->name('admin.product.search');
 Route::get('/admin/products/create', 'App\Http\Controllers\Admin\AdminProductController@create')->name('admin.product.create');
 Route::post('/admin/products/save', 'App\Http\Controllers\Admin\AdminProductController@save')->name('admin.product.save');
 Route::get('/admin/products/{id}', 'App\Http\Controllers\Admin\AdminProductController@show')->name('admin.product.show');

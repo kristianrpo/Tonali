@@ -14,16 +14,25 @@ class AdminProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['products'] = Product::all();
+        $products = Product::paginate(10);
+        $viewData['products'] = $products;
 
         return view('admin.product.index')->with('viewData', $viewData);
     }
 
+    public function search(Request $request): View
+    {
+        $query = $request->input('query');
+        $products = Product::where('name', 'like', '%'.$query.'%')
+            ->orWhere('brand', 'like', '%'.$query.'%')
+            ->paginate(10);
+
+        return view('admin.product.index')->with('viewData', ['products' => $products]);
+    }
+
     public function create(): View
     {
-        $viewData = [];
-
-        return view('admin.product.create')->with('viewData', $viewData);
+        return view('admin.product.create');
     }
 
     public function save(Request $request): RedirectResponse

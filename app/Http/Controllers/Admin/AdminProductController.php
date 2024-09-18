@@ -35,7 +35,7 @@ class AdminProductController extends Controller
         return view('admin.product.create');
     }
 
-    public function save(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         Product::validate($request);
         $newProduct = new Product;

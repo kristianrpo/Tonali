@@ -16,6 +16,15 @@ class ProductController extends Controller
         return view('product.index')->with('viewData', $viewData);
     }
 
+    public function show(int $id): View
+    {
+        $viewData = [];
+        $product = Product::findOrFail($id);
+        $viewData['product'] = $product;
+
+        return view('product.show')->with('viewData', $viewData);
+    }
+
     public function search(Request $request): View
     {
         $query = $request->input('query');

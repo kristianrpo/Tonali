@@ -55,7 +55,7 @@ class AdminProductController extends Controller
         return back();
     }
 
-    public function show(string $id): View
+    public function show(int $id): View
     {
         $viewData = [];
         $product = Product::findOrFail($id);
@@ -64,7 +64,7 @@ class AdminProductController extends Controller
         return view('admin.product.show')->with('viewData', $viewData);
     }
 
-    public function edit(string $id): View
+    public function edit(int $id): View
     {
         $viewData = [];
         $product = Product::findOrFail($id);
@@ -73,7 +73,7 @@ class AdminProductController extends Controller
         return view('admin.product.edit')->with('viewData', $viewData);
     }
 
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, int $id): RedirectResponse
     {
         Product::validate($request);
         $product = Product::findOrFail($id);
@@ -92,7 +92,7 @@ class AdminProductController extends Controller
         return redirect()->route('admin.product.show', ['id' => $id]);
     }
 
-    public function delete(string $id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         $product = Product::findOrFail($id);
         ImageStorage::deleteImage($product, 'products');

@@ -9,7 +9,7 @@
                 @endforeach
             </ul>
         @endif
-        <form method="POST" action="{{ route('admin.product.save') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
             @csrf
             <div>    
                 <div class="flex items-center mb-3">

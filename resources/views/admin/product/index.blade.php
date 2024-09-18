@@ -74,7 +74,9 @@
                                     <td class="px-4 py-3">{{ formatPrice($product->getPrice()) }}</td>
                                     <td class="px-4 py-3 flex items-center justify-end">
                                         <a href="{{ route('admin.product.show', ['id' => $product->getId()]) }}" class="inline-flex items-center text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 dark:hover-bg-gray-800 text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100">
-                                            <img src="{{ asset('img/product/details.png') }}" alt="Details" class="w-5">
+                                            <svg class="w-6 h-6 text-brightPink" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="#ec3f70" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 4h3a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h3m0 3h6m-3 5h3m-6 0h.01M12 16h3m-6 0h.01M10 3v4h4V3h-4Z"/>
+                                            </svg>
                                         </a>
                                     </td>
                                 </tr>

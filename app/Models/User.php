@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->attributes['name'];
     }
+
+    public function getId(): int
+    {
+        return $this->attributes['id'];
+    }
 }

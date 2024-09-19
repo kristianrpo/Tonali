@@ -2,7 +2,7 @@ $(document).ready(function () {
     $(".decrease-quantity, .increase-quantity").click(function (e) {
         e.preventDefault();
         let productId = $(this).data("id");
-        let quantitySpan = $('span[data-id="' + productId + '"]');
+        let quantitySpan = $('.product-quantity-'+productId);
         let quantity = parseInt(quantitySpan.text());
 
         if ($(this).hasClass("increase-quantity")) {
@@ -22,7 +22,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 quantitySpan.text(quantity);
-                $(".summary-quantity-" + productId).text(quantity);
+                $(".summary-quantity-product-" + productId).text(quantity);
                 $(".total-price").text(response.total);
             },
         });

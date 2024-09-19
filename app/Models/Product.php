@@ -12,7 +12,7 @@ class Product extends Model
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['name'] - string - contains the product name
      * $this->attributes['image'] - string - contains the product image filename or URL
-     * $this->attributes['price'] - int - contains the product price 
+     * $this->attributes['price'] - int - contains the product price
      * $this->attributes['description'] - text - contains the product description
      * $this->attributes['brand'] - string - contains the product brand name
      * $this->attributes['stock_quantity'] - int - contains the product stock quantity
@@ -23,7 +23,6 @@ class Product extends Model
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
-
 
     /*public function category()
     {
@@ -125,6 +124,13 @@ class Product extends Model
         return $this->attributes['image'] === 'default.png'
             ? asset('img/product/'.$this->attributes['image'])
             : asset('storage/products/'.$this->attributes['image']);
+    }
+
+    public function getInventory(): string
+    {
+        return $this->attributes['stock_quantity'] == 0
+            ? 'Out of stock'
+            : 'In stock: '.$this->attributes['stock_quantity'];
     }
 
     public static function validate(Request $request): void

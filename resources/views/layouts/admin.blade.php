@@ -63,12 +63,7 @@
                             {{ __('app.home') }}
                         </a>
                     </li>
-                    <li>
-                        <a href="#"
-                            class="block py-2 px-3 text-gray-900 rounded hover:bg-palePink md:hover:bg-transparent md:hover:text-brightPink md:p-0">
-                            {{ __('app.about') }}
-                        </a>
-                    </li>
+
                     <li>
                         <a href="#"
                             class="block py-2 px-3 text-gray-900 rounded hover:bg-palePink md:hover:bg-transparent md:hover:text-brightPink md:p-0">
@@ -76,16 +71,7 @@
                         </a>
                     </li>
                 </ul>
-                @guest
-                <div class="my-2 mx-4 flex justify-center">
-                    <a href="{{ route('login') }}">
-                        <button
-                            class="bg-brightPink text-white hover:bg-black hover:text-white font-bold py-2 px-4 rounded-full">
-                            {{ __('app.get_started') }}
-                        </button>
-                    </a>
-                </div>
-                @else
+                
                 <div class="my-2 mx-10 flex justify-center">
                     <div class="flex items-center space-x-4">
                         <div class="relative">
@@ -105,28 +91,8 @@
                                 </form>
                             </div>
                         </div>
-                        <a href="#" class="text-darkGray hover:text-black ">
-                            <div
-                                class="flex items-center justify-center h-10 w-10 rounded-full border-2 border-darkGray hover:bg-palePink">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 256 256"
-                                    id="shopping-cart">
-                                    <rect width="256" height="256" fill="none" />
-                                    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="12"
-                                        d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16" />
-                                    <circle cx="80" cy="204" r="20" fill="none" stroke="#000" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="12" />
-                                    <circle cx="184" cy="204" r="20" fill="none" stroke="#000" stroke-linecap="round"
-                                        stroke-linejoin="round" stroke-width="12" />
-                                    <path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="12"
-                                        d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48" />
-                                </svg>
-                            </div>
-                        </a>
                     </div>
                 </div>
-                @endguest
             </div>
         </div>
     </nav>

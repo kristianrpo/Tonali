@@ -1,4 +1,5 @@
 <?php
+
 return [
     'home' => 'Inicio',
     'about' => 'Acerca de',

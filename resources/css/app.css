@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+#dropdown-toggle:checked + label + .absolute {
+    display: block;
+}
+

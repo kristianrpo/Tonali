@@ -17,8 +17,14 @@ Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminPr
 // });
 
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('product.index');
+Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name('product.show');
 Route::get('/products/search', 'App\Http\Controllers\ProductController@search')->name('product.search');
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');
 Route::post('/cart/update', 'App\Http\Controllers\CartController@update')->name('cart.update');
 Route::delete('/cart/delete', 'App\Http\Controllers\CartController@delete')->name('cart.delete');
 Route::post('/cart/add/{id}', 'App\Http\Controllers\CartController@add')->name('cart.add');
+Route::get('/reviews/create/{id}', 'App\Http\Controllers\ReviewController@create')->name('review.create');
+Route::post('/reviews/store/{id}', 'App\Http\Controllers\ReviewController@store')->name('review.store');
+Route::get('/reviews/edit/{id}', 'App\Http\Controllers\ReviewController@edit')->name('review.edit');
+Route::put('/reviews/update/{id}', 'App\Http\Controllers\ReviewController@update')->name('review.update');
+Route::delete('/reviews/delete/{id}', 'App\Http\Controllers\ReviewController@delete')->name('review.delete');

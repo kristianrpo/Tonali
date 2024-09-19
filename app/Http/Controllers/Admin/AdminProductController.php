@@ -14,19 +14,28 @@ class AdminProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['products'] = Product::all();
+        $products = Product::paginate(10);
+        $viewData['products'] = $products;
 
         return view('admin.product.index')->with('viewData', $viewData);
     }
 
-    public function create(): View
+    public function search(Request $request): View
     {
-        $viewData = [];
+        $query = $request->input('query');
+        $products = Product::where('name', 'like', '%'.$query.'%')
+            ->orWhere('brand', 'like', '%'.$query.'%')
+            ->paginate(10);
 
-        return view('admin.product.create')->with('viewData', $viewData);
+        return view('admin.product.index')->with('viewData', ['products' => $products]);
     }
 
-    public function save(Request $request): RedirectResponse
+    public function create(): View
+    {
+        return view('admin.product.create');
+    }
+
+    public function store(Request $request): RedirectResponse
     {
         Product::validate($request);
         $newProduct = new Product;
@@ -46,7 +55,7 @@ class AdminProductController extends Controller
         return back();
     }
 
-    public function show(string $id): View
+    public function show(int $id): View
     {
         $viewData = [];
         $product = Product::findOrFail($id);
@@ -55,7 +64,7 @@ class AdminProductController extends Controller
         return view('admin.product.show')->with('viewData', $viewData);
     }
 
-    public function edit(string $id): View
+    public function edit(int $id): View
     {
         $viewData = [];
         $product = Product::findOrFail($id);
@@ -64,7 +73,7 @@ class AdminProductController extends Controller
         return view('admin.product.edit')->with('viewData', $viewData);
     }
 
-    public function update(Request $request, string $id): RedirectResponse
+    public function update(Request $request, int $id): RedirectResponse
     {
         Product::validate($request);
         $product = Product::findOrFail($id);
@@ -83,7 +92,7 @@ class AdminProductController extends Controller
         return redirect()->route('admin.product.show', ['id' => $id]);
     }
 
-    public function delete(string $id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         $product = Product::findOrFail($id);
         ImageStorage::deleteImage($product, 'products');

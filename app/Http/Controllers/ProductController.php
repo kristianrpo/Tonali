@@ -20,6 +20,7 @@ class ProductController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
+
         $product = Product::with('reviews')->findOrFail($id);
 
         $averageRating = $product->getAverageRating();

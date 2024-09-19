@@ -23,9 +23,11 @@
                             alt="{{ $product->getName() }}"
                         />
                         <div class="p-4 text-center">
-                            <h2 class="font-semibold text-gray-800">
-                                {{ $product->getName() }}
-                            </h2>
+                            <a href="{{ route('product.show', ['id' => $product->getId()]) }}" >
+                              <h2 class="font-semibold text-gray-800">
+                                  {{ $product->getName() }}
+                              </h2>
+                            </a>  
                             <p class="text-sm text-gray-600">
                                 {{ $product->getBrand() }}
                             </p>

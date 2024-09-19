@@ -157,6 +157,13 @@ class Product extends Model
             : asset('storage/products/'.$this->attributes['image']);
     }
 
+    public function getInventory(): string
+    {
+        return $this->attributes['stock_quantity'] == 0
+            ? 'Out of stock'
+            : 'In stock: '.$this->attributes['stock_quantity'];
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([

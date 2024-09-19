@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
@@ -23,11 +24,6 @@ class Product extends Model
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
-
-    /*public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }*/
 
     public function getId(): int
     {
@@ -99,9 +95,19 @@ class Product extends Model
         return $this->attributes['quantity_reviews'];
     }
 
+    public function setQuantityReviews(int $quantityReviews): void
+    {
+        $this->attributes['quantity_reviews'] = $quantityReviews;
+    }
+
     public function getSumRatings(): int
     {
         return $this->attributes['sum_ratings'];
+    }
+
+    public function setSumRatings(int $sumRatings): void
+    {
+        $this->attributes['sum_ratings'] = $sumRatings;
     }
 
     public function getCategoryId(): int
@@ -117,6 +123,31 @@ class Product extends Model
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function setReviews(Collection $reviews): void
+    {
+        $this->reviews = $reviews;
+    }
+
+    /*public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }*/
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getAverageRating(): float
+    {
+        return $this->getQuantityReviews() === 0 ? 0 : number_format($this->getSumRatings() / $this->getQuantityReviews(), 2);
     }
 
     public function getImageUrl(): string

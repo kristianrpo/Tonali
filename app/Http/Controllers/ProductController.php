@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -19,8 +20,18 @@ class ProductController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $product = Product::findOrFail($id);
+
+        $product = Product::with('reviews')->findOrFail($id);
+
+        $averageRating = $product->getAverageRating();
+        $calculatedStars = floor($averageRating);
+
+        $userId = Auth::id();
+
         $viewData['product'] = $product;
+        $viewData['averageRating'] = $averageRating;
+        $viewData['calculatedStars'] = $calculatedStars;
+        $viewData['userId'] = $userId;
 
         return view('product.show')->with('viewData', $viewData);
     }

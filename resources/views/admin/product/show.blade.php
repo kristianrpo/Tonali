@@ -1,72 +1,10 @@
-@extends("layouts.app")
-@section("content")
-    <div class="container">
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div
-                    class="col-md-4 d-flex align-items-center justify-content-center"
-                >
-                    <img
-                        src="{{ $viewData["product"]->getImageUrl() }}"
-                        class="img-fluid rounded-start w-75"
-                        alt="{{ $viewData["product"]->getName() }}"
-                    />
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            {{ $viewData["product"]->getName() }}
-                        </h5>
-                        <p class="card-text">
-                            <strong>{{ __("product.price") }}:</strong>
-                            {{ formatPrice($viewData["product"]->getPrice()) }}
-                        </p>
-                        <p class="card-text">
-                            <strong>{{ __("product.description") }}:</strong>
-                            {{ $viewData["product"]->getDescription() }}
-                        </p>
-                        <p class="card-text">
-                            <strong>{{ __("product.brand") }}:</strong>
-                            {{ $viewData["product"]->getBrand() }}
-                        </p>
-                        <p class="card-text">
-                            <strong>
-                                {{ __("product.stock_quantity") }}:
-                            </strong>
-                            {{ $viewData["product"]->getStockQuantity() }}
-                        </p>
-                        <p class="card-text">
-                            <strong>{{ __("product.created_at") }}:</strong>
-                            {{ $viewData["product"]->getCreatedAt() }}
-                        </p>
-                        <p class="card-text">
-                            <strong>{{ __("product.updated_at") }}:</strong>
-                            {{ $viewData["product"]->getUpdatedAt() }}
-                        </p>
-                        <div class="d-flex justify-content-center">
-                            <a
-                                href="{{ route("admin.product.edit", ["id" => $viewData["product"]->getId()]) }}"
-                                class="btn btn-primary"
-                            >
-                                {{ __("product.edit") }}
-                            </a>
-                        </div>
-                        <div class="d-flex justify-content-center mt-4">
-                            <form
-                                action="{{ route("admin.product.delete", $viewData["product"]->getId()) }}"
-                                method="POST"
-                            >
-                                @csrf
-                                @method("DELETE")
-                                <button type="submit" class="btn btn-danger">
-                                    {{ __("product.delete") }}
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+@extends('layouts.admin')
+@section('admin-content')
+<section class="bg-gray-50">
+  <div class="px-4 mx-auto max-w-2xl">
+    <div class="w-full text-left">
+      <h2 class="text-3xl font-bold text-gray-900 mb-2">{{ $viewData['product']->getName() }}</h2>
+      <p class="text-xl text-gray-700 mb-2">{{ formatPrice($viewData['product']->getPrice()) }}</p>
     </div>
 
     <div class="flex flex-col lg:flex-row w-full space-y-6 lg:space-y-0 lg:space-x-6">
@@ -103,7 +41,7 @@
           {{ __('product.edit') }}
         </a>
 
-        <form action="{{ route('admin.product.delete', $viewData['product']->getId()) }}" method="POST">
+        <form action="{{ route('admin.product.delete', $viewData['product']->getId()) }}" method="POST" onsubmit="return confirmDelete(deleteConfirmationMessage)">
           @csrf
           @method('DELETE')
           <button type="submit" class="flex items-center justify-center px-4 py-2 text-white bg-brightPink rounded-lg focus:ring-4 focus:ring-blue-300 hover:bg-black">
@@ -117,4 +55,8 @@
     </div>
   </div>
 </section>
+<script>
+    let deleteConfirmationMessage = '{{ __("product.delete_confirmation") }}';
+</script>
+<script src="{{ asset("js/common/confirmDelete.js") }}"></script>
 @endsection

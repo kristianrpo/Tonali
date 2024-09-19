@@ -18,7 +18,6 @@ Route::delete('/admin/products/delete/{id}', 'App\Http\Controllers\Admin\AdminPr
 // });
 
 Route::get('/products', 'App\Http\Controllers\ProductController@index')->name('product.index');
-Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name('product.show');
 Route::get('/products/search', 'App\Http\Controllers\ProductController@search')->name('product.search');
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name('product.show');
 Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cart.index');

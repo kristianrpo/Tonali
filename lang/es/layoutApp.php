@@ -11,4 +11,6 @@ return [
     'navbar_title' => 'Tonalí',
     'icon_alt' => 'Icono de Tonalí',
     'combination_mark_alt' => 'Imagotipo de Tonalí',
+    'admin_title' => 'Panel de Administración',
+    'navbar_admin_title' => 'Tonalí Administración',
 ];

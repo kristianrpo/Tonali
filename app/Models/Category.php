@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Category extends Model
 {
@@ -40,5 +41,13 @@ class Category extends Model
     public function setDescription(string $description): void
     {
         $this->attributes['description'] = $description;
+    }
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'description' => 'required|string',
+        ]);
     }
 }

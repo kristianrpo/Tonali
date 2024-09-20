@@ -12,4 +12,9 @@ return [
     'edit_button' => 'Edit Review',
     'cancel_button' => 'Cancel',
     'delete_confirmation' => 'Are you sure you want to delete this review?',
+    'report_review' => 'Report Review',
+    'report_title_form' => 'Report Title',
+    'report_description_form' => 'Report Description',
+    'report_button' => 'Report Review',
+
 ];

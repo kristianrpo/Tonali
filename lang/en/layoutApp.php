@@ -11,4 +11,6 @@ return [
     'navbar_title' => 'Tonalí',
     'icon_alt' => 'Icon of Tonalí',
     'combination_mark_alt' => 'Combination mark logo of Tonalí',
+    'admin_title' => 'Admin Dashboard',
+    'navbar_admin_title' => 'Tonalí Admin',
 ];

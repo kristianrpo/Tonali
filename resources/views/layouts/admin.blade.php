@@ -1,119 +1,115 @@
-@extends("layouts.app")
-@section("content")
-    <div class="flex">
-        <button
-            data-drawer-target="default-sidebar"
-            data-drawer-toggle="default-sidebar"
-            aria-controls="default-sidebar"
-            type="button"
-            class="ml-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        >
-            <span class="sr-only">Open sidebar</span>
-            <svg
-                class="h-6 w-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+            src="https://kit.fontawesome.com/52165e5e88.js"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"
+            rel="stylesheet"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+        <title>@yield("title", __("layoutApp.admin_title"))</title>
+
+        @vite("resources/css/app.css")
+    </head>
+
+    <body class="flex min-h-screen flex-col">
+        <nav class="border-gray-200 bg-white shadow-md">
+            <div
+                class="mx-auto flex max-w-screen-xl cursor-pointer flex-wrap items-center justify-around p-4"
             >
-                <path
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-                ></path>
-            </svg>
-        </button>
-
-        <aside
-            id="default-sidebar"
-            class="w-64 overflow-y-auto bg-white transition-transform"
-        >
-            <div class="px-0 py-0">
-                <ul class="space-y-2">
-                    <li>
-                        <a
-                            href="#"
-                            class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        >
-                            <svg
-                                aria-hidden="true"
-                                class="h-6 w-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:text-gray-400"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg"
+                <div
+                    class="flex items-center space-x-3 hover:text-brightPink rtl:space-x-reverse"
+                >
+                    <img
+                        src="{{ asset("img/logos/dark/icon.png") }}"
+                        class="h-12"
+                        alt="{{ __("layoutApp.icon_alt") }}"
+                    />
+                    <span
+                        class="self-center whitespace-nowrap text-2xl font-semibold"
+                    >
+                        {{ __("layoutApp.navbar_admin_title") }}
+                    </span>
+                </div>
+                
+                <div
+                    class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
+                    id="navbar-search"
+                >
+                    <ul
+                        class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse"
+                    >
+                        <li>
+                            <a
+                                href="#"
+                                class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
                             >
-                                <path
-                                    d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"
-                                ></path>
-                                <path
-                                    d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"
-                                ></path>
-                            </svg>
-                            <span class="ml-3">
-                                {{ __("product.overview") }}
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="{{ route("admin.product.index") }}"
-                            class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        >
-                            <svg
-                                aria-hidden="true"
-                                class="h-6 w-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:text-gray-400"
-                                width="24"
-                                height="24"
-                                fill="none"
-                                viewBox="0 0 23 23"
-                                xmlns="http://www.w3.org/2000/svg"
+                                {{ __("layoutApp.home") }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{ route("admin.product.create") }}"
+                                class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
                             >
-                                <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M6 12c.263 0 .524-.06.767-.175a2 2 0 0 0 .65-.491c.186-.21.333-.46.433-.734.1-.274.15-.568.15-.864a2.4 2.4 0 0 0 .586 1.591c.375.422.884.659 1.414.659.53 0 1.04-.237 1.414-.659A2.4 2.4 0 0 0 12 9.736a2.4 2.4 0 0 0 .586 1.591c.375.422.884.659 1.414.659.53 0 1.04-.237 1.414-.659A2.4 2.4 0 0 0 16 9.736c0 .295.052.588.152.861s.248.521.434.73a2 2 0 0 0 .649.488 1.809 1.809 0 0 0 1.53 0 2.03 2.03 0 0 0 .65-.488c.185-.209.332-.457.433-.73.1-.273.152-.566.152-.861 0-.974-1.108-3.85-1.618-5.121A.983.983 0 0 0 17.466 4H6.456a.986.986 0 0 0-.93.645C5.045 5.962 4 8.905 4 9.736c.023.59.241 1.148.611 1.567.37.418.865.667 1.389.697Zm0 0c.328 0 .651-.091.94-.266A2.1 2.1 0 0 0 7.66 11h.681a2.1 2.1 0 0 0 .718.734c.29.175.613.266.942.266.328 0 .651-.091.94-.266.29-.174.537-.427.719-.734h.681a2.1 2.1 0 0 0 .719.734c.289.175.612.266.94.266.329 0 .652-.091.942-.266.29-.174.536-.427.718-.734h.681c.183.307.43.56.719.734.29.174.613.266.941.266a1.819 1.819 0 0 0 1.06-.351M6 12a1.766 1.766 0 0 1-1.163-.476M5 12v7a1 1 0 0 0 1 1h2v-5h3v5h7a1 1 0 0 0 1-1v-7m-5 3v2h2v-2h-2Z"
-                                />
-                            </svg>
-                            <span class="ml-3">
-                                {{ __("product.products") }}
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a
-                            href="#"
-                            class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        >
-                            <svg
-                                aria-hidden="true"
-                                class="h-6 w-6 text-gray-400 transition duration-75 group-hover:text-gray-900 dark:text-gray-400"
-                                width="24"
-                                height="24"
-                                fill="none"
-                                viewBox="0 0 24 24"
+                                {{ __("layoutApp.create_product") }}
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="{{ route("product.index") }}"
+                                class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
                             >
-                                <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M15.583 8.445h.01M10.86 19.71l-6.573-6.63a.993.993 0 0 1 0-1.4l7.329-7.394A.98.98 0 0 1 12.31 4l5.734.007A1.968 1.968 0 0 1 20 5.983v5.5a.992.992 0 0 1-.316.727l-7.44 7.5a.974.974 0 0 1-1.384.001Z"
-                                />
-                            </svg>
-                            <span class="ml-3">
-                                {{ __("product.categories") }}
-                            </span>
-                        </a>
-                    </li>
-                </ul>
+                                {{ __("layoutApp.products") }}
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="mx-10 my-2 flex justify-center">
+                        <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <input type="checkbox" id="dropdown-toggle" class="hidden" />
+                            <label for="dropdown-toggle" class="text-white cursor-pointer">
+                                <div class="flex items-center justify-center h-10 w-10 rounded-full border-2 border-darkGray hover:bg-palePink">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 512 512" id="profile">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z" />
+                                    </svg>
+                                </div>
+                            </label>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden group-hover:block">
+                                <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">{{ __('auth.profile') }}</a>
+                                <form action="{{ route('logout') }}" method="POST" class="block">
+                                    @csrf
+                                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200">{{ __('auth.logout') }}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </aside>
-
-        <div class="flex-1 p-4">
-            @yield("admin-content")
-        </div>
-    </div>
-    <script src="https://unpkg.com/flowbite@latest/dist/flowbite.js"></script>
-@endsection
+        </nav>
+        <main class="mx-12 my-12">
+            @yield("content")
+        </main>
+        <footer class="bg-brightPink p-4 shadow">
+            <div class="mx-auto w-full max-w-screen-xl p-4 md:py-8">
+                <div class="flex items-center justify-center">
+                    <img
+                        src="{{ asset("img/logos/light/combinationMark.png") }}"
+                        class="h-60"
+                        alt="{{ __("layoutApp.combination_mark_alt") }}"
+                    />
+                </div>
+                <hr class="mx-auto my-6 my-8 border-offWhite" />
+                <span class="block text-center text-sm font-bold text-offWhite">
+                    {{ __("layoutApp.copyright") }}
+                </span>
+            </div>
+        </footer>
+    </body>
+</html>

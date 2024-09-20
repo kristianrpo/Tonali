@@ -176,7 +176,7 @@
                         </div>
                         @if (count($viewData["products"]) > 0)
                             <a
-                                href="{{ route("order.createFromCart") }}"
+                                href="{{ route("order.place") }}"
                                 class="hover:bg-primary-800 focus:ring-primary-300 flex w-full items-center justify-center rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4"
                             >
                                 {{ __("cart.purchase") }}

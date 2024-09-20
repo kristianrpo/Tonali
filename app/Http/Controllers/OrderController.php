@@ -20,7 +20,7 @@ class OrderController extends Controller
         return view('order.index')->with('viewData', $viewData);
     }
 
-    public function createFromCart(Request $request): RedirectResponse
+    public function place(Request $request): RedirectResponse
     {
         $productsInSession = $request->session()->get('products');
         if ($productsInSession) {

@@ -8,13 +8,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class AdminProductController extends Controller
+class AdminCategoryController extends Controller
 {
     public function index(): View
     {
         $viewData = [];
         $categories = Category::all();
         $viewData['categories'] = $categories;
+
+        return view('admin.category.index')->with('viewData', $viewData);
     }
 
     public function create(): View

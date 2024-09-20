@@ -47,7 +47,7 @@
                 <div>
                     <label
                         for="name"
-                        class="mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                        class="mb-1 block text-sm font-medium text-gray-900"
                     >
                         {{ __("product.name") }}
                     </label>
@@ -65,7 +65,7 @@
                 <div>
                     <label
                         for="price"
-                        class="mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                        class="mb-1 block text-sm font-medium text-gray-900"
                     >
                         {{ __("product.price") }}
                     </label>
@@ -83,7 +83,7 @@
                 <div>
                     <label
                         for="brand"
-                        class="mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                        class="mb-1 block text-sm font-medium text-gray-900"
                     >
                         {{ __("product.brand") }}
                     </label>
@@ -101,7 +101,7 @@
                 <div>
                     <label
                         for="category"
-                        class="mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                        class="mb-1 block text-sm font-medium text-gray-900"
                     >
                         {{ __("product.category") }}
                     </label>
@@ -118,7 +118,7 @@
                 <div>
                     <label
                         for="stock_quantity"
-                        class="mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                        class="mb-1 block text-sm font-medium text-gray-900"
                     >
                         {{ __("product.stock_quantity") }}
                     </label>
@@ -136,7 +136,7 @@
                 <div class="sm:col-span-2">
                     <label
                         for="description"
-                        class="mb-1 block text-sm font-medium text-gray-900 dark:text-white"
+                        class="mb-1 block text-sm font-medium text-gray-900"
                     >
                         {{ __("product.description") }}
                     </label>

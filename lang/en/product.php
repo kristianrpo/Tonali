@@ -12,6 +12,7 @@ return [
     'brand' => 'Brand',
     'category' => 'Category',
     'stock_quantity' => 'Stock quantity',
+    'rating' => 'Rating',
     'created_at' => 'Created at',
     'updated_at' => 'Updated at',
     'create_product' => 'Create product',
@@ -37,4 +38,6 @@ return [
     'page' => 'Page',
     'overview' => 'Overview',
     'categories' => 'Categories',
+    'you_may_also_like' => 'You may also like',
+    'delete_confirmation' => 'Are you sure you want to delete this product?',
 ];

@@ -1,12 +1,12 @@
 @extends("layouts.admin")
 @section("admin-content")
-    <section class="bg-gray-50 antialiased dark:bg-gray-900">
+    <section class="bg-gray-50 antialiased">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <h2 class="mb-6 text-3xl font-bold text-gray-800">
                 {{ __("product.my_products") }}
             </h2>
             <div
-                class="relative overflow-hidden bg-white shadow-md sm:rounded-lg dark:bg-gray-800"
+                class="relative overflow-hidden bg-white shadow-md sm:rounded-lg"
             >
                 <div
                     class="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0"
@@ -26,7 +26,7 @@
                                 >
                                     <svg
                                         aria-hidden="true"
-                                        class="h-5 w-5 text-gray-500 dark:text-gray-400"
+                                        class="h-5 w-5 text-gray-500"
                                         fill="currentColor"
                                         viewbox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@
                                     type="text"
                                     id="simple-search"
                                     name="query"
-                                    class="focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-500 dark:focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+                                    class="focus:ring-primary-500 focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900"
                                     placeholder="{{ __("product.search_products") }}"
                                     required=""
                                 />
@@ -54,7 +54,7 @@
                     >
                         <a
                             href="{{ route("admin.product.create") }}"
-                            class="hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex items-center justify-center rounded-lg bg-brightPink px-4 py-2 text-sm font-medium text-white hover:bg-black focus:outline-none focus:ring-4"
+                            class="hover:bg-primary-800 focus:ring-primary-300 flex items-center justify-center rounded-lg bg-brightPink px-4 py-2 text-sm font-medium text-white hover:bg-black focus:outline-none focus:ring-4"
                         >
                             <svg
                                 class="mr-2 h-3.5 w-3.5"
@@ -78,7 +78,7 @@
                             <button
                                 id="filterDropdownButton"
                                 data-dropdown-toggle="filterDropdown"
-                                class="hover:text-primary-700 flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 md:w-auto dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                                class="hover:text-primary-700 flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 md:w-auto"
                                 type="button"
                             >
                                 <svg
@@ -111,10 +111,10 @@
                             </button>
                             <div
                                 id="filterDropdown"
-                                class="z-10 hidden w-56 rounded-lg bg-white p-3 shadow dark:bg-gray-700"
+                                class="z-10 hidden w-56 rounded-lg bg-white p-3 shadow"
                             >
                                 <h6
-                                    class="mb-3 text-sm font-medium text-gray-900 dark:text-white"
+                                    class="mb-3 text-sm font-medium text-gray-900"
                                 >
                                     {{ __("product.category") }}
                                 </h6>
@@ -129,11 +129,9 @@
                     </div>
                 </div>
                 <div class="overflow-x-auto">
-                    <table
-                        class="w-full text-left text-sm text-gray-500 dark:text-gray-400"
-                    >
+                    <table class="w-full text-left text-sm text-gray-500">
                         <thead
-                            class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400"
+                            class="bg-gray-50 text-xs uppercase text-gray-700"
                         >
                             <tr>
                                 <th scope="col" class="px-4 py-4">
@@ -160,7 +158,7 @@
                         </thead>
                         <tbody>
                             @foreach ($viewData["products"] as $product)
-                                <tr class="border-b dark:border-gray-700">
+                                <tr class="border-b">
                                     <th
                                         scope="row"
                                         class="whitespace-nowrap px-4 py-3 font-medium text-black"
@@ -194,7 +192,7 @@
                                     >
                                         <a
                                             href="{{ route("admin.product.show", ["id" => $product->getId()]) }}"
-                                            class="dark:hover-bg-gray-800 inline-flex items-center rounded-lg p-1.5 text-center text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 focus:outline-none dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-100"
+                                            class="inline-flex items-center rounded-lg p-1.5 text-center text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800 focus:outline-none"
                                         >
                                             <svg
                                                 class="h-6 w-6 text-brightPink"
@@ -224,25 +222,19 @@
                     class="flex flex-col items-start justify-between space-y-3 p-4 md:flex-row md:items-center md:space-y-0"
                     aria-label="Table navigation"
                 >
-                    <span
-                        class="text-sm font-normal text-gray-500 dark:text-gray-400"
-                    >
+                    <span class="text-sm font-normal text-gray-500">
                         {{ __("product.showing") }}
-                        <span
-                            class="font-semibold text-gray-900 dark:text-white"
-                        >
+                        <span class="font-semibold text-gray-900">
                             {{ $viewData["products"]->firstItem() }}-{{ $viewData["products"]->lastItem() }}
                         </span>
                         {{ __("product.of") }}
-                        <span
-                            class="font-semibold text-gray-900 dark:text-white"
-                        >
+                        <span class="font-semibold text-gray-900">
                             {{ $viewData["products"]->total() }}
                         </span>
                     </span>
 
                     <ul
-                        class="inline-flex items-stretch -space-x-px text-sm font-normal text-gray-500 dark:text-gray-400"
+                        class="inline-flex items-stretch -space-x-px text-sm font-normal text-gray-500"
                     >
                         <li>
                             @if ($viewData["products"]->onFirstPage())
@@ -266,7 +258,7 @@
                             @else
                                 <a
                                     href="{{ $viewData["products"]->previousPageUrl() }}"
-                                    class="ml-0 flex h-full items-center justify-center rounded-l-lg border border-gray-300 bg-white px-3 py-1.5 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    class="ml-0 flex h-full items-center justify-center rounded-l-lg border border-gray-300 bg-white px-3 py-1.5 hover:bg-gray-100 hover:text-gray-700"
                                 >
                                     <svg
                                         class="h-5 w-5"
@@ -286,7 +278,7 @@
                         </li>
 
                         <li
-                            class="flex h-full items-center justify-center px-3 py-1.5 text-gray-700 dark:text-white"
+                            class="flex h-full items-center justify-center px-3 py-1.5 text-gray-700"
                         >
                             {{ __("product.page") }}
                             {{ $viewData["products"]->currentPage() }}
@@ -298,7 +290,7 @@
                             @if ($viewData["products"]->hasMorePages())
                                 <a
                                     href="{{ $viewData["products"]->nextPageUrl() }}"
-                                    class="flex h-full items-center justify-center rounded-r-lg border border-gray-300 bg-white px-3 py-1.5 leading-tight hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white"
+                                    class="flex h-full items-center justify-center rounded-r-lg border border-gray-300 bg-white px-3 py-1.5 leading-tight hover:bg-gray-100 hover:text-gray-700"
                                 >
                                     <svg
                                         class="h-5 w-5"

@@ -29,6 +29,7 @@ class ProductController extends Controller
         $userId = Auth::id();
 
         $viewData['product'] = $product;
+        $viewData['relatedProducts'] = Product::where('id', '>', 10)->get();
         $viewData['averageRating'] = $averageRating;
         $viewData['calculatedStars'] = $calculatedStars;
         $viewData['userId'] = $userId;

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use illuminate\Support\Collection;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
      * $this-> orders - Order[] - contains the associated orders
      * $this-> reviews - Review[] - contains the associated reviews
      * $this-> colorimetry - Colorimetry - contains the associated colorimetry
+     * $this->orders - Order[] - contains the associated orders
      */
 
     protected $fillable = [
@@ -115,5 +117,20 @@ class User extends Authenticatable
     public function setUpdatedAt($updatedAt): void
     {
         $this->attributes['updated_at'] = $updatedAt;
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function setOrders($orders): void
+    {
+        $this->orders = $orders;
     }
 }

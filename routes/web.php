@@ -30,3 +30,6 @@ Route::post('/reviews/store/{id}', 'App\Http\Controllers\ReviewController@store'
 Route::get('/reviews/edit/{id}', 'App\Http\Controllers\ReviewController@edit')->name('review.edit');
 Route::put('/reviews/update/{id}', 'App\Http\Controllers\ReviewController@update')->name('review.update');
 Route::delete('/reviews/delete/{id}', 'App\Http\Controllers\ReviewController@delete')->name('review.delete');
+
+Route::get('/reviews/report/{id}', 'App\Http\Controllers\ReviewController@report')->name('review.report');
+Route::post('/reviews/report/validate/{id}', 'App\Http\Controllers\ReviewController@validateReport')->name('review.validateReport');

@@ -164,6 +164,26 @@ class Product extends Model
             : 'In stock: '.$this->attributes['stock_quantity'];
     }
 
+    public function addReviewWithRating(int $rating): void
+    {
+        $this->setSumRatings($this->getSumRatings() + $rating);
+        $this->setQuantityReviews($this->getQuantityReviews() + 1);
+        $this->save();
+    }
+
+    public function deleteReviewWithRating(int $rating): void
+    {
+        $this->setSumRatings($this->getSumRatings() - $rating);
+        $this->setQuantityReviews($this->getQuantityReviews() - 1);
+        $this->save();
+    }
+
+    public function updateReviewWithRating(int $oldRating, int $newRating): void
+    {
+        $this->setSumRatings($this->getSumRatings() - $oldRating + $newRating);
+        $this->save();
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([
@@ -176,11 +196,11 @@ class Product extends Model
         ]);
     }
 
-    public static function sumPricesByQuantities($products, $productsInSession)
+    public static function sumPricesByQuantities(Collection $products, array $productsInSession): int
     {
         $total = 0;
         foreach ($products as $product) {
-            $total = $total + ($product->getPrice() * (int) $productsInSession[$product->getId()]);
+            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]);
         }
 
         return $total;

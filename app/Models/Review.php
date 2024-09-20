@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Interfaces\LanguageModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
@@ -125,5 +126,17 @@ class Review extends Model
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
         ]);
+    }
+
+    public function report(string $reportTitle, string $reportDescription): string
+    {
+        $languageModelInterface = app(LanguageModel::class);
+        $prompt = __('prompt.context_report_review');
+        $prompt .= __('prompt.report_title_label').$reportTitle."\n";
+        $prompt .= __('prompt.report_description_label').$reportDescription."\n";
+        $prompt .= __('prompt.reported_review_label').$this->attributes['description']."\n";
+        $response = $languageModelInterface->generateText($prompt);
+
+        return $response;
     }
 }

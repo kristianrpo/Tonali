@@ -25,7 +25,7 @@
                         >
                             {{ __("review.rating") }}
                         </label>
-                        <div class="flex items-center">
+                        <div class="mb-2 flex items-center">
                             @for ($i = 1; $i <= 5; $i++)
                                 <svg
                                     class="star {{ $i == 1 ? "text-yellow-300" : "text-gray-300" }} h-6 w-6 cursor-pointer hover:text-yellow-300"
@@ -49,7 +49,7 @@
                         />
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-2 mb-2">
                         <label
                             for="title"
                             class="mb-2 block text-sm font-medium text-gray-900"
@@ -65,7 +65,7 @@
                         />
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-2 mb-2">
                         <label
                             for="description"
                             class="mb-2 block text-sm font-medium text-gray-900"

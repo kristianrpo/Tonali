@@ -52,7 +52,7 @@
                         />
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-2 mb-2">
                         <label
                             for="title"
                             class="mb-2 block text-sm font-medium text-gray-900"
@@ -69,7 +69,7 @@
                         />
                     </div>
 
-                    <div class="col-span-2">
+                    <div class="col-span-2 mb-2">
                         <label
                             for="description"
                             class="mb-2 block text-sm font-medium text-gray-900"

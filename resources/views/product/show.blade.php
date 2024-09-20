@@ -101,8 +101,8 @@
         </div>
     </section>
 
-    <section class="bg-white">
-        <div class="container mx-auto w-4/5">
+    <section class="bg-white py-8 antialiased md:py-16">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <div class="flex items-center gap-2">
                 <h2 class="text-2xl font-semibold text-gray-900">
                     {{ __("review.reviews") }}
@@ -140,15 +140,16 @@
                         @endfor
                     </div>
                     <br />
-                    <a
-                        href="{{ route("review.create", ["id" => $viewData["product"]->getId()]) }}"
-                        class="hover:bg-primary-800 focus:ring-primary-300 mb-2 me-2 rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-offWhite focus:outline-none focus:ring-4"
-                    >
-                        {{ __("review.create_button") }}
-                    </a>
+                    @auth
+                        <a
+                            href="{{ route("review.create", ["id" => $viewData["product"]->getId()]) }}"
+                            class="hover:bg-primary-800 focus:ring-primary-300 mb-2 me-2 rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-offWhite focus:outline-none focus:ring-4"
+                        >
+                            {{ __("review.create_button") }}
+                        </a>
+                    @endauth
                 </div>
             </div>
-
             <div class="mt-6 divide-y divide-gray-200">
                 @foreach ($viewData["product"]->getReviews() as $review)
                     <div class="gap-3 py-6 sm:flex sm:items-start">
@@ -192,19 +193,44 @@
                         <div
                             class="flex items-center justify-center sm:space-x-4"
                         >
-                            @if ($review->getUser()->getId() === $viewData["userId"])
-                                <form
-                                    id="deleteForm"
-                                    action="{{ route("review.delete", ["id" => $review->getId()]) }}"
-                                    method="POST"
-                                    onsubmit="return confirmDelete(deleteConfirmationMessage)"
-                                >
-                                    @csrf
-                                    @method("DELETE")
-                                    <button
-                                        type="submit"
-                                        href="{{ route("review.delete", ["id" => $review->getId()]) }}"
-                                        class="mx-auto mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-red-500 px-4 py-2 font-bold text-white"
+                            @auth
+                                @if ($review->getUser()->getId() === $viewData["userId"])
+                                    <form
+                                        id="deleteForm"
+                                        action="{{ route("review.delete", ["id" => $review->getId()]) }}"
+                                        method="POST"
+                                        onsubmit="return confirmDelete(deleteConfirmationMessage)"
+                                    >
+                                        @csrf
+                                        @method("DELETE")
+                                        <button
+                                            type="submit"
+                                            href="{{ route("review.delete", ["id" => $review->getId()]) }}"
+                                            class="m-0 mb-2 mt-4 rounded bg-red-500 px-4 py-2 font-bold text-white"
+                                        >
+                                            <svg
+                                                class="h-6 w-6 text-white"
+                                                aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke="white"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+                                                />
+                                            </svg>
+                                        </button>
+                                    </form>
+
+                                    <a
+                                        href="{{ route("review.edit", ["id" => $review->getId()]) }}"
+                                        class="wf mx-5 mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-palePink px-4 py-2 font-bold text-white lg:mx-0"
                                     >
                                         <svg
                                             class="h-6 w-6 text-white"
@@ -220,41 +246,47 @@
                                                 stroke-linecap="round"
                                                 stroke-linejoin="round"
                                                 stroke-width="2"
-                                                d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+                                                d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
                                             />
                                         </svg>
-                                    </button>
-                                </form>
-
-                                <a
-                                    href="{{ route("review.edit", ["id" => $review->getId()]) }}"
-                                    class="wf mx-auto mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-palePink px-4 py-2 font-bold text-white lg:mx-0"
-                                >
-                                    <svg
-                                        class="h-6 w-6 text-white"
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="24"
-                                        height="24"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
+                                    </a>
+                                @else
+                                    <a
+                                        href="{{ route("review.report", ["id" => $review->getId()]) }}"
+                                        class="wf mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-darkGray px-4 py-2 font-bold text-white lg:mx-0"
                                     >
-                                        <path
-                                            stroke="white"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
-                                        />
-                                    </svg>
-                                </a>
-                            @endif
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            version="1.1"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                            viewBox="0 0 489 489"
+                                            xml:space="preserve"
+                                        >
+                                            <g>
+                                                <g>
+                                                    <path
+                                                        fill="white"
+                                                        stroke="white"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M454.3,31.6c-28.5-15.3-59.1-23.4-93.7-23.4c-40.7,0-81.5,11.2-120.2,21.4S166,50,130.4,50c-23.8,0-45.3-4.6-65.2-13.7    V20.4C65.2,9.2,56,0,44.8,0S24.4,9.2,24.4,20.4v448.2c0,11.2,9.2,20.4,20.4,20.4s20.4-9.2,20.4-20.4v-148    c20,6.9,41.2,10.5,64.2,10.5c40.7,0,81.5-11.2,120.2-20.4c38.7-10.2,74.4-20.4,110-20.4c27.5,0,52,6.1,74.4,18.3    c12.7,8.7,30.6-2.1,30.6-17.3V49.9C464.4,41.8,460.4,35.7,454.3,31.6z M423.7,258.8c-20.4-7.1-41.8-10.2-64.2-10.2    c-40.7,0-81.5,11.2-120.2,21.4s-74.4,20.4-110,20.4c-23.4,0-44.8-4.1-64.2-13.2V79.5c20.4,7.1,41.8,10.2,64.2,10.2    c40.7,0,81.5-11.2,120.2-21.4s74.4-20.4,110-20.4c23.4,0,44.8,4.1,64.2,13.2V258.8z"
+                                                    />
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                @endif
+                            @endauth
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
+
     <script>
         let deleteConfirmationMessage =
             '{{ __("review.delete_confirmation") }}';

@@ -32,14 +32,12 @@ class CartController extends Controller
         if (isset($products[$id])) {
             $products[$id]++;
             $request->session()->put('products', $products);
-
-            return redirect()->route('cart.index');
         } else {
             $products[$id] = 1;
             $request->session()->put('products', $products);
-
-            return redirect()->route('cart.index');
         }
+
+        return redirect()->route('cart.index');
     }
 
     public function update(Request $request): JsonResponse

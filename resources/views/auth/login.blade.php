@@ -1,61 +1,98 @@
-@extends('layouts.app')
+@extends("layouts.app")
 
-@section('content')
-<div class="max-w-screen-lg mx-auto my-12">
-    <div class="bg-white shadow-md rounded-lg">
-        <div class="px-6 py-8">
-            <h2 class="text-2xl font-bold text-center">{{ __('auth.login') }}</h2>
+@section("content")
+    <div class="mx-auto my-12 max-w-screen-lg">
+        <div class="rounded-lg bg-white shadow-md">
+            <div class="px-6 py-8">
+                <h2 class="text-center text-2xl font-bold">
+                    {{ __("auth.login") }}
+                </h2>
 
-            <form method="POST" action="{{ route('login') }}">
-                @csrf
+                <form method="POST" action="{{ route("login") }}">
+                    @csrf
 
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-700">{{ __('passwords.email_address') }}</label>
-                    <input id="email" type="email" class="block w-full p-3 border border-gray-300 rounded-lg @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700">
+                            {{ __("passwords.email_address") }}
+                        </label>
+                        <input
+                            id="email"
+                            type="email"
+                            class="@error("email") is-invalid @enderror block w-full rounded-lg border border-gray-300 p-3"
+                            name="email"
+                            value="{{ old("email") }}"
+                            required
+                            autofocus
+                        />
 
-                    @error('email')
-                        <span class="text-red-600 text-sm">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                        @error("email")
+                            <span class="text-sm text-red-600">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-                <div class="mb-4">
-                    <label for="password" class="block text-gray-700">{{ __('passwords.password') }}</label>
-                    <input id="password" type="password" class="block w-full p-3 border border-gray-300 rounded-lg @error('password') is-invalid @enderror" name="password" required>
+                    <div class="mb-4">
+                        <label for="password" class="block text-gray-700">
+                            {{ __("passwords.password") }}
+                        </label>
+                        <input
+                            id="password"
+                            type="password"
+                            class="@error("password") is-invalid @enderror block w-full rounded-lg border border-gray-300 p-3"
+                            name="password"
+                            required
+                        />
 
-                    @error('password')
-                        <span class="text-red-600 text-sm">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
+                        @error("password")
+                            <span class="text-sm text-red-600">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
 
-                <div class="mb-4">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                    <label class="text-gray-700" for="remember">{{ __('auth.remember_me') }}</label>
-                </div>
+                    <div class="mb-4">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="remember"
+                            id="remember"
+                            {{ old("remember") ? "checked" : "" }}
+                        />
+                        <label class="text-gray-700" for="remember">
+                            {{ __("auth.remember_me") }}
+                        </label>
+                    </div>
 
-                <div class="mb-4">
-                    <button type="submit" class="w-full bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black">
-                        {{ __('auth.login') }}
-                    </button>
-                </div>
+                    <div class="mb-4">
+                        <button
+                            type="submit"
+                            class="w-full rounded-full bg-brightPink px-4 py-2 text-white hover:bg-black"
+                        >
+                            {{ __("auth.login") }}
+                        </button>
+                    </div>
 
-                @if (Route::has('password.request'))
-                    <a class="text-sm text-brightPink hover:text-black" href="{{ route('password.request') }}">
-                        {{ __('passwords.forgot') }}
-                    </a>
-                @endif
-            </form>
-        </div>
+                    @if (Route::has("password.request"))
+                        <a
+                            class="text-sm text-brightPink hover:text-black"
+                            href="{{ route("password.request") }}"
+                        >
+                            {{ __("passwords.forgot") }}
+                        </a>
+                    @endif
+                </form>
+            </div>
 
-        <div class="bg-gray-100 text-center py-4">
-            <span>{{ __('auth.account_register') }}</span>
-            <a href="{{ route('register') }}" class="text-brightPink font-bold hover:text-black">
-                {{ __('auth.register') }}
-            </a>
+            <div class="bg-gray-100 py-4 text-center">
+                <span>{{ __("auth.account_register") }}</span>
+                <a
+                    href="{{ route("register") }}"
+                    class="font-bold text-brightPink hover:text-black"
+                >
+                    {{ __("auth.register") }}
+                </a>
+            </div>
         </div>
     </div>
-</div>
 @endsection

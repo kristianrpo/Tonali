@@ -129,9 +129,7 @@
                     </div>
                 </div>
                 <div class="overflow-x-auto">
-                    <table
-                        class="w-full text-left text-sm text-gray-500"
-                    >
+                    <table class="w-full text-left text-sm text-gray-500">
                         <thead
                             class="bg-gray-50 text-xs uppercase text-gray-700"
                         >
@@ -224,19 +222,13 @@
                     class="flex flex-col items-start justify-between space-y-3 p-4 md:flex-row md:items-center md:space-y-0"
                     aria-label="Table navigation"
                 >
-                    <span
-                        class="text-sm font-normal text-gray-500"
-                    >
+                    <span class="text-sm font-normal text-gray-500">
                         {{ __("product.showing") }}
-                        <span
-                            class="font-semibold text-gray-900"
-                        >
+                        <span class="font-semibold text-gray-900">
                             {{ $viewData["products"]->firstItem() }}-{{ $viewData["products"]->lastItem() }}
                         </span>
                         {{ __("product.of") }}
-                        <span
-                            class="font-semibold text-gray-900"
-                        >
+                        <span class="font-semibold text-gray-900">
                             {{ $viewData["products"]->total() }}
                         </span>
                     </span>

@@ -22,10 +22,6 @@ class ReviewController extends Controller
 
     public function store(Request $request, int $productId): RedirectResponse
     {
-
-        $user = Auth::user(1);
-        Auth::login($user);
-
         $userId = Auth::id();
         Review::validate($request);
 

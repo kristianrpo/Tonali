@@ -53,10 +53,15 @@
                     </a>
                 </div>
                 <div class="flex justify-center items-start mt-4">
+                    <a href="{{ route('colorimetry.index') }}" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300">
+                        {{ __("user.view_colorimetry") }}
+                    </a>
+                </div>
+                <div class="flex justify-center items-start mt-4">
                     <form method="POST" action="{{ route('profile.delete')}}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300">{{ __("user.delete_customer") }}</button>
+                        <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300" onclick="return confirm('{{ __('user.delete') }}');">{{ __("user.delete_customer") }}</button>
                     </form>
                 </div>
             </div>

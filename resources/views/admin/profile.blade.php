@@ -31,7 +31,7 @@
                     <form method="POST" action="{{ route('admin.delete')}}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300">{{ __("user.delete_admin") }}</button>
+                        <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300" onclick="return confirm('{{ __('user.delete') }}');">{{ __("user.delete_admin") }}</button>
                     </form>
                 </div>
             </div>

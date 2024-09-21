@@ -14,8 +14,8 @@ class UserController extends Controller
 {
     public function index(): View
     {
-        $user_id = Auth::user()->getId();
-        $user = User::findOrFail($user_id);
+        $userId = Auth::user()->getId();
+        $user = User::findOrFail($userId);
 
         $viewData = [];
         $viewData['title'] = __('controller.titles.profile');
@@ -32,8 +32,8 @@ class UserController extends Controller
     public function edit(): View
     {
         $viewData = [];
-        $user_id = Auth::user()->getId();
-        $user = User::findOrFail($user_id);
+        $userId = Auth::user()->getId();
+        $user = User::findOrFail($userId);
         $viewData['user'] = $user;
 
         if ($user->getRole() === 'admin') {
@@ -45,8 +45,8 @@ class UserController extends Controller
 
     public function update(Request $request): RedirectResponse
     {   
-        $user_id = Auth::user()->getId();
-        $user = User::findOrFail($user_id);
+        $userId = Auth::user()->getId();
+        $user = User::findOrFail($userId);
         User::validate($request);
 
         $user->setName($request->input('name'));
@@ -60,8 +60,8 @@ class UserController extends Controller
 
     public function delete(): RedirectResponse
     {
-        $user_id = Auth::user()->getId();
-        User::destroy($user_id);
+        $userId = Auth::user()->getId();
+        User::destroy($userId);
 
 
         return redirect()->route('home.index');

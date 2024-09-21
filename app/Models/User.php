@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -119,6 +120,22 @@ class User extends Authenticatable
         $this->attributes['updated_at'] = $updatedAt;
     }
 
+    public function colorimetry(): HasOne
+    {
+        return $this->hasOne(Colorimetry::class);
+    }
+
+    public function getColorimetry(): Colorimetry
+    {
+        return $this->orders;
+    }
+
+    public function setColorimetry(Colorimetry $colorimetry): void
+    {
+        $this->colorimetry = $colorimetry;
+    }
+
+
     public static function validate(Request $request)
     {
         return $request->validate([
@@ -126,16 +143,6 @@ class User extends Authenticatable
             'email' => 'required|string',
             'cellphone' => 'nullable|string|max:15',
             'address' => 'nullable|string',
-        ]);
-    }
-
-    public static function validateAdmin(Request $request): void
-    {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string',
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'string', 'in:admin'],
         ]);
     }
 }

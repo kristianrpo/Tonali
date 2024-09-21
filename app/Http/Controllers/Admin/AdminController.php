@@ -19,8 +19,8 @@ class AdminController extends Controller
 
     public function delete(): RedirectResponse
     {
-        $user_id = Auth::user()->getId();
-        User::destroy($user_id);
+        $userId = Auth::user()->getId();
+        User::destroy($userId);
         return redirect()->route('home.index');
     }
 

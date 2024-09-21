@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'create' => 'Create New Admin',
     'profile' => 'Your Profile',
     'name' => 'Name',
@@ -17,5 +16,10 @@ return [
     'admin_profile' => 'Admin Profile',
     'delete_customer' => 'Delete Account',
     'delete_admin' => 'Delete Admin Account',
-    
+    'view_colorimetry' => 'My Colorimetry',
+    'edit_colorimetry' => 'Edit Colorimetry',
+    'create_colorimetry' => 'Create Colorimetry',
+    'delete_colorimetry' => 'Delete Colorimetry',
+    'delete' => 'Are you sure you want to delete this account?',
+
 ];

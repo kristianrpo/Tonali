@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'create' => 'Crear Nuevo Administrador',
     'profile' => 'Tu perfil',
     'name' => 'Nombre',
@@ -17,5 +16,9 @@ return [
     'admin_profile' => 'Perfil de Administrador',
     'delete_customer' => 'Eliminar Cuenta',
     'delete_admin' => 'Eliminar Cuenta de Administrador',
-    
+    'view_colorimetry' => 'Mi Colorimetría',
+    'edit_colorimetry' => 'Editar Colorimetría',
+    'create_colorimetry' => 'Crear Colorimetría',
+    'delete_colorimetry' => 'Eliminar Colorimetría',
+    'delete' => '¿Estás seguro de que quieres eliminar esta cuenta?'
 ];

@@ -11,3 +11,5 @@ include __DIR__.'/product/routes.php';
 include __DIR__.'/cart/routes.php';
 include __DIR__.'/review/routes.php';
 include __DIR__.'/profile/routes.php';
+include __DIR__.'/colorimetry/routes.php';
+

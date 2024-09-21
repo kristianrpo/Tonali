@@ -1,34 +1,88 @@
-@extends("layouts.app")
-@section("content")
-    <div class="flex">
-        <button
-            data-drawer-target="default-sidebar"
-            data-drawer-toggle="default-sidebar"
-            aria-controls="default-sidebar"
-            type="button"
-            class="ml-3 mt-2 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden"
-        >
-            <span class="sr-only">Open sidebar</span>
-            <svg
-                class="h-6 w-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <path
-                    clip-rule="evenodd"
-                    fill-rule="evenodd"
-                    d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-                ></path>
-            </svg>
-        </button>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script
+            src="https://kit.fontawesome.com/52165e5e88.js"
+            crossorigin="anonymous"
+        ></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"
+            rel="stylesheet"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+        <title>@yield("title", __("layoutApp.title"))</title>
 
-        <aside
-            id="default-sidebar"
-            class="w-64 overflow-y-auto bg-white transition-transform"
-        >
-            <div class="px-0 py-0">
+        @vite("resources/css/app.css")
+    </head>
+
+    <body class="flex flex-col min-h-screen">
+        <nav class="border-gray-200 bg-white shadow-md border-b px-10 py-2.5 fixed left-0 right-0 top-0 z-50">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex justify-start items-center">
+                    <button
+                        data-drawer-target="drawer-navigation"
+                        data-drawer-toggle="drawer-navigation"
+                        aria-controls="drawer-navigation"
+                        class="p-2 mr-2 text-gray-600 rounded-lg cursor-pointer md:hidden hover:text-gray-900 hover:bg-gray-100 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100"
+                    >
+                        <svg
+                        aria-hidden="true"
+                        class="w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path
+                            fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                            clip-rule="evenodd"
+                        ></path>
+                        </svg>
+                        <svg
+                        aria-hidden="true"
+                        class="hidden w-6 h-6"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                        >
+                        <path
+                            fill-rule="evenodd"
+                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                            clip-rule="evenodd"
+                        ></path>
+                        </svg>
+                        <span class="sr-only">Toggle sidebar</span>
+                    </button>
+                    <div class="flex mx-6 items-center space-x-3 rtl:space-x-reverse">
+                        <img
+                            src="{{ asset("img/logos/dark/icon.png") }}"
+                            class="h-12"
+                            alt="{{ __("layoutApp.icon_alt") }}"
+                        />
+                        <span
+                            class="self-center whitespace-nowrap text-2xl font-semibold"
+                        >
+                            {{ __("layoutApp.navbar_title") }}
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center lg:order-2">
+                    <label for="dropdown-toggle" class="cursor-pointer text-white">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 512 512" id="profile">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z"/>
+                            </svg>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </nav>
+        
+        <aside class="fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0" aria-label="Sidenav" id="drawer-navigation">
+            <div class="overflow-y-auto py-5 px-3 h-full bg-white">
                 <ul class="space-y-2">
                     <li>
                         <a
@@ -107,13 +161,29 @@
                             </span>
                         </a>
                     </li>
-                </ul>
+                </ul>  
             </div>
         </aside>
 
-        <div class="flex-1 p-4">
-            @yield("admin-content")
-        </div>
-    </div>
-    <script src="https://unpkg.com/flowbite@latest/dist/flowbite.js"></script>
-@endsection
+        <main class="p-4 md:ml-64 h-auto pt-20">
+            @yield("content")
+        </main>
+
+        <footer class="relative left-0 right-0 z-50 bg-brightPink shadow mt-8">
+            <div class="mx-auto w-full max-w-screen-xl p-4 md:py-8">
+                <div class="flex items-center justify-center">
+                    <img
+                        src="{{ asset('img/logos/light/combinationMark.png') }}"
+                        class="h-60"
+                        alt="{{ __('layoutApp.combination_mark_alt') }}"
+                    />
+                </div>
+                <hr class="mx-auto my-6 border-offWhite" />
+                <span class="block text-center text-sm font-bold text-offWhite">
+                    {{ __('layoutApp.copyright') }}
+                </span>
+            </div>
+        </footer>
+ 
+    </body>
+</html>

@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("admin-content")
+@section("content")
     <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
         <h2 class="mb-4 text-3xl font-bold text-gray-800">
             {{ __("product.create_product") }}

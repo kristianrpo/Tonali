@@ -33,7 +33,7 @@
                             <div class="flex items-center">
                                 @for ($i = 1; $i <= 5; $i++)
                                     <svg
-                                        class="{{ $i <= $product->getAverageRating() ? "text-yellow-300" : "text-gray-300" }} h-6 w-6 cursor-pointer"
+                                        class="{{ $i <= $product->getAverageRating() ? "text-yellow-300" : "text-gray-300" }} h-6 w-6"
                                         aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"

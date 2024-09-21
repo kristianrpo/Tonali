@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ReviewController extends Controller
 {
@@ -36,6 +37,8 @@ class ReviewController extends Controller
         $product = Product::findOrFail($productId);
         $product->addReviewWithRating($request->input('rating'));
 
+        Session::flash('success', __('review.add_success'));
+
         return redirect()->route('product.show', $productId);
     }
 
@@ -61,6 +64,8 @@ class ReviewController extends Controller
         $review->setDescription($request->input('description'));
         $review->save();
 
+        Session::flash('success', __('review.update_success'));
+
         return redirect()->route('product.show', $review->getProduct()->getId());
     }
 
@@ -71,6 +76,8 @@ class ReviewController extends Controller
         $product = Product::findOrFail($review->getProduct()->getId());
         $product->deleteReviewWithRating($review->getRating());
         Review::destroy($id);
+
+        Session::flash('success', __('review.delete_success'));
 
         return redirect()->route('product.show', $review->getProduct()->getId());
     }
@@ -96,6 +103,8 @@ class ReviewController extends Controller
             $product->deleteReviewWithRating($review->getRating());
             Review::destroy($id);
         }
+
+        Session::flash('success', __('review.report_success'));
 
         return redirect()->route('product.show', $review->getProduct()->getId());
     }

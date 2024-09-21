@@ -16,5 +16,9 @@ return [
     'report_title_form' => 'Título del Reporte',
     'report_description_form' => 'Descripción del Reporte',
     'report_button' => 'Reportar Reseña',
+    'add_success' => 'Reseña agregada exitosamente',
+    'update_success' => 'Reseña actualizada exitosamente',
+    'delete_success' => 'Reseña eliminada exitosamente',
+    'report_success' => 'Reseña reportada exitosamente',
 
 ];

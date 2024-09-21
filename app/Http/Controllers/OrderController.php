@@ -39,6 +39,7 @@ class OrderController extends Controller
                 $item->setProductId($product->getId());
                 $item->setOrderId($order->getId());
                 $item->save();
+                $product->setStock($product->getStock() - $quantity);
                 $total += $product->getPrice() * $quantity;
             }
             $order->setTotal($total);

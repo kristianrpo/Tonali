@@ -62,7 +62,9 @@
                                     <strong class="block text-gray-900">
                                         {{ __("product.category") }}:
                                     </strong>
-                                    <span class="text-gray-500">Category</span>
+                                    <span class="text-gray-500">
+                                        {{ $viewData["product"]->getCategory()->getName() }}
+                                    </span>
                                 </li>
                                 <li class="mb-2">
                                     <strong class="block text-gray-900">

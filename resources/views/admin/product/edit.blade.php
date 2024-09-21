@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("admin-content")
+@section("content")
     <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
         <h2 class="mb-4 text-3xl font-bold text-gray-800">
             {{ __("product.edit_product") }}
@@ -105,11 +105,26 @@
                     </label>
                     <select
                         id="category"
+                        name="category_id"
+                        {{-- Añade el atributo "name" para que el valor sea enviado en el formulario --}}
                         class="form-control w-full rounded-md border border-gray-300 p-2 focus:border-brightPink focus:ring-1 focus:ring-brightPink"
                     >
-                        <option selected="">
-                            {{ __("product.category") }}
+                        <option
+                            value="{{ $viewData["product"]->getCategory()->getId() }}"
+                            selected
+                        >
+                            {{ $viewData["product"]->getCategory()->getName() }}
                         </option>
+                        @foreach ($viewData["categories"] as $category)
+                            @if ($category->getId() != $viewData["product"]->getCategory()->getId())
+                                <option
+                                    value="{{ $category->getId() }}"
+                                    {{ old("category_id") == $category->getId() ? "selected" : "" }}
+                                >
+                                    {{ $category->getName() }}
+                                </option>
+                            @endif
+                        @endforeach
                     </select>
                 </div>
 

@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("admin-content")
+@section("content")
     <section class="bg-gray-50 antialiased">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <h2 class="mb-6 text-3xl font-bold text-gray-800">
@@ -178,8 +178,7 @@
                                     <td
                                         class="inline-block rounded-full bg-gray-200 px-3 py-1 text-black"
                                     >
-                                        <!--getCategory()-->
-                                        Category
+                                        {{ $product->getCategory()->getName() }}
                                     </td>
                                     <td class="px-4 py-3">
                                         {{ $product->getBrand() }}

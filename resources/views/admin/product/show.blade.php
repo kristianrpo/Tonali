@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("admin-content")
+@section("content")
     <section class="bg-gray-50">
         <div class="mx-auto max-w-2xl px-4">
             <div class="w-full text-left">
@@ -34,7 +34,9 @@
                             <strong class="block text-gray-900">
                                 {{ __("product.category") }}:
                             </strong>
-                            <span class="text-gray-500">Category</span>
+                            <span class="text-gray-500">
+                                {{ $viewData["product"]->getCategory()->getName() }}
+                            </span>
                         </li>
                         <li class="mb-2">
                             <strong class="block text-gray-900">
@@ -56,7 +58,7 @@
                 <div class="flex justify-start space-x-3">
                     <a
                         href="{{ route("admin.product.edit", ["id" => $viewData["product"]->getId()]) }}"
-                        class="flex items-center justify-center rounded-lg bg-brightPink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
+                        class="flex items-center justify-center rounded-lg bg-palePink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
                     >
                         <svg
                             class="h-6 w-6 text-white"
@@ -87,7 +89,7 @@
                         @method("DELETE")
                         <button
                             type="submit"
-                            class="flex items-center justify-center rounded-lg bg-brightPink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
+                            class="flex items-center justify-center rounded-lg bg-red-500 px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
                         >
                             <svg
                                 class="h-6 w-6 text-white"

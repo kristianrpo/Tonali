@@ -26,6 +26,12 @@ class Product extends Model
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
 
+    protected $attributes = [
+        'image' => 'default.png',
+        'quantity_reviews' => 0,
+        'sum_ratings' => 0,
+    ];
+
     public function getId(): int
     {
         return $this->attributes['id'];
@@ -116,6 +122,11 @@ class Product extends Model
         return $this->attributes['category_id'];
     }
 
+    public function setCategoryId(int $categoryId): void
+    {
+        $this->attributes['category_id'] = $categoryId;
+    }
+
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
@@ -136,10 +147,15 @@ class Product extends Model
         $this->reviews = $reviews;
     }
 
-    /*public function category()
+    public function getcategory(): Category
+    {
+        return $this->category;
+    }
+
+    public function category()
     {
         return $this->belongsTo(Category::class);
-    }*/
+    }
 
     public function reviews(): HasMany
     {
@@ -193,6 +209,7 @@ class Product extends Model
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'description' => 'required',
             'brand' => 'required',
+            'category_id' => 'required|exists:categories,id',
             'stock_quantity' => 'required|numeric|gte:0',
         ]);
     }

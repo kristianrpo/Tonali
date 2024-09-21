@@ -38,7 +38,7 @@
                 type="submit"
                 class="mt-4 rounded-md bg-brightPink px-4 py-2 text-white hover:bg-black"
             >
-                    {{ __("category.create_category") }}
+                    {{ __("category.send") }}
                 </button>
         </form>
     </div>

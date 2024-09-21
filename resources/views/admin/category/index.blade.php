@@ -35,7 +35,7 @@
                     <tbody>
                         @foreach ($viewData['categories'] as $category)
                             <tr class="border-b">
-                                <td class="px-4 py-3">
+                                <td class="px-4 py-3 font-medium text-black">
                                     {{ $category->getName() }}
                                 </td>
                                 <td class="px-4 py-3">
@@ -43,7 +43,7 @@
                                 </td>
                                 <td class="flex items-center justify-end px-4 py-3">
                                     <a href="{{ route("admin.category.edit", ["id" => $category->getId()]) }}" 
-                                        class="wf mx-2 mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-palePink px-2 py-2 font-bold text-white lg:mx-0"
+                                        class="wf mx-2 mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-palePink hover:bg-black px-2 py-2 font-bold text-white lg:mx-0"
                                 >
                                     <svg
                                         class="h-6 w-6 text-white"
@@ -74,7 +74,7 @@
                                     <button
                                         type="submit"
                                         href="{{ route("admin.category.delete", ["id" => $category->getId()]) }}"
-                                        class="mx-2 mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-red-500 px-2 py-2 font-bold text-white"
+                                        class="mx-2 mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-red-500 hover:bg-black px-2 py-2 font-bold text-white"
                                     >
                                         <svg
                                             class="h-6 w-6 text-white"

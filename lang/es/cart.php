@@ -11,4 +11,8 @@ return [
     'price' => 'Precio',
     'purchase' => 'Comprar',
     'or' => 'o',
+    'notification' => 'Notificación',
+    'add_product_success' => 'Producto agregado al carrito exitosamente',
+    'delete_product_success' => 'Producto eliminado del carrito exitosamente',
+
 ];

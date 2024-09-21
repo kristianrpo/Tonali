@@ -11,4 +11,7 @@ return [
     'price' => 'Price',
     'purchase' => 'Purchase',
     'or' => 'or',
+    'notification' => 'Notification',
+    'add_product_success' => 'Product added to cart successfully',
+    'delete_product_success' => 'Product removed from cart successfully',
 ];

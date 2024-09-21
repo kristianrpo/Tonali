@@ -7,5 +7,6 @@ return [
     'price' => 'Price',
     'id' => 'ID',
     'notification' => 'Notification',
-    'description_notification' => 'You have no orders placed, buy products to see your orders here :)',
+    'empty_message' => 'You have no orders placed, buy products to see your orders here :)',
+    'place_success' => 'Order placed successfully',
 ];

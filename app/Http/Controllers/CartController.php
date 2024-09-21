@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class CartController extends Controller
@@ -37,6 +38,8 @@ class CartController extends Controller
             $request->session()->put('products', $products);
         }
 
+        Session::flash('success', __('cart.add_product_success'));
+
         return redirect()->route('cart.index');
     }
 
@@ -60,6 +63,8 @@ class CartController extends Controller
         $productsInSession = $request->session()->get('products');
         unset($productsInSession[$id]);
         $request->session()->put('products', $productsInSession);
+
+        Session::flash('success', __('cart.delete_product_success'));
 
         return back();
     }

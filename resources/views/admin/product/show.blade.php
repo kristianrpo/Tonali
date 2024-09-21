@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("admin-content")
+@section("content")
     <section class="bg-gray-50">
         <div class="mx-auto max-w-2xl px-4">
             <div class="w-full text-left">

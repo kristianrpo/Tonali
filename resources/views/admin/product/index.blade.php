@@ -1,5 +1,5 @@
 @extends("layouts.admin")
-@section("admin-content")
+@section("content")
     <section class="bg-gray-50 antialiased">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <h2 class="mb-6 text-3xl font-bold text-gray-800">

@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class OrderController extends Controller
@@ -39,13 +40,14 @@ class OrderController extends Controller
                 $item->setProductId($product->getId());
                 $item->setOrderId($order->getId());
                 $item->save();
-                $product->setStock($product->getStock() - $quantity);
+                $product->setStockQuantity($product->getStockQuantity() - $quantity);
                 $total += $product->getPrice() * $quantity;
             }
             $order->setTotal($total);
             $order->save();
 
             $request->session()->forget('products');
+            Session::flash('success', __('order.place_success'));
 
             $viewData = [];
             $viewData['order'] = $order;

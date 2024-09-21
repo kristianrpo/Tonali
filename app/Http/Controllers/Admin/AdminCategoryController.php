@@ -35,15 +35,6 @@ class AdminCategoryController extends Controller
         return back();
     }
 
-    public function show(int $id): View
-    {
-        $viewData = [];
-        $category = Category::findOrFail($id);
-        $viewData['category'] = $category;
-
-        return view('admin.category.show')->with('viewData', $viewData);
-    }
-
     public function edit(int $id): View
     {
         $viewData = [];
@@ -61,7 +52,7 @@ class AdminCategoryController extends Controller
         $category->setDescription($request->input('description'));
         $category->save();
 
-        return redirect()->route('admin.category.show', ['id' => $id]);
+        return redirect()->route('admin.category.index');
     }
 
     public function delete(int $id): RedirectResponse

@@ -54,7 +54,7 @@
                             clip-rule="evenodd"
                         ></path>
                         </svg>
-                        <span class="sr-only">Toggle sidebar</span>
+                        <span class="sr-only">{{ __("layoutApp.toggle_sidebar") }}</span>
                     </button>
                     <div class="flex mx-6 items-center space-x-3 rtl:space-x-reverse">
                         <img

@@ -13,4 +13,5 @@ return [
     'combination_mark_alt' => 'Combination mark logo of Tonalí',
     'admin_title' => 'Admin Dashboard',
     'navbar_admin_title' => 'Tonalí Admin',
+    'toggle_sidebar' => 'Toggle sidebar',
 ];

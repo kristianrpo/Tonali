@@ -16,5 +16,9 @@ return [
     'report_title_form' => 'Report Title',
     'report_description_form' => 'Report Description',
     'report_button' => 'Report Review',
+    'add_success' => 'Review added successfully',
+    'update_success' => 'Review updated successfully',
+    'delete_success' => 'Review deleted successfully',
+    'report_success' => 'Review reported successfully',
 
 ];

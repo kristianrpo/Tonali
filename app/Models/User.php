@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 
 class User extends Authenticatable
 {
@@ -27,6 +27,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cellphone', 
+        'address',
     ];
 
     protected $hidden = [
@@ -115,5 +117,25 @@ class User extends Authenticatable
     public function setUpdatedAt($updatedAt): void
     {
         $this->attributes['updated_at'] = $updatedAt;
+    }
+
+    public static function validate(Request $request)
+    {
+        return $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'cellphone' => 'nullable|string|max:15',
+            'address' => 'nullable|string',
+        ]);
+    }
+
+    public static function validateAdmin(Request $request): void
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string',
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string', 'in:admin'],
+        ]);
     }
 }

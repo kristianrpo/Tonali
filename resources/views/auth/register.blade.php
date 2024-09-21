@@ -47,6 +47,8 @@
                     <input id="password-confirm" type="password" class="block w-full p-3 border border-gray-300 rounded-lg" name="password_confirmation" required>
                 </div>
 
+                <input id="role" type="hidden" name="role" value="customer">
+
                 <div class="mb-4">
                     <button type="submit" class="w-full bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black">
                         {{ __('auth.register') }}

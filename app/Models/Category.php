@@ -43,6 +43,16 @@ class Category extends Model
         $this->attributes['description'] = $description;
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([

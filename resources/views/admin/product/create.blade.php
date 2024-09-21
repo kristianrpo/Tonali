@@ -106,12 +106,18 @@
                         {{ __("product.category") }}
                     </label>
                     <select
-                        id="category"
+                        id="category_id"
+                        name="category_id"
                         class="form-control w-full rounded-md border border-gray-300 p-2 focus:border-brightPink focus:ring-1 focus:ring-brightPink"
                     >
                         <option selected="">
                             {{ __("product.select_category") }}
                         </option>
+                        @foreach ($viewData["categories"] as $category)
+                        <option value="{{ $category->getId() }}" {{ old('category_id') == $category->getId() ? 'selected' : '' }}>
+                                {{ $category->getName() }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
 

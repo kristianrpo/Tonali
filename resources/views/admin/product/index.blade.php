@@ -178,8 +178,7 @@
                                     <td
                                         class="inline-block rounded-full bg-gray-200 px-3 py-1 text-black"
                                     >
-                                        <!--getCategory()-->
-                                        Category
+                                        {{ $product->getCategory()->getName() }}
                                     </td>
                                     <td class="px-4 py-3">
                                         {{ $product->getBrand() }}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Category;
 use App\Utils\ImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,7 +33,11 @@ class AdminProductController extends Controller
 
     public function create(): View
     {
-        return view('admin.product.create');
+        $viewData = [];
+        $categories = Category::all();
+        $viewData['categories'] = $categories;
+
+        return view('admin.product.create')->with('viewData', $viewData);
     }
 
     public function store(Request $request): RedirectResponse
@@ -43,8 +48,8 @@ class AdminProductController extends Controller
         $newProduct->setDescription($request->input('description'));
         $newProduct->setPrice($request->input('price'));
         $newProduct->setBrand($request->input('brand'));
+        $newProduct->setCategoryId($request->input('category_id'));
         $newProduct->setStockQuantity($request->input('stock_quantity'));
-        $newProduct->setImage('default.png');
         $newProduct->save();
         if ($request->hasFile('image')) {
             $imageName = ImageStorage::storeImage($newProduct, $request->file('image'), 'products');
@@ -68,7 +73,9 @@ class AdminProductController extends Controller
     {
         $viewData = [];
         $product = Product::findOrFail($id);
+        $categories = Category::all();
         $viewData['product'] = $product;
+        $viewData['categories'] = $categories;
 
         return view('admin.product.edit')->with('viewData', $viewData);
     }
@@ -81,6 +88,7 @@ class AdminProductController extends Controller
         $product->setDescription($request->input('description'));
         $product->setPrice($request->input('price'));
         $product->setBrand($request->input('brand'));
+        $product->setCategoryId($request->input('category_id'));
         $product->setStockQuantity($request->input('stock_quantity'));
         if ($request->hasFile('image')) {
             $imageName = ImageStorage::storeImage($product, $request->file('image'), 'products');

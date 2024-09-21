@@ -25,6 +25,7 @@ class Product extends Model
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
+
     protected $attributes = [
         'image' => 'default.png',
         'quantity_reviews' => 0,

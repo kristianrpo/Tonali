@@ -15,31 +15,48 @@
             </ul>
         @endif
 
-        <form
-            method="POST"
-            action="{{ route('admin.category.store') }}"
-        >
+        <form method="POST" action="{{ route("admin.category.store") }}">
             @csrf
             <div class="grid gap-4">
                 <div>
-                    <label for="name" class="mb-1 block text-sm font-medium text-gray-900">
+                    <label
+                        for="name"
+                        class="mb-1 block text-sm font-medium text-gray-900"
+                    >
                         {{ __("category.name") }}
                     </label>
-                    <input type="text" name="name" id="name" class="form-control w-full rounded-md border border-gray-300 p-2 focus:border-brightPink focus:ring-1 focus:ring-brightPink" placeholder="{{ __("category.name") }}" value="{{ old("name") }}"/>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        class="form-control w-full rounded-md border border-gray-300 p-2 focus:border-brightPink focus:ring-1 focus:ring-brightPink"
+                        placeholder="{{ __("category.name") }}"
+                        value="{{ old("name") }}"
+                    />
                 </div>
                 <div>
-                    <label for="description" class="mb-1 block text-sm font-medium text-gray-900">
+                    <label
+                        for="description"
+                        class="mb-1 block text-sm font-medium text-gray-900"
+                    >
                         {{ __("category.description") }}
                     </label>
-                    <textarea name="description" id="description" class="form-control w-full rounded-md border border-gray-300 p-2 focus:border-brightPink focus:ring-1 focus:ring-brightPink" placeholder="{{ __("category.description") }}">{{ old("description") }}</textarea>
+                    <textarea
+                        name="description"
+                        id="description"
+                        class="form-control w-full rounded-md border border-gray-300 p-2 focus:border-brightPink focus:ring-1 focus:ring-brightPink"
+                        placeholder="{{ __("category.description") }}"
+                    >
+{{ old("description") }}</textarea
+                    >
                 </div>
             </div>
             <button
                 type="submit"
                 class="mt-4 rounded-md bg-brightPink px-4 py-2 text-white hover:bg-black"
             >
-                    {{ __("category.send") }}
-                </button>
+                {{ __("category.send") }}
+            </button>
         </form>
     </div>
 @endsection

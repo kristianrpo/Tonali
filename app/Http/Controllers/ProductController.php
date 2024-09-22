@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
@@ -42,24 +43,30 @@ class ProductController extends Controller
         return view('product.show')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View|RedirectResponse
+    public function search(Request $request): RedirectResponse|JsonResponse|View
     {
         $query = $request->input('query');
         if (empty($query)) {
             return redirect()->route('product.index');
         }
 
+        if ($request->ajax()) {
+            $suggestions = Product::getSuggestionsByName($query);
+            return response()->json($suggestions);
+        }        
+
         $viewData = [];
         $products = Product::searchProducts($query)->get();
-        $viewData['products'] = $products;
-        $viewData['priceRanges'] = Product::getPriceTerciles();
-        $viewData['categories'] = Category::all();
 
         if ($products->isEmpty()) {
             session()->flash('message', __('product.no_products'));
 
             return redirect()->route('product.index');
         }
+
+        $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
 
         return view('product.index')->with('viewData', $viewData);
     }

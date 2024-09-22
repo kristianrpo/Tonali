@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -237,13 +238,13 @@ class Product extends Model
         ];
     }
 
-    public static function searchProducts(string $query)
+    public static function searchProducts(string $query): Builder
     {
         return Product::where('name', 'like', '%'.$query.'%')
             ->orWhere('brand', 'like', '%'.$query.'%');
     }
 
-    public static function filterProducts(array $filters)
+    public static function filterProducts(array $filters): Builder
     {
         $query = Product::query();
 
@@ -280,7 +281,7 @@ class Product extends Model
         return $query;
     }
 
-    public function getRelatedProducts($limit = 5)
+    public function getRelatedProducts($limit = 5): Collection
     {
         $recommended = Product::where('category_id', $this->category_id)
             ->where('brand', $this->brand)
@@ -309,5 +310,10 @@ class Product extends Model
         }
 
         return $recommended;
+    }
+
+    public static function getSuggestionsByName(string $query)
+    {
+        return Product::where('name', 'like', $query . '%')->distinct()->pluck('name');
     }
 }

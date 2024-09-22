@@ -12,4 +12,13 @@ return [
     'edit_button' => 'Editar Reseña',
     'cancel_button' => 'Cancelar',
     'delete_confirmation' => '¿Estás seguro de que quieres eliminar esta reseña?',
+    'report_review' => 'Reportar Reseña',
+    'report_title_form' => 'Título del Reporte',
+    'report_description_form' => 'Descripción del Reporte',
+    'report_button' => 'Reportar Reseña',
+    'add_success' => 'Reseña agregada exitosamente',
+    'update_success' => 'Reseña actualizada exitosamente',
+    'delete_success' => 'Reseña eliminada exitosamente',
+    'report_success' => 'Reseña reportada exitosamente',
+
 ];

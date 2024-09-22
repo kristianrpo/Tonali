@@ -21,11 +21,9 @@
     <body class="flex min-h-screen flex-col">
         <nav class="border-gray-200 bg-white shadow-md">
             <div
-                class="mx-auto flex max-w-screen-xl cursor-pointer flex-wrap items-center justify-around p-4"
+                class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-around p-4"
             >
-                <div
-                    class="flex items-center space-x-3 hover:text-brightPink rtl:space-x-reverse"
-                >
+                <div class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img
                         src="{{ asset("img/logos/dark/icon.png") }}"
                         class="h-12"
@@ -140,14 +138,6 @@
                         </li>
                         <li>
                             <a
-                                href="{{ route("admin.product.create") }}"
-                                class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
-                            >
-                                {{ __("layoutApp.create_product") }}
-                            </a>
-                        </li>
-                        <li>
-                            <a
                                 href="{{ route("product.index") }}"
                                 class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
                             >
@@ -166,85 +156,116 @@
                         </a>
                     </div>
                     @else
-                    <div class="mx-10 my-2 flex justify-center">
-                        <div class="flex items-center space-x-4">
-                        <div class="relative">
-                            <input type="checkbox" id="dropdown-toggle" class="hidden" />
-                            <label for="dropdown-toggle" class="text-white cursor-pointer">
-                                <div class="flex items-center justify-center h-10 w-10 rounded-full border-2 border-darkGray hover:bg-palePink">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 512 512" id="profile">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z" />
-                                    </svg>
+                        <div class="mx-10 my-2 flex justify-center">
+                            <div class="flex items-center space-x-4">
+                                <div class="relative">
+                                    <input
+                                        type="checkbox"
+                                        id="dropdown-toggle"
+                                        class="hidden"
+                                    />
+                                    <label
+                                        for="dropdown-toggle"
+                                        class="cursor-pointer text-white"
+                                    >
+                                        <div
+                                            class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
+                                        >
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6"
+                                                viewBox="0 0 512 512"
+                                                id="profile"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </label>
+                                    <div
+                                        class="absolute right-0 z-20 mt-2 hidden w-48 rounded-md bg-white shadow-lg group-hover:block"
+                                    >
+                                        <a
+                                            href="{{ route('profile.index') }}"
+                                            class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                                        >
+                                            {{ __("auth.profile") }}
+                                        </a>
+                                        <form
+                                            action="{{ route("logout") }}"
+                                            method="POST"
+                                            class="block"
+                                        >
+                                            @csrf
+                                            <button
+                                                type="submit"
+                                                class="w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200"
+                                            >
+                                                {{ __("auth.logout") }}
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </label>
-                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-20 hidden group-hover:block">
-                                <a href="{{ route('profile.index') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">{{ __('auth.profile') }}</a>
-                                <form action="{{ route('logout') }}" method="POST" class="block">
-                                    @csrf
-                                    <button type="submit" class="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200">{{ __('auth.logout') }}</button>
-                                </form>
                             </div>
                         </div>
-                            <a
-                                href="{{ route("cart.index") }}"
-                                class="text-darkGray hover:text-black"
-                            >
-                                <div
-                                    class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
-                                >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="h-5 w-5"
-                                        viewBox="0 0 256 256"
-                                        id="shopping-cart"
-                                    >
-                                        <rect
-                                            width="256"
-                                            height="256"
-                                            fill="none"
-                                        />
-                                        <path
-                                            fill="none"
-                                            stroke="#000"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="12"
-                                            d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16"
-                                        />
-                                        <circle
-                                            cx="80"
-                                            cy="204"
-                                            r="20"
-                                            fill="none"
-                                            stroke="#000"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="12"
-                                        />
-                                        <circle
-                                            cx="184"
-                                            cy="204"
-                                            r="20"
-                                            fill="none"
-                                            stroke="#000"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="12"
-                                        />
-                                        <path
-                                            fill="none"
-                                            stroke="#000"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="12"
-                                            d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48"
-                                        />
-                                    </svg>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
                     @endguest
+                    <a
+                        href="{{ route("cart.index") }}"
+                        class="text-darkGray hover:text-black"
+                    >
+                        <div
+                            class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5"
+                                viewBox="0 0 256 256"
+                                id="shopping-cart"
+                            >
+                                <rect width="256" height="256" fill="none" />
+                                <path
+                                    fill="none"
+                                    stroke="#000"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="12"
+                                    d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16"
+                                />
+                                <circle
+                                    cx="80"
+                                    cy="204"
+                                    r="20"
+                                    fill="none"
+                                    stroke="#000"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="12"
+                                />
+                                <circle
+                                    cx="184"
+                                    cy="204"
+                                    r="20"
+                                    fill="none"
+                                    stroke="#000"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="12"
+                                />
+                                <path
+                                    fill="none"
+                                    stroke="#000"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="12"
+                                    d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48"
+                                />
+                            </svg>
+                        </div>
+                    </a>
                 </div>
             </div>
         </nav>

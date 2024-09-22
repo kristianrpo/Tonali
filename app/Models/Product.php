@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 
 class Product extends Model
@@ -24,6 +25,12 @@ class Product extends Model
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
+
+    protected $attributes = [
+        'image' => 'default.png',
+        'quantity_reviews' => 0,
+        'sum_ratings' => 0,
+    ];
 
     public function getId(): int
     {
@@ -115,6 +122,11 @@ class Product extends Model
         return $this->attributes['category_id'];
     }
 
+    public function setCategoryId(int $categoryId): void
+    {
+        $this->attributes['category_id'] = $categoryId;
+    }
+
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
@@ -135,12 +147,17 @@ class Product extends Model
         $this->reviews = $reviews;
     }
 
-    /*public function category()
+    public function getcategory(): Category
+    {
+        return $this->category;
+    }
+
+    public function category()
     {
         return $this->belongsTo(Category::class);
-    }*/
+    }
 
-    public function reviews()
+    public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
     }
@@ -164,6 +181,26 @@ class Product extends Model
             : 'In stock: '.$this->attributes['stock_quantity'];
     }
 
+    public function addReviewWithRating(int $rating): void
+    {
+        $this->setSumRatings($this->getSumRatings() + $rating);
+        $this->setQuantityReviews($this->getQuantityReviews() + 1);
+        $this->save();
+    }
+
+    public function deleteReviewWithRating(int $rating): void
+    {
+        $this->setSumRatings($this->getSumRatings() - $rating);
+        $this->setQuantityReviews($this->getQuantityReviews() - 1);
+        $this->save();
+    }
+
+    public function updateReviewWithRating(int $oldRating, int $newRating): void
+    {
+        $this->setSumRatings($this->getSumRatings() - $oldRating + $newRating);
+        $this->save();
+    }
+
     public static function validate(Request $request): void
     {
         $request->validate([
@@ -172,15 +209,16 @@ class Product extends Model
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
             'description' => 'required',
             'brand' => 'required',
+            'category_id' => 'required|exists:categories,id',
             'stock_quantity' => 'required|numeric|gte:0',
         ]);
     }
 
-    public static function sumPricesByQuantities($products, $productsInSession)
+    public static function sumPricesByQuantities(Collection $products, array $productsInSession): int
     {
         $total = 0;
         foreach ($products as $product) {
-            $total = $total + ($product->getPrice() * (int) $productsInSession[$product->getId()]);
+            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]);
         }
 
         return $total;

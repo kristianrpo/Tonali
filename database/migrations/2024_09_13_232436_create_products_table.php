@@ -19,9 +19,10 @@ return new class extends Migration
             $table->text('description');
             $table->string('brand');
             $table->integer('stock_quantity');
-            $table->integer('quantity_reviews')->default(0);
-            $table->integer('sum_ratings')->default(0);
-            //$table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('quantity_reviews');
+            $table->integer('sum_ratings');
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

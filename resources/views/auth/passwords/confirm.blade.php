@@ -1,49 +1,75 @@
-@extends('layouts.app')
+@extends("layouts.app")
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('passwords.confirm_title') }}</div>
+@section("content")
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        {{ __("passwords.confirm_title") }}
+                    </div>
 
-                <div class="card-body">
-                    {{ __('passwords.confirm_description') }}
+                    <div class="card-body">
+                        {{ __("passwords.confirm_description") }}
 
-                    <form method="POST" action="{{ route('password.confirm') }}">
-                        @csrf
+                        <form
+                            method="POST"
+                            action="{{ route("password.confirm") }}"
+                        >
+                            @csrf
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('passwords.password') }}</label>
+                            <div class="row mb-3">
+                                <label
+                                    for="password"
+                                    class="col-md-4 col-form-label text-md-end"
+                                >
+                                    {{ __("passwords.password") }}
+                                </label>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <div class="col-md-6">
+                                    <input
+                                        id="password"
+                                        type="password"
+                                        class="form-control @error("password") is-invalid @enderror"
+                                        name="password"
+                                        required
+                                        autocomplete="current-password"
+                                    />
 
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    @error("password")
+                                        <span
+                                            class="invalid-feedback"
+                                            role="alert"
+                                        >
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('passwords.confirm_title') }}
-                                </button>
+                            <div class="row mb-0">
+                                <div class="col-md-8 offset-md-4">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary"
+                                    >
+                                        {{ __("passwords.confirm_title") }}
+                                    </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('passwords.forgot') }}
-                                    </a>
-                                @endif
+                                    @if (Route::has("password.request"))
+                                        <a
+                                            class="btn btn-link"
+                                            href="{{ route("password.request") }}"
+                                        >
+                                            {{ __("passwords.forgot") }}
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

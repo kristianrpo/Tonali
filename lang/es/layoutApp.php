@@ -13,4 +13,5 @@ return [
     'combination_mark_alt' => 'Imagotipo de Tonalí',
     'admin_title' => 'Panel de Administración',
     'navbar_admin_title' => 'Tonalí Administración',
+    'toggle_sidebar' => 'Alternar barra lateral',
 ];

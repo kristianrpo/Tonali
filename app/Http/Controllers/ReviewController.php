@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class ReviewController extends Controller
 {
@@ -22,7 +23,6 @@ class ReviewController extends Controller
 
     public function store(Request $request, int $productId): RedirectResponse
     {
-
         $userId = Auth::id();
         Review::validate($request);
 
@@ -35,9 +35,9 @@ class ReviewController extends Controller
         $review->save();
 
         $product = Product::findOrFail($productId);
-        $product->setSumRatings($product->getSumRatings() + $request->input('rating'));
-        $product->setQuantityReviews($product->getQuantityReviews() + 1);
-        $product->save();
+        $product->addReviewWithRating($request->input('rating'));
+
+        Session::flash('success', __('review.add_success'));
 
         return redirect()->route('product.show', $productId);
     }
@@ -57,13 +57,14 @@ class ReviewController extends Controller
         Review::validate($request);
 
         $product = Product::findOrFail($review->getProduct()->getId());
-        $product->setSumRatings($product->getSumRatings() - $review->getRating() + $request->input('rating'));
-        $product->save();
+        $product->updateReviewWithRating($review->getRating(), $request->input('rating'));
 
         $review->setRating($request->input('rating'));
         $review->setTitle($request->input('title'));
         $review->setDescription($request->input('description'));
         $review->save();
+
+        Session::flash('success', __('review.update_success'));
 
         return redirect()->route('product.show', $review->getProduct()->getId());
     }
@@ -71,13 +72,40 @@ class ReviewController extends Controller
     public function delete(int $id): RedirectResponse
     {
         $review = Review::findOrFail($id);
-        Review::destroy($id);
 
         $product = Product::findOrFail($review->getProduct()->getId());
-        $product->setSumRatings($product->getSumRatings() - $review->getRating());
-        $product->setQuantityReviews($product->getQuantityReviews() - 1);
-        $product->save();
+        $product->deleteReviewWithRating($review->getRating());
+        Review::destroy($id);
 
-        return back();
+        Session::flash('success', __('review.delete_success'));
+
+        return redirect()->route('product.show', $review->getProduct()->getId());
+    }
+
+    public function report(int $id): View
+    {
+        $viewData = [];
+        $review = Review::findOrFail($id);
+        $viewData['review'] = $review;
+
+        return view('review.report')->with('viewData', $viewData);
+    }
+
+    public function validateReport(Request $request, $id): RedirectResponse
+    {
+        $review = Review::findOrFail($id);
+        $reportTitle = $request->input('title');
+        $reportDescription = $request->input('description');
+        $aiGeneratedResponse = $review->report($reportTitle, $reportDescription);
+        $aiDecision = strtolower(trim(explode("\n", $aiGeneratedResponse)[0]));
+        if ($aiDecision === 'delete') {
+            $product = Product::findOrFail($review->getProduct()->getId());
+            $product->deleteReviewWithRating($review->getRating());
+            Review::destroy($id);
+        }
+
+        Session::flash('success', __('review.report_success'));
+
+        return redirect()->route('product.show', $review->getProduct()->getId());
     }
 }

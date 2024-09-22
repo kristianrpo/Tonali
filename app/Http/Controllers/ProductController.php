@@ -56,6 +56,12 @@ class ProductController extends Controller
         $products = $this->productService->searchProducts($query)->get();
         $viewData = $this->productService->getCommonData($products);
 
+        if ($products->isEmpty()) {
+            session()->flash('message', __('product.no_products'));
+
+            return redirect()->route('product.index');
+        }
+
         return view('product.index')->with('viewData', $viewData);
     }
 

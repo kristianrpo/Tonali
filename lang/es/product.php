@@ -43,5 +43,8 @@ return [
     'delete_confirmation' => '¿Estás seguro de que quieres eliminar este producto?',
     'notification' => 'Notificación',
     'apply_filters' => 'Aplicar filtros',
-
+    'add_success' => 'Producto agregado exitosamente',
+    'delete_success' => 'Producto eliminado exitosamente',
+    'update_success' => 'Producto actualizado exitosamente',
+    'no_products' => 'No se encontraron productos',
 ];

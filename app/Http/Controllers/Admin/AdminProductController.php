@@ -9,6 +9,7 @@ use App\Services\ProductService;
 use App\Utils\ImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AdminProductController extends Controller
@@ -40,6 +41,12 @@ class AdminProductController extends Controller
         $products = $this->productService->searchProducts($query)->paginate(10);
         $viewData['products'] = $products;
         $viewData['categories'] = Category::all();
+
+        if ($products->isEmpty()) {
+            session()->flash('message', __('product.no_products'));
+
+            return redirect()->route('admin.product.index');
+        }
 
         return view('admin.product.index')->with('viewData', $viewData);
     }
@@ -80,6 +87,7 @@ class AdminProductController extends Controller
             $newProduct->setImage($imageName);
             $newProduct->save();
         }
+        Session::flash('success', __('product.add_success'));
 
         return back();
     }
@@ -121,6 +129,8 @@ class AdminProductController extends Controller
 
         $product->save();
 
+        Session::flash('success', __('product.update_success'));
+
         return redirect()->route('admin.product.show', ['id' => $id]);
     }
 
@@ -129,6 +139,8 @@ class AdminProductController extends Controller
         $product = Product::findOrFail($id);
         ImageStorage::deleteImage($product, 'products');
         $product->delete();
+
+        Session::flash('success', __('product.delete_success'));
 
         return redirect()->route('admin.product.index');
     }

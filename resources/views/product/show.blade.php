@@ -31,10 +31,10 @@
         </div>
     @endif
 
-    <section class="py-8 bg-white md:py-16 antialiased">
-        <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+    <section class="bg-white py-8 antialiased md:py-16">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
-                <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
+                <div class="mx-auto max-w-md shrink-0 lg:max-w-lg">
                     <img
                         src="{{ $viewData["product"]->getImageUrl() }}"
                         alt="Product Image"
@@ -43,12 +43,10 @@
                 </div>
 
                 <div class="mt-6 sm:mt-8 lg:mt-0">
-                    <h1
-                        class="text-xl font-semibold text-gray-900 sm:text-2xl"
-                    >
+                    <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">
                         {{ $viewData["product"]->getName() }}
                     </h1>
-                    <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+                    <div class="mt-4 sm:flex sm:items-center sm:gap-4">
                         <p
                             class="text-2xl font-extrabold text-gray-900 sm:text-3xl"
                         >
@@ -56,8 +54,8 @@
                         </p>
                     </div>
 
-                    <div class="mt-6 sm:gap-4 sm:items-center sm:flex sm:mt-8">
-                    <form
+                    <div class="mt-6 sm:mt-8 sm:flex sm:items-center sm:gap-4">
+                        <form
                             action="{{ route("cart.add", ["id" => $viewData["product"]->getId()]) }}"
                             method="POST"
                         >
@@ -85,43 +83,59 @@
                         </form>
                     </div>
 
-                    <hr class="my-6 md:my-8 border-gray-200" />
+                    <hr class="my-6 border-gray-200 md:my-8" />
 
                     <p class="mb-6 text-gray-500">
                         {{ $viewData["product"]->getDescription() }}
-                    </p>     
-                    <div class="flex justify-between items-center mt-4">
+                    </p>
+                    <div class="mt-4 flex items-center justify-between">
                         <div class="flex flex-col">
-                            <span class="font-semibold text-gray-700">Category:</span>
-                            <span class="text-gray-500">{{ $viewData['product']->getCategory()->getName() }}</span>
+                            <span class="font-semibold text-gray-700">
+                                Category:
+                            </span>
+                            <span class="text-gray-500">
+                                {{ $viewData["product"]->getCategory()->getName() }}
+                            </span>
                         </div>
                         <div class="flex flex-col">
-                            <span class="font-semibold text-gray-700">Brand:</span>
-                            <span class="text-gray-500">{{ $viewData['product']->getBrand() }}</span>
+                            <span class="font-semibold text-gray-700">
+                                Brand:
+                            </span>
+                            <span class="text-gray-500">
+                                {{ $viewData["product"]->getBrand() }}
+                            </span>
                         </div>
                         <div class="flex flex-col">
-                            <span class="font-semibold text-gray-700">Stock:</span>
-                            <span class="text-gray-500">{{ $viewData['product']->getStockQuantity() }}</span>
+                            <span class="font-semibold text-gray-700">
+                                Stock:
+                            </span>
+                            <span class="text-gray-500">
+                                {{ $viewData["product"]->getStockQuantity() }}
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="max-w-screen-xl px-4 mx-auto mt-10">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-6">
+        <div class="mx-auto mt-10 max-w-screen-xl px-4">
+            <h2 class="mb-6 text-2xl font-semibold text-gray-900">
                 {{ __("product.you_may_also_like") }}
             </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
                 @foreach ($viewData["relatedProducts"] as $relatedProduct)
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="overflow-hidden rounded-lg bg-white shadow-md">
                         <img
                             src="{{ $relatedProduct->getImageUrl() }}"
                             alt="Product 1"
-                            class="w-full h-40 object-cover"
+                            class="h-40 w-full object-cover"
                         />
                         <div class="p-4">
-                            <a href="{{ route("product.show", ["id" => $relatedProduct->getId()]) }}">
-                                <h3 class="font-bold text-gray-900 hover:underline">
+                            <a
+                                href="{{ route("product.show", ["id" => $relatedProduct->getId()]) }}"
+                            >
+                                <h3
+                                    class="font-bold text-gray-900 hover:underline"
+                                >
                                     {{ $relatedProduct->getName() }}
                                 </h3>
                             </a>
@@ -129,8 +143,8 @@
                     </div>
                 @endforeach
             </div>
-        </div>    
-    </section> 
+        </div>
+    </section>
 
     <section class="bg-white py-8 antialiased md:py-16">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">

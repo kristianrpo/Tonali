@@ -44,4 +44,8 @@ return [
     'delete_confirmation' => 'Are you sure you want to delete this product?',
     'notification' => 'Notification',
     'apply_filters' => 'Apply filters',
+    'add_success' => 'Product added successfully',
+    'delete_success' => 'Product deleted successfully',
+    'update_success' => 'Product updated successfully',
+    'no_products' => 'No products found',
 ];

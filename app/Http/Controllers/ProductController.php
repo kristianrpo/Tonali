@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Services\ProductService;
+use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,18 +11,13 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    protected $productService;
-
-    public function __construct(ProductService $productService)
-    {
-        $this->productService = $productService;
-    }
-
     public function index(): View
     {
         $viewData = [];
         $products = Product::all();
-        $viewData = $this->productService->getCommonData($products);
+        $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
 
         return view('product.index')->with('viewData', $viewData);
     }
@@ -53,8 +48,12 @@ class ProductController extends Controller
         if (empty($query)) {
             return redirect()->route('product.index');
         }
-        $products = $this->productService->searchProducts($query)->get();
-        $viewData = $this->productService->getCommonData($products);
+
+        $viewData = [];
+        $products = Product::searchProducts($query)->get();
+        $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
 
         if ($products->isEmpty()) {
             session()->flash('message', __('product.no_products'));
@@ -68,9 +67,12 @@ class ProductController extends Controller
     public function filter(Request $request)
     {
         $filters = $request->only(['category_id', 'rating', 'price_range']);
-        $products = $this->productService->filterProducts($filters)->get();
 
-        $viewData = $this->productService->getCommonData($products);
+        $viewData = [];
+        $products = Product::filterProducts($filters)->get();
+        $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
 
         return view('product.index')->with('viewData', $viewData);
     }

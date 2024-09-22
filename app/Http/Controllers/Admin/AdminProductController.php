@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
-use App\Services\ProductService;
 use App\Utils\ImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -14,13 +13,6 @@ use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
-    protected $productService;
-
-    public function __construct(ProductService $productService)
-    {
-        $this->productService = $productService;
-    }
-
     public function index(): View
     {
         $viewData = [];
@@ -38,7 +30,8 @@ class AdminProductController extends Controller
         if (empty($query)) {
             return redirect()->route('admin.product.index');
         }
-        $products = $this->productService->searchProducts($query)->paginate(10);
+
+        $products = Product::searchProducts($query)->paginate(10);
         $viewData['products'] = $products;
         $viewData['categories'] = Category::all();
 
@@ -55,7 +48,7 @@ class AdminProductController extends Controller
     {
         $viewData = [];
         $filters = $request->only(['category_id', 'stock_quantity']);
-        $products = $this->productService->filterProducts($filters)->paginate(10);
+        $products = Product::filterProducts($filters)->paginate(10);
         $viewData['products'] = $products;
         $viewData['categories'] = Category::all();
 

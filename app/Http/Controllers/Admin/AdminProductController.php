@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\ProductService;
 use App\Utils\ImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -12,23 +13,46 @@ use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function index(): View
     {
         $viewData = [];
         $products = Product::paginate(10);
         $viewData['products'] = $products;
+        $viewData['categories'] = Category::all();
 
         return view('admin.product.index')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View
+    public function search(Request $request): View|RedirectResponse
     {
+        $viewData = [];
         $query = $request->input('query');
-        $products = Product::where('name', 'like', '%'.$query.'%')
-            ->orWhere('brand', 'like', '%'.$query.'%')
-            ->paginate(10);
+        if (empty($query)) {
+            return redirect()->route('admin.product.index');
+        }
+        $products = $this->productService->searchProducts($query)->paginate(10);
+        $viewData['products'] = $products;
+        $viewData['categories'] = Category::all();
 
-        return view('admin.product.index')->with('viewData', ['products' => $products]);
+        return view('admin.product.index')->with('viewData', $viewData);
+    }
+
+    public function filter(Request $request): View
+    {
+        $viewData = [];
+        $filters = $request->only(['category_id', 'stock_quantity']);
+        $products = $this->productService->filterProducts($filters)->paginate(10);
+        $viewData['products'] = $products;
+        $viewData['categories'] = Category::all();
+
+        return view('admin.product.index')->with('viewData', $viewData);
     }
 
     public function create(): View

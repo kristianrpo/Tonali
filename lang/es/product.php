@@ -12,6 +12,8 @@ return [
     'brand' => 'Marca',
     'category' => 'Categoría',
     'stock_quantity' => 'Cantidad en stock',
+    'in_stock' => 'En stock',
+    'out_of_stock' => 'Fuera de stock',
     'rating' => 'Calificación',
     'created_at' => 'Creado el',
     'updated_at' => 'Actualizado el',
@@ -40,5 +42,6 @@ return [
     'you_may_also_like' => 'También te puede gustar',
     'delete_confirmation' => '¿Estás seguro de que quieres eliminar este producto?',
     'notification' => 'Notificación',
+    'apply_filters' => 'Aplicar filtros',
 
 ];

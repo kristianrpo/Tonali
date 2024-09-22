@@ -12,6 +12,8 @@ return [
     'brand' => 'Brand',
     'category' => 'Category',
     'stock_quantity' => 'Stock quantity',
+    'in_stock' => 'In stock',
+    'out_of_stock' => 'Out of stock',
     'rating' => 'Rating',
     'created_at' => 'Created at',
     'updated_at' => 'Updated at',
@@ -41,4 +43,5 @@ return [
     'you_may_also_like' => 'You may also like',
     'delete_confirmation' => 'Are you sure you want to delete this product?',
     'notification' => 'Notification',
+    'apply_filters' => 'Apply filters',
 ];

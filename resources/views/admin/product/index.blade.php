@@ -44,7 +44,6 @@
                                     name="query"
                                     class="focus:ring-primary-500 focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900"
                                     placeholder="{{ __("product.search_products") }}"
-                                    required=""
                                 />
                             </div>
                         </form>
@@ -111,19 +110,127 @@
                             </button>
                             <div
                                 id="filterDropdown"
-                                class="z-10 hidden w-56 rounded-lg bg-white p-3 shadow"
+                                class="z-10 hidden w-64 rounded-lg bg-white p-3 shadow-lg"
                             >
-                                <h6
-                                    class="mb-3 text-sm font-medium text-gray-900"
+                                <a
+                                    href="{{ route("admin.product.index") }}"
+                                    class="mb-4 block font-medium text-brightPink hover:text-black"
                                 >
-                                    {{ __("product.category") }}
-                                </h6>
-                                <ul
-                                    class="space-y-2 text-sm"
-                                    aria-labelledby="filterDropdownButton"
+                                    Clear all
+                                </a>
+
+                                <form
+                                    action="{{ route("admin.product.filter") }}"
+                                    method="GET"
                                 >
-                                    <!-- Filtros -->
-                                </ul>
+                                    <button
+                                        id="categoryDropdownButton"
+                                        type="button"
+                                        class="hover:text-primary-700 mb-1 mt-3 flex w-full items-center justify-between rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none"
+                                    >
+                                        {{ __("product.category") }}
+                                        <svg
+                                            class="ml-2 h-5 w-5"
+                                            fill="currentColor"
+                                            viewbox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <div
+                                        id="categoryDropdown"
+                                        class="hidden space-y-2 text-sm"
+                                    >
+                                        <ul>
+                                            @foreach ($viewData["categories"] as $category)
+                                                <li>
+                                                    <input
+                                                        type="checkbox"
+                                                        id="category_{{ $category->getId() }}"
+                                                        name="category_id[]"
+                                                        value="{{ $category->getId() }}"
+                                                        class="mr-2 rounded focus:ring-brightPink"
+                                                    />
+                                                    <label
+                                                        for="category_{{ $category->getId() }}"
+                                                    >
+                                                        {{ $category->getName() }}
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+
+                                    <button
+                                        id="stockQuantityDropdownButton"
+                                        type="button"
+                                        class="hover:text-primary-700 mb-1 mt-3 flex w-full items-center justify-between rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none"
+                                    >
+                                        {{ __("product.stock_quantity") }}
+                                        <svg
+                                            class="ml-2 h-5 w-5"
+                                            fill="currentColor"
+                                            viewbox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    <div
+                                        id="stockQuantityDropdown"
+                                        class="hidden space-y-2 text-sm"
+                                    >
+                                        <ul>
+                                            <li>
+                                                <input
+                                                    type="checkbox"
+                                                    id="stock_quantity_in_stock"
+                                                    name="stock_quantity[]"
+                                                    value="in_stock"
+                                                    class="mr-2 rounded focus:ring-brightPink"
+                                                />
+                                                <label
+                                                    for="stock_quantity_in_stock"
+                                                >
+                                                    {{ __("product.in_stock") }}
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input
+                                                    type="checkbox"
+                                                    id="stock_quantity_out_of_stock"
+                                                    name="stock_quantity[]"
+                                                    value="out_of_stock"
+                                                    class="mr-2 rounded focus:ring-brightPink"
+                                                />
+                                                <label
+                                                    for="stock_quantity_out_of_stock"
+                                                >
+                                                    {{ __("product.out_of_stock") }}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        class="mt-4 w-full rounded bg-brightPink px-4 py-2 font-bold text-white hover:bg-black"
+                                    >
+                                        {{ __("product.apply_filters") }}
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -330,4 +437,5 @@
             </div>
         </div>
     </section>
+    <script src="{{ asset("js/product/filter.js") }}"></script>
 @endsection

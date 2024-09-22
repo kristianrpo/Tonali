@@ -3,16 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\ProductService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ProductController extends Controller
 {
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function index(): View
     {
         $viewData = [];
-        $viewData['products'] = Product::all();
+        $products = Product::all();
+        $viewData = $this->productService->getCommonData($products);
 
         return view('product.index')->with('viewData', $viewData);
     }
@@ -37,13 +47,25 @@ class ProductController extends Controller
         return view('product.show')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View
+    public function search(Request $request): View|RedirectResponse
     {
         $query = $request->input('query');
-        $products = Product::where('name', 'like', '%'.$query.'%')
-            ->orWhere('brand', 'like', '%'.$query.'%')
-            ->get();
+        if (empty($query)) {
+            return redirect()->route('product.index');
+        }
+        $products = $this->productService->searchProducts($query)->get();
+        $viewData = $this->productService->getCommonData($products);
 
-        return view('product.index')->with('viewData', ['products' => $products]);
+        return view('product.index')->with('viewData', $viewData);
+    }
+
+    public function filter(Request $request)
+    {
+        $filters = $request->only(['category_id', 'rating', 'price_range']);
+        $products = $this->productService->filterProducts($filters)->get();
+
+        $viewData = $this->productService->getCommonData($products);
+
+        return view('product.index')->with('viewData', $viewData);
     }
 }

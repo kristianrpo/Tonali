@@ -36,40 +36,6 @@
                     </span>
                 </div>
                 <div class="flex md:order-1">
-                    <div class="relative hidden md:block">
-                        <div
-                            class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3"
-                        >
-                            <svg
-                                class="h-4 w-4 text-gray-500"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                                />
-                            </svg>
-                        </div>
-                        <form
-                            action="{{ route("product.search") }}"
-                            method="GET"
-                            class="flex items-center"
-                        >
-                            <input
-                                type="text"
-                                id="search-navbar"
-                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 text-sm text-gray-900 focus:border-palePink focus:ring-palePink"
-                                placeholder="{{ __("layoutApp.search") }}"
-                                name="query"
-                            />
-                        </form>
-                    </div>
                     <button
                         data-collapse-toggle="navbar-search"
                         type="button"
@@ -98,33 +64,6 @@
                     class="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
                     id="navbar-search"
                 >
-                    <div class="relative mt-3 md:hidden">
-                        <div
-                            class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3"
-                        >
-                            <svg
-                                class="h-4 w-4 text-gray-500"
-                                aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 20 20"
-                            >
-                                <path
-                                    stroke="currentColor"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-                                />
-                            </svg>
-                        </div>
-                        <input
-                            type="text"
-                            id="search-navbar"
-                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 text-sm text-gray-900 focus:border-palePink focus:ring-palePink"
-                            placeholder="{{ __("layoutApp.search") }}"
-                        />
-                    </div>
                     <ul
                         class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse"
                     >

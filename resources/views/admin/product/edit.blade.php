@@ -1,14 +1,15 @@
 @extends("layouts.admin")
 @section("content")
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <x-alert :message="$error" />
+        @endforeach
+    @endif
+
     <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
         <h2 class="mb-4 text-3xl font-bold text-gray-800">
             {{ __("product.edit_product") }}
         </h2>
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <x-alert :message="$error" />
-            @endforeach
-        @endif
 
         <form
             method="POST"

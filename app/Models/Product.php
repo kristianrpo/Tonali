@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
@@ -314,6 +314,6 @@ class Product extends Model
 
     public static function getSuggestionsByName(string $query)
     {
-        return Product::where('name', 'like', $query . '%')->distinct()->pluck('name');
+        return Product::where('name', 'like', $query.'%')->distinct()->pluck('name');
     }
 }

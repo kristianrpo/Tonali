@@ -68,7 +68,7 @@
                             name="title"
                             id="title"
                             class="focus:border-primary-600 focus:ring-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
-                            value = "{{ old("title") }}"
+                            value="{{ old("title") }}"
                             required
                         />
                     </div>
@@ -86,7 +86,9 @@
                             rows="6"
                             class="focus:border-primary-500 focus:ring-primary-500 mb-2 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                             required
-                        >{{ old("description") }}</textarea>
+                        >
+{{ old("description") }}</textarea
+                        >
                     </div>
 
                     <div class="border-t border-gray-200 pt-4 md:pt-5">

@@ -24,25 +24,42 @@ class OrderController extends Controller
     public function place(Request $request): RedirectResponse
     {
         $productsInSession = $request->session()->get('products');
+
         if ($productsInSession) {
+            $productsInCart = Product::findMany(array_keys($productsInSession));
+
+            foreach ($productsInCart as $product) {
+                $quantity = $productsInSession[$product->getId()];
+                if ($product->getStockQuantity() < $quantity) {
+                    Session::flash('error', __('order.place_error', ['product' => $product->getName()]));
+
+                    return redirect()->route('cart.index');
+                }
+            }
+
             $userId = Auth::user()->getId();
             $order = new Order;
             $order->setUserId($userId);
             $order->save();
 
             $total = 0;
-            $productsInCart = Product::findMany(array_keys($productsInSession));
+
             foreach ($productsInCart as $product) {
                 $quantity = $productsInSession[$product->getId()];
+
                 $item = new Item;
                 $item->setQuantity($quantity);
                 $item->setPrice($product->getPrice());
                 $item->setProductId($product->getId());
                 $item->setOrderId($order->getId());
                 $item->save();
+
                 $product->setStockQuantity($product->getStockQuantity() - $quantity);
+                $product->save();
+
                 $total += $product->getPrice() * $quantity;
             }
+
             $order->setTotal($total);
             $order->save();
 

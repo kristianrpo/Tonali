@@ -41,6 +41,7 @@ return [
     'categories' => 'Categorías',
     'you_may_also_like' => 'También te puede gustar',
     'delete_confirmation' => '¿Estás seguro de que quieres eliminar este producto?',
+    'out_of_stock' => 'Agotado',
     'notification' => 'Notificación',
     'apply_filters' => 'Aplicar filtros',
     'add_success' => 'Producto agregado exitosamente',

@@ -29,12 +29,15 @@ class ProductController extends Controller
 
         $product = Product::with('reviews')->findOrFail($id);
 
+        $reviews = $product->reviews()->with('user')->orderBy('created_at', 'desc')->paginate(5);
+
         $averageRating = $product->getAverageRating();
         $calculatedStars = floor($averageRating);
 
         $userId = Auth::id();
 
         $viewData['product'] = $product;
+        $viewData['reviews'] = $reviews;
         $viewData['relatedProducts'] = $product->getRelatedProducts();
         $viewData['averageRating'] = $averageRating;
         $viewData['calculatedStars'] = $calculatedStars;

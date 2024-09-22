@@ -5,14 +5,9 @@
             {{ __("category.edit_category") }}
         </h2>
         @if ($errors->any())
-            <ul
-                id="errors"
-                class="alert alert-danger relative mb-2 list-none rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700"
-            >
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            @foreach ($errors->all() as $error)
+                <x-alert :message="$error" />
+            @endforeach
         @endif
 
         <form

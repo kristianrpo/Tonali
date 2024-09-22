@@ -18,6 +18,7 @@ class AdminProductController extends Controller
         $viewData = [];
         $products = Product::paginate(10);
         $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
         $viewData['categories'] = Category::all();
 
         return view('admin.product.index')->with('viewData', $viewData);
@@ -36,7 +37,7 @@ class AdminProductController extends Controller
         $viewData['categories'] = Category::all();
 
         if ($products->isEmpty()) {
-            session()->flash('message', __('product.no_products'));
+            session()->flash('error', __('product.no_products'));
 
             return redirect()->route('admin.product.index');
         }
@@ -50,6 +51,7 @@ class AdminProductController extends Controller
         $filters = $request->only(['category_id', 'stock_quantity']);
         $products = Product::filterProducts($filters)->paginate(10);
         $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
         $viewData['categories'] = Category::all();
 
         return view('admin.product.index')->with('viewData', $viewData);

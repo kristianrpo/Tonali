@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -12,7 +14,10 @@ class ProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['products'] = Product::all();
+        $products = Product::all();
+        $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
 
         return view('product.index')->with('viewData', $viewData);
     }
@@ -29,7 +34,7 @@ class ProductController extends Controller
         $userId = Auth::id();
 
         $viewData['product'] = $product;
-        $viewData['relatedProducts'] = Product::where('id', '>', 10)->get();
+        $viewData['relatedProducts'] = $product->getRelatedProducts();
         $viewData['averageRating'] = $averageRating;
         $viewData['calculatedStars'] = $calculatedStars;
         $viewData['userId'] = $userId;
@@ -37,13 +42,38 @@ class ProductController extends Controller
         return view('product.show')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View
+    public function search(Request $request): View|RedirectResponse
     {
         $query = $request->input('query');
-        $products = Product::where('name', 'like', '%'.$query.'%')
-            ->orWhere('brand', 'like', '%'.$query.'%')
-            ->get();
+        if (empty($query)) {
+            return redirect()->route('product.index');
+        }
 
-        return view('product.index')->with('viewData', ['products' => $products]);
+        $viewData = [];
+        $products = Product::searchProducts($query)->get();
+        $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
+
+        if ($products->isEmpty()) {
+            session()->flash('message', __('product.no_products'));
+
+            return redirect()->route('product.index');
+        }
+
+        return view('product.index')->with('viewData', $viewData);
+    }
+
+    public function filter(Request $request)
+    {
+        $filters = $request->only(['category_id', 'rating', 'price_range']);
+
+        $viewData = [];
+        $products = Product::filterProducts($filters)->get();
+        $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
+
+        return view('product.index')->with('viewData', $viewData);
     }
 }

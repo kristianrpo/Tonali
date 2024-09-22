@@ -1,5 +1,67 @@
 @extends("layouts.admin")
 @section("content")
+    @if (session("success"))
+        <div class="mb-10 flex justify-center">
+            <div
+                class="w-3/4 rounded-b bg-palePink px-4 py-3 text-offWhite shadow-md"
+                role="alert"
+            >
+                <div class="flex">
+                    <div class="mx-5 py-1">
+                        <svg
+                            class="mr-4 h-6 w-6 fill-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                            />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold">
+                            {{ __("product.notification") }}
+                        </p>
+                        <p class="text-sm">
+                            {{ session("success") }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if (session("message"))
+        <div class="mb-10 flex justify-center">
+            <div
+                class="w-3/4 rounded-b bg-palePink px-4 py-3 text-offWhite shadow-md"
+                role="alert"
+            >
+                <div class="flex">
+                    <div class="mx-5 py-1">
+                        <svg
+                            class="mr-4 h-6 w-6 fill-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                        >
+                            <path
+                                d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
+                            />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-bold">
+                            {{ __("product.notification") }}
+                        </p>
+                        <p class="text-sm">
+                            {{ session("message") }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <section class="bg-gray-50 antialiased">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
             <h2 class="mb-6 text-3xl font-bold text-gray-800">
@@ -44,7 +106,6 @@
                                     name="query"
                                     class="focus:ring-primary-500 focus:border-primary-500 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 pl-10 text-sm text-gray-900"
                                     placeholder="{{ __("product.search_products") }}"
-                                    required=""
                                 />
                             </div>
                         </form>
@@ -111,19 +172,127 @@
                             </button>
                             <div
                                 id="filterDropdown"
-                                class="z-10 hidden w-56 rounded-lg bg-white p-3 shadow"
+                                class="z-10 hidden w-64 rounded-lg bg-white p-3 shadow-lg"
                             >
-                                <h6
-                                    class="mb-3 text-sm font-medium text-gray-900"
+                                <a
+                                    href="{{ route("admin.product.index") }}"
+                                    class="mb-4 block font-medium text-brightPink hover:text-black"
                                 >
-                                    {{ __("product.category") }}
-                                </h6>
-                                <ul
-                                    class="space-y-2 text-sm"
-                                    aria-labelledby="filterDropdownButton"
+                                    Clear all
+                                </a>
+
+                                <form
+                                    action="{{ route("admin.product.filter") }}"
+                                    method="GET"
                                 >
-                                    <!-- Filtros -->
-                                </ul>
+                                    <button
+                                        id="categoryDropdownButton"
+                                        type="button"
+                                        class="hover:text-primary-700 mb-1 mt-3 flex w-full items-center justify-between rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none"
+                                    >
+                                        {{ __("product.category") }}
+                                        <svg
+                                            class="ml-2 h-5 w-5"
+                                            fill="currentColor"
+                                            viewbox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+                                    <div
+                                        id="categoryDropdown"
+                                        class="hidden space-y-2 text-sm"
+                                    >
+                                        <ul>
+                                            @foreach ($viewData["categories"] as $category)
+                                                <li>
+                                                    <input
+                                                        type="checkbox"
+                                                        id="category_{{ $category->getId() }}"
+                                                        name="category_id[]"
+                                                        value="{{ $category->getId() }}"
+                                                        class="mr-2 rounded focus:ring-brightPink"
+                                                    />
+                                                    <label
+                                                        for="category_{{ $category->getId() }}"
+                                                    >
+                                                        {{ $category->getName() }}
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+
+                                    <button
+                                        id="stockQuantityDropdownButton"
+                                        type="button"
+                                        class="hover:text-primary-700 mb-1 mt-3 flex w-full items-center justify-between rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 focus:z-10 focus:outline-none"
+                                    >
+                                        {{ __("product.stock_quantity") }}
+                                        <svg
+                                            class="ml-2 h-5 w-5"
+                                            fill="currentColor"
+                                            viewbox="0 0 20 20"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    <div
+                                        id="stockQuantityDropdown"
+                                        class="hidden space-y-2 text-sm"
+                                    >
+                                        <ul>
+                                            <li>
+                                                <input
+                                                    type="checkbox"
+                                                    id="stock_quantity_in_stock"
+                                                    name="stock_quantity[]"
+                                                    value="in_stock"
+                                                    class="mr-2 rounded focus:ring-brightPink"
+                                                />
+                                                <label
+                                                    for="stock_quantity_in_stock"
+                                                >
+                                                    {{ __("product.in_stock") }}
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input
+                                                    type="checkbox"
+                                                    id="stock_quantity_out_of_stock"
+                                                    name="stock_quantity[]"
+                                                    value="out_of_stock"
+                                                    class="mr-2 rounded focus:ring-brightPink"
+                                                />
+                                                <label
+                                                    for="stock_quantity_out_of_stock"
+                                                >
+                                                    {{ __("product.out_of_stock") }}
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <button
+                                        type="submit"
+                                        class="mt-4 w-full rounded bg-brightPink px-4 py-2 font-bold text-white hover:bg-black"
+                                    >
+                                        {{ __("product.apply_filters") }}
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -330,4 +499,5 @@
             </div>
         </div>
     </section>
+    <script src="{{ asset("js/product/filter.js") }}"></script>
 @endsection

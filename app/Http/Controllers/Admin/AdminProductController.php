@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Utils\ImageStorage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AdminProductController extends Controller
@@ -17,18 +18,41 @@ class AdminProductController extends Controller
         $viewData = [];
         $products = Product::paginate(10);
         $viewData['products'] = $products;
+        $viewData['categories'] = Category::all();
 
         return view('admin.product.index')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View
+    public function search(Request $request): View|RedirectResponse
     {
+        $viewData = [];
         $query = $request->input('query');
-        $products = Product::where('name', 'like', '%'.$query.'%')
-            ->orWhere('brand', 'like', '%'.$query.'%')
-            ->paginate(10);
+        if (empty($query)) {
+            return redirect()->route('admin.product.index');
+        }
 
-        return view('admin.product.index')->with('viewData', ['products' => $products]);
+        $products = Product::searchProducts($query)->paginate(10);
+        $viewData['products'] = $products;
+        $viewData['categories'] = Category::all();
+
+        if ($products->isEmpty()) {
+            session()->flash('message', __('product.no_products'));
+
+            return redirect()->route('admin.product.index');
+        }
+
+        return view('admin.product.index')->with('viewData', $viewData);
+    }
+
+    public function filter(Request $request): View
+    {
+        $viewData = [];
+        $filters = $request->only(['category_id', 'stock_quantity']);
+        $products = Product::filterProducts($filters)->paginate(10);
+        $viewData['products'] = $products;
+        $viewData['categories'] = Category::all();
+
+        return view('admin.product.index')->with('viewData', $viewData);
     }
 
     public function create(): View
@@ -56,6 +80,7 @@ class AdminProductController extends Controller
             $newProduct->setImage($imageName);
             $newProduct->save();
         }
+        Session::flash('success', __('product.add_success'));
 
         return back();
     }
@@ -97,6 +122,8 @@ class AdminProductController extends Controller
 
         $product->save();
 
+        Session::flash('success', __('product.update_success'));
+
         return redirect()->route('admin.product.show', ['id' => $id]);
     }
 
@@ -105,6 +132,8 @@ class AdminProductController extends Controller
         $product = Product::findOrFail($id);
         ImageStorage::deleteImage($product, 'products');
         $product->delete();
+
+        Session::flash('success', __('product.delete_success'));
 
         return redirect()->route('admin.product.index');
     }

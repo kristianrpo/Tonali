@@ -253,7 +253,7 @@ class Product extends Model
 
         if (isset($filters['rating'])) {
             $ratings = implode(',', $filters['rating']);
-            $query->whereRaw('FLOOR(sum_ratings / quantity_reviews) IN (' . $ratings . ')');
+            $query->whereRaw('FLOOR(sum_ratings / quantity_reviews) IN ('.$ratings.')');
         }
 
         if (isset($filters['price_range'])) {

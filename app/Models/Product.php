@@ -223,4 +223,35 @@ class Product extends Model
 
         return $total;
     }
+
+    public function getRelatedProducts($limit = 5)
+    {
+        $recommended = Product::where('category_id', $this->category_id)
+            ->where('brand', $this->brand)
+            ->where('id', '!=', $this->id)
+            ->limit($limit)
+            ->get();
+
+        if ($recommended->count() < $limit) {
+            $additionalProducts = Product::where('category_id', $this->category_id)
+                ->where('id', '!=', $this->id)
+                ->whereNotIn('id', $recommended->pluck('id'))
+                ->limit($limit - $recommended->count())
+                ->get();
+
+            $recommended = $recommended->merge($additionalProducts);
+        }
+
+        if ($recommended->count() < $limit) {
+            $additionalProducts = Product::where('brand', $this->brand)
+                ->where('id', '!=', $this->id)
+                ->whereNotIn('id', $recommended->pluck('id'))
+                ->limit($limit - $recommended->count())
+                ->get();
+
+            $recommended = $recommended->merge($additionalProducts);
+        }
+
+        return $recommended;
+    }
 }

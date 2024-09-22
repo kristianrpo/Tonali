@@ -39,6 +39,6 @@ return [
     'categories' => 'Categorías',
     'you_may_also_like' => 'También te puede gustar',
     'delete_confirmation' => '¿Estás seguro de que quieres eliminar este producto?',
-    'notification' => 'Notificación',
+    'out_of_stock' => 'Agotado',
 
 ];

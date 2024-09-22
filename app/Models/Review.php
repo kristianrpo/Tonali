@@ -123,8 +123,8 @@ class Review extends Model
     {
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
-            'title' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'title' => 'required|string|min:5|max:255|regex:/^[\pL\s\-]+$/u',
+            'description' => 'required|string|min:20|max:255|regex:/^[\pL\s\-]+$/u',
         ]);
     }
 

@@ -4,105 +4,117 @@
         <x-alert :message="session('success')" />
     @endif
 
-    <section class="mb-5 bg-white">
-        <div class="container mx-auto w-4/5">
-            <div class="flex flex-col gap-8 lg:flex-row">
-                <div class="flex-1">
-                    <h2 class="mb-2 text-3xl font-bold text-gray-900">
+    <section class="bg-white py-8 antialiased md:py-16">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
+                <div class="mx-auto max-w-md shrink-0 lg:max-w-lg">
+                    <img
+                        src="{{ $viewData["product"]->getImageUrl() }}"
+                        alt="Product Image"
+                        class="w-full"
+                    />
+                </div>
+
+                <div class="mt-6 sm:mt-8 lg:mt-0">
+                    <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl">
                         {{ $viewData["product"]->getName() }}
-                    </h2>
-                    <p class="mb-2 text-xl text-gray-700">
-                        {{ formatPrice($viewData["product"]->getPrice()) }}
-                    </p>
-
-                    <div class="flex flex-col gap-6 lg:flex-row">
-                        <img
-                            src="{{ $viewData["product"]->getImageUrl() }}"
-                            alt="Product Image"
-                            class="max-h-80 max-w-80 rounded-lg shadow-md"
-                        />
-                        <div class="rounded-lg bg-gray-50 p-5">
-                            <ul class="text-gray-700">
-                                <li class="mb-2">
-                                    <strong class="block text-gray-900">
-                                        {{ __("product.brand") }}:
-                                    </strong>
-                                    <span class="text-gray-500">
-                                        {{ $viewData["product"]->getBrand() }}
-                                    </span>
-                                </li>
-                                <li class="mb-2">
-                                    <strong class="block text-gray-900">
-                                        {{ __("product.category") }}:
-                                    </strong>
-                                    <span class="text-gray-500">
-                                        {{ $viewData["product"]->getCategory()->getName() }}
-                                    </span>
-                                </li>
-                                <li class="mb-2">
-                                    <strong class="block text-gray-900">
-                                        {{ __("product.stock_quantity") }}:
-                                    </strong>
-                                    <span class="text-gray-500">
-                                        {{ $viewData["product"]->getStockQuantity() }}
-                                    </span>
-                                </li>
-                                <li class="mb-2">
-                                    <strong class="block text-gray-900">
-                                        {{ __("product.rating") }}:
-                                    </strong>
-                                    <div class="flex items-center">
-                                        @for ($i = 1; $i <= 5; $i++)
-                                            <svg
-                                                class="{{ $i <= $viewData["product"]->getAverageRating() ? "text-yellow-300" : "text-gray-300" }} h-6 w-6 cursor-pointer"
-                                                aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="currentColor"
-                                                viewBox="0 0 22 20"
-                                                data-value="{{ $i }}"
-                                            >
-                                                <path
-                                                    d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                                                />
-                                            </svg>
-                                        @endfor
-
-                                        <span class="ml-2 text-gray-500">
-                                            {{ $viewData["product"]->getAverageRating() }}
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                    </h1>
+                    <div class="mt-4 sm:flex sm:items-center sm:gap-4">
+                        <p
+                            class="text-2xl font-extrabold text-gray-900 sm:text-3xl"
+                        >
+                            {{ formatPrice($viewData["product"]->getPrice()) }}
+                        </p>
                     </div>
-                    <p class="mt-6 text-justify text-gray-700">
+
+                    <div class="mt-6 sm:mt-8 sm:flex sm:items-center sm:gap-4">
+                        <form
+                            action="{{ route("cart.add", ["id" => $viewData["product"]->getId()]) }}"
+                            method="POST"
+                        >
+                            @csrf
+                            <button
+                                class="mt-2 flex items-center space-x-2 rounded bg-brightPink px-3 py-1 text-sm text-white hover:bg-black hover:text-white"
+                            >
+                                <svg
+                                    class="h-6 w-6 text-white"
+                                    aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke="currentColor"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+                                    />
+                                </svg>
+                                {{ __("product.add_to_cart") }}
+                            </button>
+                        </form>
+                    </div>
+
+                    <hr class="my-6 border-gray-200 md:my-8" />
+
+                    <p class="mb-6 text-gray-500">
                         {{ $viewData["product"]->getDescription() }}
                     </p>
+                    <div class="mt-4 flex items-center justify-between">
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-gray-700">
+                                Category:
+                            </span>
+                            <span class="text-gray-500">
+                                {{ $viewData["product"]->getCategory()->getName() }}
+                            </span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-gray-700">
+                                Brand:
+                            </span>
+                            <span class="text-gray-500">
+                                {{ $viewData["product"]->getBrand() }}
+                            </span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-semibold text-gray-700">
+                                Stock:
+                            </span>
+                            <span class="text-gray-500">
+                                {{ $viewData["product"]->getStockQuantity() }}
+                            </span>
+                        </div>
+                    </div>
                 </div>
-                <div class="w-full p-5 pt-0 lg:w-1/4">
-                    <h3 class="mb-4 text-xl font-bold text-gray-900">
-                        {{ __("product.you_may_also_like") }}
-                    </h3>
-                    <ul class="space-y-4">
-                        @foreach ($viewData["relatedProducts"] as $relatedProduct)
-                            <li class="flex items-center space-x-4">
-                                <img
-                                    src="{{ $relatedProduct->getImageUrl() }}"
-                                    alt="{{ $relatedProduct->getName() }}"
-                                    class="h-16 w-16 rounded-md shadow-sm"
-                                />
-                                <div>
-                                    <p class="font-semibold text-gray-900">
-                                        {{ $relatedProduct->getName() }}
-                                    </p>
-                                    <p class="text-sm text-brightPink">
-                                        {{ formatPrice($relatedProduct->getPrice()) }}
-                                    </p>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+            </div>
+        </div>
+        <div class="mx-auto mt-10 max-w-screen-xl px-4">
+            <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+                {{ __("product.you_may_also_like") }}
+            </h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+                @foreach ($viewData["relatedProducts"] as $relatedProduct)
+                    <div class="overflow-hidden rounded-lg bg-white shadow-md">
+                        <img
+                            src="{{ $relatedProduct->getImageUrl() }}"
+                            alt="Product 1"
+                            class="h-40 w-full object-cover"
+                        />
+                        <div class="p-4">
+                            <a
+                                href="{{ route("product.show", ["id" => $relatedProduct->getId()]) }}"
+                            >
+                                <h3
+                                    class="font-bold text-gray-900 hover:underline"
+                                >
+                                    {{ $relatedProduct->getName() }}
+                                </h3>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -259,7 +271,7 @@
                                 @else
                                     <a
                                         href="{{ route("review.report", ["id" => $review->getId()]) }}"
-                                        class="wf mb-2 mt-4 inline-flex max-w-xs items-center rounded bg-darkGray px-4 py-2 font-bold text-white lg:mx-0"
+                                        class="wf mb-2 mt-4 inline-flex max-w-xs items-center rounded px-4 py-2 font-bold text-white lg:mx-0"
                                     >
                                         <svg
                                             width="24"

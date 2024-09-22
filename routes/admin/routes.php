@@ -6,6 +6,7 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.index');
     Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
     Route::get('/admin/products/search', 'App\Http\Controllers\Admin\AdminProductController@search')->name('admin.product.search');
+    Route::get('/admin/products/filter', 'App\Http\Controllers\Admin\AdminProductController@filter')->name('admin.product.filter');
     Route::get('/admin/products/create', 'App\Http\Controllers\Admin\AdminProductController@create')->name('admin.product.create');
     Route::post('/admin/products/store', 'App\Http\Controllers\Admin\AdminProductController@store')->name('admin.product.store');
     Route::get('/admin/products/{id}', 'App\Http\Controllers\Admin\AdminProductController@show')->name('admin.product.show');

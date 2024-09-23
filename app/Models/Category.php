@@ -4,16 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Category extends Model
 {
     /**
-     * PRODUCT ATTRIBUTES
-     * $this->attributes['id'] - int - contains the product primary key (id)
-     * $this->attributes['name'] - string - contains the product name
-     * $this->attributes['description'] - text - contains the product description
-     * $this->attributes['created_at'] - timestamp - contains the product creation date
-     * $this->attributes['updated_at'] - timestamp - contains the product update date
+     * CATEGORY ATTRIBUTES
+     * $this->attributes['id'] - int - contains the category primary key (id)
+     * $this->attributes['name'] - string - contains the category name
+     * $this->attributes['description'] - text - contains the category description
+     * $this->attributes['created_at'] - timestamp - contains the category creation date
+     * $this->attributes['updated_at'] - timestamp - contains the category update date
+     * $this->products - Product[] - contains the associated products
      */
     protected $fillable = ['name', 'description'];
 
@@ -42,6 +44,16 @@ class Category extends Model
         $this->attributes['description'] = $description;
     }
 
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
     public function products()
     {
         return $this->hasMany(Product::class);
@@ -50,6 +62,11 @@ class Category extends Model
     public function getProducts(): Collection
     {
         return $this->products;
+    }
+
+    public function setProducts(Collection $products): void
+    {
+        $this->products = $products;
     }
 
     public static function validate(Request $request): void

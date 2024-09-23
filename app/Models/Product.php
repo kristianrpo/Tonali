@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -21,9 +22,12 @@ class Product extends Model
      * $this->attributes['stock_quantity'] - int - contains the product stock quantity
      * $this->attributes['quantity_reviews'] - int - contains the product review count
      * $this->attributes['sum_ratings'] - int - contains the product total ratings
-     * $this->attributes['category_id'] - int - contains the product category id
+     * $this->attributes['category_id'] - int - contains the referenced category id
      * $this->attributes['created_at'] - timestamp - contains the product creation date
      * $this->attributes['updated_at'] - timestamp - contains the product update date
+     * $this->items - Item[] - contains the associated items
+     * $this->reviews - Review[] - contains the associated reviews
+     * $this->category - Category - contains the associated category
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
 
@@ -138,6 +142,26 @@ class Product extends Model
         return $this->attributes['updated_at'];
     }
 
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function setItems(Collection $items): void
+    {
+        $this->items = $items;
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function getReviews(): Collection
     {
         return $this->reviews;
@@ -148,19 +172,19 @@ class Product extends Model
         $this->reviews = $reviews;
     }
 
-    public function getcategory(): Category
-    {
-        return $this->category;
-    }
-
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function reviews(): HasMany
+    public function getCategory(): Category
     {
-        return $this->hasMany(Review::class);
+        return $this->category;
+    }
+
+    public function setCategory(Category $category): void
+    {
+        $this->category = $category;
     }
 
     public function getAverageRating(): float
@@ -238,7 +262,7 @@ class Product extends Model
         ];
     }
 
-    public function getRelatedProducts($limit = 5): Collection
+    public function getRelatedProducts(int $limit = 5): Collection
     {
         $recommended = Product::where('category_id', $this->category_id)
             ->where('brand', $this->brand)

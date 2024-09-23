@@ -19,6 +19,8 @@ class User extends Authenticatable
      * $this->attributes['password'] - string - contains the user password
      * $this->attributes['created_at'] - timestamp - contains the user creation date
      * $this->attributes['updated_at'] - timestamp - contains the user update date
+     * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date
+     * $this->attributes['remember_token'] - string - contains the user remember token
      * $this-> orders - Order[] - contains the associated orders
      * $this-> reviews - Review[] - contains the associated reviews
      * $this-> colorimetry - Colorimetry - contains the associated colorimetry
@@ -34,6 +36,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $attributes = [
+        'cellphone' => '0',
+        'address' => '#',
+        'role' => 'customer',
     ];
 
     protected function casts(): array

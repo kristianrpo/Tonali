@@ -226,19 +226,6 @@ class Product extends Model
         $this->save();
     }
 
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric|gt:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg',
-            'description' => 'required',
-            'brand' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'stock_quantity' => 'required|numeric|gte:0',
-        ]);
-    }
-
     public static function sumPricesByQuantities(Collection $products, array $productsInSession): int
     {
         $total = 0;
@@ -347,5 +334,18 @@ class Product extends Model
                 });
             },
         ];
+    }
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required|numeric|gt:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
+            'description' => 'required',
+            'brand' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'stock_quantity' => 'required|numeric|gte:0',
+        ]);
     }
 }

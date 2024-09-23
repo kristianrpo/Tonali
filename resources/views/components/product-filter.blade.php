@@ -75,7 +75,7 @@
                                 id="category_{{ $category->getId() }}"
                                 name="category_id[]"
                                 value="{{ $category->getId() }}"
-                                class="mr-2 rounded focus:ring-brightPink checked:bg-brightPink"
+                                class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                             />
                             <label for="category_{{ $category->getId() }}">
                                 {{ $category->getName() }}
@@ -114,7 +114,7 @@
                                 id="rating_{{ $rating }}"
                                 name="rating[]"
                                 value="{{ $rating }}"
-                                class="mr-2 rounded focus:ring-brightPink checked:bg-brightPink"
+                                class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                             />
                             <label
                                 for="rating_{{ $rating }}"
@@ -167,7 +167,7 @@
                             id="price_low"
                             name="price_range[]"
                             value="{{ $priceRanges["min"] }}-{{ $priceRanges["first_tercile"] }}"
-                            class="mr-2 rounded focus:ring-brightPink checked:bg-brightPink"
+                            class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="price_low">
                             {{ formatPrice($priceRanges["min"], 2) }} to
@@ -180,7 +180,7 @@
                             id="price_mid"
                             name="price_range[]"
                             value="{{ $priceRanges["first_tercile"] }}-{{ $priceRanges["second_tercile"] }}"
-                            class="mr-2 rounded focus:ring-brightPink checked:bg-brightPink"
+                            class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="price_mid">
                             {{ formatPrice($priceRanges["first_tercile"], 2) }}
@@ -194,7 +194,7 @@
                             id="price_high"
                             name="price_range[]"
                             value="{{ $priceRanges["second_tercile"] }}-{{ $priceRanges["max"] }}"
-                            class="mr-2 rounded focus:ring-brightPink checked:bg-brightPink"
+                            class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="price_high">
                             {{ formatPrice($priceRanges["second_tercile"], 2) }}
@@ -233,7 +233,7 @@
                             id="stock_quantity_in_stock"
                             name="stock_quantity[]"
                             value="in_stock"
-                            class="mr-2 rounded focus:ring-brightPink checked:bg-brightPink"
+                            class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="stock_quantity_in_stock">
                             {{ __("productFilter.in_stock") }}
@@ -245,7 +245,7 @@
                             id="stock_quantity_out_of_stock"
                             name="stock_quantity[]"
                             value="out_of_stock"
-                            class="mr-2 rounded focus:ring-brightPink checked:bg-brightPink"
+                            class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="stock_quantity_out_of_stock">
                             {{ __("productFilter.out_of_stock") }}

@@ -76,28 +76,57 @@
                     </div>
                 </div>
                 <div class="flex items-center lg:order-2">
-                    <label
-                        for="dropdown-toggle"
-                        class="cursor-pointer text-white"
-                    >
-                        <div
-                            class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
+                    <div class="group relative">
+                        <label
+                            for="dropdown-toggle"
+                            class="cursor-pointer text-white"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6"
-                                viewBox="0 0 512 512"
-                                id="profile"
+                            <div
+                                class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
+                                data-dropdown-toggle="dropdown-profile"
                             >
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z"
-                                />
-                            </svg>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    viewBox="0 0 512 512"
+                                    id="profile"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z"
+                                    />
+                                </svg>
+                            </div>
+                        </label>
+
+                        <div
+                            id="dropdown-profile"
+                            class="absolute right-0 z-20 mt-2 hidden w-48 rounded-md bg-white shadow-lg"
+                            aria-labelledby="dropdown-toggle"
+                        >
+                            <a
+                                href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                            >
+                                {{ __("auth.profile") }}
+                            </a>
+                            <form
+                                action="{{ route("logout") }}"
+                                method="POST"
+                                class="block"
+                            >
+                                @csrf
+                                <button
+                                    type="submit"
+                                    class="w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200"
+                                >
+                                    {{ __("auth.logout") }}
+                                </button>
+                            </form>
                         </div>
-                    </label>
+                    </div>
                 </div>
             </div>
         </nav>

@@ -73,7 +73,7 @@ class Category extends Model
     {
         $request->validate([
             'name' => 'required|string',
-            'description' => 'required|string',
+            'description' => 'required|string|min:10|max:255',
         ]);
     }
 }

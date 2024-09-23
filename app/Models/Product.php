@@ -332,11 +332,11 @@ class Product extends Model
     public static function validate(Request $request): void
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string',
             'price' => 'required|numeric|gt:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg',
-            'description' => 'required',
-            'brand' => 'required',
+            'description' => 'required|string|min:20|max:255',
+            'brand' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'stock_quantity' => 'required|numeric|gte:0',
         ]);

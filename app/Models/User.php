@@ -21,9 +21,9 @@ class User extends Authenticatable
      * $this->attributes['updated_at'] - timestamp - contains the user update date
      * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date
      * $this->attributes['remember_token'] - string - contains the user remember token
-     * $this-> orders - Order[] - contains the associated orders
-     * $this-> reviews - Review[] - contains the associated reviews
-     * $this-> colorimetry - Colorimetry - contains the associated colorimetry
+     * $this->orders - Order[] - contains the associated orders
+     * $this->reviews - Review[] - contains the associated reviews
+     * $this->colorimetry - Colorimetry - contains the associated colorimetry
      * $this->orders - Order[] - contains the associated orders
      */
 

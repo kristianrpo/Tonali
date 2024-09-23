@@ -107,7 +107,7 @@
             </button>
             <div id="ratingDropdown" class="hidden space-y-2 text-sm">
                 <ul>
-                    @foreach (range(5, 1) as $rating)
+                    @foreach (range(5, 0) as $rating)
                         <li class="flex items-center">
                             <input
                                 type="checkbox"

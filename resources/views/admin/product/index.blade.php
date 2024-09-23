@@ -97,7 +97,11 @@
                                         </div>
                                     </th>
                                     <td class="px-4 py-3">
-                                        {{ $product->getInventory() }}
+                                        @if ($product->getStockQuantity() > 0)
+                                            {{ __("product.in_stock") }}: {{ $product->getStockQuantity() }}
+                                        @else
+                                            {{ __("product.out_of_stock") }}
+                                        @endif
                                     </td>
                                     <td
                                         class="inline-block rounded-full bg-gray-200 px-3 py-1 text-black"

@@ -2,7 +2,7 @@
 
 return [
     'colorimetry' => 'Tu Colorimetría',
-    'without_colorimetry' => "Parece que no has creado tu colorimetría. Hazlo a continuación :)",
+    'without_colorimetry' => 'Parece que no has creado tu colorimetría. Hazlo a continuación :)',
     'specificNeeds_optional' => 'Necesidades Específicas (Opcional)',
     'create' => 'Crear Colorimetría',
     'skinTone_select' => 'Selecciona Tono de Piel',
@@ -40,5 +40,9 @@ return [
     'sensitive_skin' => 'Piel Sensible',
     'acne' => 'Propensa al Acné',
     'dry' => 'Piel Seca',
-    'oil' => 'Piel Grasa'
+    'oil' => 'Piel Grasa',
+
+    'create_success' => 'Colorimetría creada éxitosamente',
+    'edit_success' => 'Colorimetría editada éxitosamente',
+    'delete_succes' => 'Colorimetría eliminada éxitosamente',
 ];

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ProductRecommendationException;
+use App\Models\Colorimetry;
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -45,5 +48,36 @@ class ProductController extends Controller
             ->get();
 
         return view('product.index')->with('viewData', ['products' => $products]);
+    }
+
+    public function recommended(): View|RedirectResponse
+    {
+        $userId = Auth::user()->getId();
+        $colorimetry = Colorimetry::where('user_id', $userId)->first();
+
+        $viewData = [];
+
+        if (! $colorimetry) {
+            $viewData['colorimetry'] = null;
+            $viewData['recommendation'] = null;
+
+            return view('product.recommended')->with('viewData', $viewData);
+        } else {
+            $products = Product::select('id', 'description')->get();
+            $aiGeneratedResponse = $colorimetry->recommendation($products);
+            $cleanedResponse = trim(preg_replace('/^```json|\s+|```$/', '', $aiGeneratedResponse));
+            $productIds = json_decode($cleanedResponse, true);
+            if (is_array($productIds)) {
+                $recommendedProducts = Product::whereIn('id', $productIds)->get();
+
+                $viewData['colorimetry'] = $colorimetry;
+                $viewData['recommendation'] = $recommendedProducts;
+
+                return view('product.recommended')->with('viewData', $viewData);
+            } else {
+                throw new ProductRecommendationException;
+            }
+        }
+
     }
 }

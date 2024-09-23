@@ -2,14 +2,13 @@
 
 namespace App\Models;
 
+use App\Interfaces\LanguageModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
-use Ramsey\Uuid\Type\Time;
 
 class Colorimetry extends Model
 {
-
     /**
      * COLORIMETRY ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
@@ -22,8 +21,7 @@ class Colorimetry extends Model
      * $this->attributes['created_at'] - string - contains the date of creation
      * $this->attributes['updated_at'] - string - contains the date of update
      * $this->attributes['user_id'] - int - contains the ID of the user to which the colorimetry belongs
-    */
-
+     */
     protected $fillable = [
         'customerName',
         'skinTone',
@@ -80,7 +78,7 @@ class Colorimetry extends Model
     }
 
     public function getSpecificNeeds(): string
-    {   
+    {
         return $this->attributes['specificNeeds'];
     }
 
@@ -112,7 +110,7 @@ class Colorimetry extends Model
     public function setUser(User $user): void
     {
         $this->user = $user;
-    } 
+    }
 
     public function getUserId(): int
     {
@@ -127,12 +125,36 @@ class Colorimetry extends Model
     public static function validate(Request $request): void
     {
         $request->validate([
-            "skinTone" => "required|string",
-            "skinUndertone" => "required|string",
-            "hairColor" => "required|string",
-            "eyeColor" => "required|string",
-            "specificNeeds" => "required|array",
-            "specificNeeds.*" => "string",
+            'skinTone' => 'required|string',
+            'skinUndertone' => 'required|string',
+            'hairColor' => 'required|string',
+            'eyeColor' => 'required|string',
+            'specificNeeds' => 'required|array',
+            'specificNeeds.*' => 'string',
         ]);
+    }
+
+    public function recommendation($products): string
+    {
+        $languageModelInterface = app(LanguageModel::class);
+        $specificNeedsText = implode(', ', json_decode($this->attributes['specificNeeds']));
+
+        $productList = json_encode($products->map(function ($product) {
+            return [
+                'id' => $product->getId(),
+                'description' => $product->getDescription(),
+            ];
+        })->toArray());
+
+        $prompt = __('prompt.context_recommendation_products');
+        $prompt .= __('prompt.colorimetry_skinTone_label').$this->attributes['skinTone']."\n";
+        $prompt .= __('prompt.colorimetry_skinUndertone_label').$this->attributes['skinUndertone']."\n";
+        $prompt .= __('prompt.colorimetry_hairColor_label').$this->attributes['hairColor']."\n";
+        $prompt .= __('prompt.colorimetry_eyeColor_label').$this->attributes['eyeColor']."\n";
+        $prompt .= __('prompt.colorimetry_specificNeeds_label').$specificNeedsText."\n";
+        $prompt .= __('prompt.products_label').$productList."\n";
+        $response = $languageModelInterface->generateText($prompt);
+
+        return $response;
     }
 }

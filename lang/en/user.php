@@ -21,5 +21,7 @@ return [
     'create_colorimetry' => 'Create Colorimetry',
     'delete_colorimetry' => 'Delete Colorimetry',
     'delete' => 'Are you sure you want to delete this account?',
-
+    'confirm_delete_title' => 'Your account will be deleted!',
+    'cancel_button' => 'Cancel',
+    'delete_success' => 'User deleted successfully',
 ];

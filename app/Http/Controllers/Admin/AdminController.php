@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
@@ -21,8 +20,9 @@ class AdminController extends Controller
     {
         $userId = Auth::user()->getId();
         User::destroy($userId);
+
+        Session::flash('success', __('user.delete_success'));
+
         return redirect()->route('home.index');
     }
-
 }
-

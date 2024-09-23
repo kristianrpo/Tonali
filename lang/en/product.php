@@ -41,4 +41,5 @@ return [
     'you_may_also_like' => 'You may also like',
     'delete_confirmation' => 'Are you sure you want to delete this product?',
     'notification' => 'Notification',
+    'recommended' => 'Recommended Products For You',
 ];

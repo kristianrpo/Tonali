@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use Illuminate\Http\JsonResponse;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
@@ -44,7 +43,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request): RedirectResponse
-    {   
+    {
         $userId = Auth::user()->getId();
         $user = User::findOrFail($userId);
         User::validate($request);
@@ -63,8 +62,8 @@ class UserController extends Controller
         $userId = Auth::user()->getId();
         User::destroy($userId);
 
+        Session::flash('success', __('user.delete_success'));
 
         return redirect()->route('home.index');
     }
-
 }

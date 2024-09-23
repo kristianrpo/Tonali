@@ -41,6 +41,10 @@ return [
     'sensitive_skin' => 'Sensitive Skin',
     'acne' => 'Acne-Prone',
     'dry' => 'Dry Skin',
-    'oil' => 'Oily Skin'
+    'oil' => 'Oily Skin',
+
+    'create_success' => 'Colorimetry created successfully',
+    'edit_success' => 'Colorimetry edited successfully',
+    'delete_succes' => 'COlorimetry deleted succesfully',
 
 ];

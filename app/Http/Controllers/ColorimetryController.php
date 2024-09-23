@@ -1,17 +1,16 @@
 <?php
- 
+
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
+use App\Models\Colorimetry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Colorimetry;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
- 
 class ColorimetryController extends Controller
 {
-
     public function index(): View
     {
         $userId = Auth::user()->getId();
@@ -25,9 +24,9 @@ class ColorimetryController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData["title"] = "Create colorimetry";
+        $viewData['title'] = 'Create colorimetry';
 
-        return view('customer.colorimetry.create')->with("viewData",$viewData);
+        return view('customer.colorimetry.create')->with('viewData', $viewData);
     }
 
     public function save(Request $request): RedirectResponse
@@ -45,8 +44,10 @@ class ColorimetryController extends Controller
         $colorimetry->setUserId($userId);
         $colorimetry->save();
 
+        Session::flash('success', __('colorimetry.create_success'));
+
         return redirect()->route('colorimetry.index');
-            
+
     }
 
     public function edit(int $id): View
@@ -61,7 +62,7 @@ class ColorimetryController extends Controller
     }
 
     public function update(Request $request, int $id): RedirectResponse
-    {   
+    {
         $colorimetry = Colorimetry::findOrFail($id);
         Colorimetry::validate($request);
 
@@ -73,12 +74,16 @@ class ColorimetryController extends Controller
         $colorimetry->setSpecificNeeds(json_encode($specificNeeds));
         $colorimetry->save();
 
+        Session::flash('success', __('colorimetry.edit_success'));
+
         return redirect()->route('colorimetry.index');
     }
 
     public function delete(int $id): RedirectResponse
     {
         Colorimetry::destroy($id);
+
+        Session::flash('success', __('colorimetry.delete_success'));
 
         return redirect()->route('colorimetry.index');
     }

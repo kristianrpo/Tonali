@@ -58,11 +58,25 @@
                     </a>
                 </div>
                 <div class="flex justify-center items-start mt-4">
-                    <form method="POST" action="{{ route('profile.delete')}}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300" onclick="return confirm('{{ __('user.delete') }}');">{{ __("user.delete_customer") }}</button>
-                    </form>
+                    <button onclick="openDeleteModal()" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300">
+                        {{ __('user.delete_customer') }}
+                    </button>
+                </div>
+                <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden">
+                    <div class="bg-white rounded-lg p-6 w-1/3">
+                        <h2 class="text-lg font-semibold mb-4">{{ __('user.confirm_delete_title') }}</h2>
+                        <p class="mb-4">{{ __('user.delete') }}</p>
+                        <div class="flex justify-end">
+                            <button onclick="closeDeleteModal()" class="text-center bg-gray-300 py-2 px-4 rounded-full hover:bg-black hover:text-white transition duration-300">
+                                {{ __('user.cancel_button') }}
+                            </button>
+                            <form method="POST" action="{{ route('profile.delete')}}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300 ml-4" onclick="openDeleteModal()">{{ __("user.delete_customer") }}</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use illuminate\Support\Collection;
 
 class User extends Authenticatable
@@ -31,7 +31,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'cellphone', 
+        'cellphone',
         'address',
     ];
 
@@ -145,14 +145,13 @@ class User extends Authenticatable
 
     public function getColorimetry(): Colorimetry
     {
-        return $this->orders;
+        return $this->colorimetry;
     }
 
     public function setColorimetry(Colorimetry $colorimetry): void
     {
         $this->colorimetry = $colorimetry;
     }
-
 
     public static function validate(Request $request)
     {

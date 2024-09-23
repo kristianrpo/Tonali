@@ -6,4 +6,6 @@ return [
     'error_500_title' => '500',
     'error_500_message' => 'Ya estamos trabajando para resolver el problema.',
     'back_home_button' => 'Volver a la página principal',
+    'product_recommendation_title' => 'Ups :(',
+    'product_recommendation_message' => 'Lo sentimos, ocurrió un error al procesar la recomendación de productos. Por favor, intenta de nuevo más tarde.',
 ];

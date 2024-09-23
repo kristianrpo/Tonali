@@ -238,49 +238,6 @@ class Product extends Model
         ];
     }
 
-    public static function search(string $query): Builder
-    {
-        return Product::where('name', 'like', '%'.$query.'%')
-            ->orWhere('brand', 'like', '%'.$query.'%');
-    }
-
-    public static function filter(array $filters): Builder
-    {
-        $query = Product::query();
-
-        if (isset($filters['category_id'])) {
-            $query->whereIn('category_id', (array) $filters['category_id']);
-        }
-
-        if (isset($filters['rating'])) {
-            $ratings = implode(',', $filters['rating']);
-            $query->whereRaw('FLOOR(sum_ratings / quantity_reviews) IN ('.$ratings.')');
-        }
-
-        if (isset($filters['price_range'])) {
-            $query->where(function ($query) use ($filters) {
-                foreach ($filters['price_range'] as $range) {
-                    [$min, $max] = explode('-', $range);
-                    $query->orWhereBetween('price', [(int) $min, (int) $max]);
-                }
-            });
-        }
-
-        if (isset($filters['stock_quantity'])) {
-            $query->where(function ($query) use ($filters) {
-                if (in_array('in_stock', $filters['stock_quantity'])) {
-                    $query->orWhere('stock_quantity', '>=', 1);
-                }
-
-                if (in_array('out_of_stock', $filters['stock_quantity'])) {
-                    $query->orWhere('stock_quantity', '=', 0);
-                }
-            });
-        }
-
-        return $query;
-    }
-
     public function getRelatedProducts($limit = 5): Collection
     {
         $recommended = Product::where('category_id', $this->category_id)
@@ -315,5 +272,56 @@ class Product extends Model
     public static function getSuggestionsByName(string $query): Collection
     {
         return Product::where('name', 'like', $query.'%')->distinct()->pluck('name');
+    }
+
+    public static function search(string $query): Builder
+    {
+        return Product::where('name', 'like', '%'.$query.'%')
+            ->orWhere('brand', 'like', '%'.$query.'%');
+    }
+
+    public static function filter(array $filters): Builder
+    {
+        $query = Product::query();
+        $filterMethods = self::getFilterMethods();
+
+        foreach ($filters as $key => $value) {
+            if (isset($filterMethods[$key])) {
+                $filterMethods[$key]($query, $value);
+            }
+        }
+
+        return $query;
+    }
+
+    private static function getFilterMethods(): array
+    {
+        return [
+            'category_id' => function (Builder $query, $categoryId) {
+                $query->whereIn('category_id', (array) $categoryId);
+            },
+            'rating' => function (Builder $query, $ratings) {
+                $ratings = implode(',', $ratings);
+                $query->whereRaw('FLOOR(sum_ratings / quantity_reviews) IN ('.$ratings.')');
+            },
+            'price_range' => function (Builder $query, array $priceRange) {
+                $query->where(function ($query) use ($priceRange) {
+                    foreach ($priceRange as $range) {
+                        [$min, $max] = explode('-', $range);
+                        $query->orWhereBetween('price', [(int) $min, (int) $max]);
+                    }
+                });
+            },
+            'stock_quantity' => function (Builder $query, array $stockQuantity) {
+                $query->where(function ($query) use ($stockQuantity) {
+                    if (in_array('in_stock', $stockQuantity)) {
+                        $query->orWhere('stock_quantity', '>=', 1);
+                    }
+                    if (in_array('out_of_stock', $stockQuantity)) {
+                        $query->orWhere('stock_quantity', '=', 0);
+                    }
+                });
+            },
+        ];
     }
 }

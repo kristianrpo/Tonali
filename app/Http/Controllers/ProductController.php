@@ -11,29 +11,20 @@ use Illuminate\View\View;
 
 class ProductController extends Controller
 {
-    public function index(Request $request): View|JsonResponse
+    public function index(Request $request): View
     {
         $viewData = [];
         $query = $request->input('query');
-        $filters = $request->only(['category_id', 'rating', 'price_range']);
+        $filters = $request->only(['category_id', 'rating', 'price_range', 'stock_quantity']);
         $productsQuery = Product::query();
-
-        if ($request->ajax()) {
-            $suggestions = Product::getSuggestionsByName($query);
-
-            return response()->json($suggestions);
-        }
-
         if (! empty($query)) {
             $productsQuery = Product::search($query);
-
-            return response()->json($productsQuery->get());
-
         }
         if (! empty($filters)) {
             $productsQuery = Product::filter($filters);
         }
         $products = $productsQuery->get();
+
         if ($products->isEmpty()) {
             session()->flash('message', __('product.no_products'));
         }
@@ -42,6 +33,14 @@ class ProductController extends Controller
         $viewData['categories'] = Category::all();
 
         return view('product.index')->with('viewData', $viewData);
+    }
+
+    public function suggest(Request $request): JsonResponse
+    {
+        $query = $request->input('query');
+        $suggestions = Product::getSuggestionsByName($query);
+
+        return response()->json($suggestions);
     }
 
     public function show(int $id): View

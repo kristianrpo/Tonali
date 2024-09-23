@@ -6,7 +6,7 @@ function showSuggestions(value) {
         return; 
     }
 
-    fetch(`/products?query=${value}`, {
+    fetch(`/products/suggest?query=${value}`, {
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         }

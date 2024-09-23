@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Utils\ImageStorage;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -13,48 +14,36 @@ use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
-    public function index(): View
-    {
-        $viewData = [];
-        $products = Product::paginate(10);
-        $viewData['products'] = $products;
-        $viewData['priceRanges'] = Product::getPriceTerciles();
-        $viewData['categories'] = Category::all();
-
-        return view('admin.product.index')->with('viewData', $viewData);
-    }
-
-    public function search(Request $request): View|RedirectResponse
+    public function index(Request $request): View
     {
         $viewData = [];
         $query = $request->input('query');
-        if (empty($query)) {
-            return redirect()->route('admin.product.index');
+        $filters = $request->only(['category_id', 'rating', 'price_range', 'stock_quantity']);
+        $productsQuery = Product::query();
+        if (! empty($query)) {
+            $productsQuery = Product::search($query);
         }
-
-        $products = Product::searchProducts($query)->paginate(10);
-        $viewData['products'] = $products;
-        $viewData['categories'] = Category::all();
+        if (! empty($filters)) {
+            $productsQuery = Product::filter($filters);
+        }
+        $products = $productsQuery->paginate(10);
 
         if ($products->isEmpty()) {
-            session()->flash('error', __('product.no_products'));
-
-            return redirect()->route('admin.product.index');
+            session()->flash('message', __('product.no_products'));
         }
-
-        return view('admin.product.index')->with('viewData', $viewData);
-    }
-
-    public function filter(Request $request): View
-    {
-        $viewData = [];
-        $filters = $request->only(['category_id', 'stock_quantity']);
-        $products = Product::filterProducts($filters)->paginate(10);
         $viewData['products'] = $products;
         $viewData['priceRanges'] = Product::getPriceTerciles();
         $viewData['categories'] = Category::all();
 
         return view('admin.product.index')->with('viewData', $viewData);
+    }
+
+    public function suggest(Request $request): JsonResponse
+    {
+        $query = $request->input('query');
+        $suggestions = Product::getSuggestionsByName($query);
+
+        return response()->json($suggestions);
     }
 
     public function create(): View

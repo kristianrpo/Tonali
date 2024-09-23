@@ -190,7 +190,7 @@
             </div>
         </aside>
 
-        <main class="h-auto p-4 pt-20 md:ml-64">
+        <main class="flex-1 p-4 pt-20 md:ml-64">
             @yield("content")
         </main>
 

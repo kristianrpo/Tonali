@@ -20,7 +20,7 @@
                     class="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0"
                 >
                     <div class="w-full md:w-2/3">
-                        <x-search :route="route('admin.product.search')" />
+                        <x-search :route="route('admin.product.index')" />
                     </div>
                     <div
                         class="flex w-full flex-shrink-0 flex-col items-stretch justify-end space-y-2 md:w-auto md:flex-row md:items-center md:space-x-3 md:space-y-0"
@@ -47,7 +47,7 @@
                         <x-product-filter
                             :categories="$viewData['categories']"
                             :priceRanges="$viewData['priceRanges']"
-                            :route="route('admin.product.filter')"
+                            :route="route('admin.product.index')"
                         />
                     </div>
                 </div>

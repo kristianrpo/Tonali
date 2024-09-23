@@ -4,7 +4,7 @@
         <x-alert :message="session('success')" />
     @endif
 
-    <section class="bg-white py-8 antialiased md:py-16">
+    <section class="bg-white py-4 antialiased">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                 <div class="mx-auto max-w-md shrink-0 lg:max-w-lg">
@@ -88,33 +88,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="mx-auto mt-10 max-w-screen-xl px-4">
-            <h2 class="mb-6 text-2xl font-semibold text-gray-900">
-                {{ __("product.you_may_also_like") }}
-            </h2>
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
-                @foreach ($viewData["relatedProducts"] as $relatedProduct)
-                    <div class="overflow-hidden rounded-lg bg-white shadow-md">
-                        <img
-                            src="{{ $relatedProduct->getImageUrl() }}"
-                            alt="Product 1"
-                            class="h-40 w-full object-cover"
-                        />
-                        <div class="p-4">
-                            <a
-                                href="{{ route("product.show", ["id" => $relatedProduct->getId()]) }}"
-                            >
-                                <h3
-                                    class="font-bold text-gray-900 hover:underline"
-                                >
-                                    {{ $relatedProduct->getName() }}
-                                </h3>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
             </div>
         </div>
     </section>
@@ -303,6 +276,33 @@
                 @endforeach
 
                 <x-pagination :paginator="$viewData['reviews']" />
+            </div>
+        </div>
+        <div class="mx-auto mt-10 max-w-screen-xl px-4">
+            <h2 class="mb-6 text-2xl font-semibold text-gray-900">
+                {{ __("product.you_may_also_like") }}
+            </h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+                @foreach ($viewData["relatedProducts"] as $relatedProduct)
+                    <div class="overflow-hidden rounded-lg bg-white shadow-md">
+                        <img
+                            src="{{ $relatedProduct->getImageUrl() }}"
+                            alt="Product 1"
+                            class="h-40 w-full object-cover"
+                        />
+                        <div class="p-4">
+                            <a
+                                href="{{ route("product.show", ["id" => $relatedProduct->getId()]) }}"
+                            >
+                                <h3
+                                    class="font-bold text-gray-900 hover:underline"
+                                >
+                                    {{ $relatedProduct->getName() }}
+                                </h3>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>

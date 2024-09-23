@@ -183,12 +183,12 @@
                             </dl>
                         </div>
                         @if (count($viewData["products"]) > 0)
-                            <a
-                                href="{{ route("order.place") }}"
-                                class="hover:bg-primary-800 focus:ring-primary-300 flex w-full items-center justify-center rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4"
-                            >
-                                {{ __("cart.purchase") }}
-                            </a>
+                            <form action="{{ route('order.place') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="hover:bg-primary-800 focus:ring-primary-300 flex w-full items-center justify-center rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4">
+                                    {{ __("cart.purchase") }}
+                                </button>
+                            </form>
                             <div class="flex items-center justify-center gap-2">
                                 <span class="text-sm font-normal text-gray-500">
                                     {{ __("cart.or") }}

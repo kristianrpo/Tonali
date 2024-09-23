@@ -91,7 +91,7 @@ class ReviewController extends Controller
         return view('review.report')->with('viewData', $viewData);
     }
 
-    public function validateReport(Request $request, $id): RedirectResponse
+    public function validateReport(Request $request, int $id): RedirectResponse
     {
         $review = Review::findOrFail($id);
         $reportTitle = $request->input('title');

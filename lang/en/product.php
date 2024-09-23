@@ -46,4 +46,5 @@ return [
     'delete_success' => 'Product deleted successfully',
     'update_success' => 'Product updated successfully',
     'no_products' => 'No products found',
+    'buyer' => 'Buyer',
 ];

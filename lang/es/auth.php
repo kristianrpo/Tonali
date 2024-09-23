@@ -14,4 +14,5 @@ return [
     'name' => 'Nombre',
     'account_register' => '¿No tienes una cuenta?',
     'account_register' => '¿Ya tienes una cuenta?',
+    'shop' => 'Tienda',
 ];

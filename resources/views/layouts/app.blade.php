@@ -128,6 +128,15 @@
                                     <div
                                         class="absolute right-0 z-20 mt-2 hidden w-48 rounded-md bg-white shadow-lg group-hover:block"
                                     >
+                                        @if (auth()->check() &&auth()->user()->getRole() == "admin")
+                                            <a
+                                                href="{{ route("admin.product.index") }}"
+                                                class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                                            >
+                                                {{ __("auth.shop") }}
+                                            </a>
+                                        @endif
+
                                         <a
                                             href="#"
                                             class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
@@ -152,59 +161,65 @@
                             </div>
                         </div>
                     @endguest
-                    <a
-                        href="{{ route("cart.index") }}"
-                        class="text-darkGray hover:text-black"
-                    >
-                        <div
-                            class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
+                    @if (auth()->check() &&auth()->user()->getRole() !== "admin")
+                        <a
+                            href="{{ route("cart.index") }}"
+                            class="text-darkGray hover:text-black"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="h-5 w-5"
-                                viewBox="0 0 256 256"
-                                id="shopping-cart"
+                            <div
+                                class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
                             >
-                                <rect width="256" height="256" fill="none" />
-                                <path
-                                    fill="none"
-                                    stroke="#000"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="12"
-                                    d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16"
-                                />
-                                <circle
-                                    cx="80"
-                                    cy="204"
-                                    r="20"
-                                    fill="none"
-                                    stroke="#000"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="12"
-                                />
-                                <circle
-                                    cx="184"
-                                    cy="204"
-                                    r="20"
-                                    fill="none"
-                                    stroke="#000"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="12"
-                                />
-                                <path
-                                    fill="none"
-                                    stroke="#000"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="12"
-                                    d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48"
-                                />
-                            </svg>
-                        </div>
-                    </a>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-5 w-5"
+                                    viewBox="0 0 256 256"
+                                    id="shopping-cart"
+                                >
+                                    <rect
+                                        width="256"
+                                        height="256"
+                                        fill="none"
+                                    />
+                                    <path
+                                        fill="none"
+                                        stroke="#000"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="12"
+                                        d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16"
+                                    />
+                                    <circle
+                                        cx="80"
+                                        cy="204"
+                                        r="20"
+                                        fill="none"
+                                        stroke="#000"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="12"
+                                    />
+                                    <circle
+                                        cx="184"
+                                        cy="204"
+                                        r="20"
+                                        fill="none"
+                                        stroke="#000"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="12"
+                                    />
+                                    <path
+                                        fill="none"
+                                        stroke="#000"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="12"
+                                        d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48"
+                                    />
+                                </svg>
+                            </div>
+                        </a>
+                    @endif
                 </div>
             </div>
         </nav>

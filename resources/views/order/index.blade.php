@@ -15,7 +15,7 @@
                         class="bg-brightPink px-6 py-3 text-xl font-medium text-white"
                     >
                         <th scope="col" class="px-6 py-3">
-                            {{ __("order.order") }} #{{ $order->getId() }}
+                            {{ __("order.order") }} {{ $order->getId() }}
                         </th>
                         <th scope="col" class="px-6 py-3"></th>
                         <th scope="col" class="px-6 py-3"></th>

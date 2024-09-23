@@ -1,4 +1,5 @@
 @extends("layouts.admin")
+@section("title", __("product.detail_product"))
 @section("content")
     @if (session("success"))
         <x-alert :message="session('success')" />
@@ -7,9 +8,9 @@
     <section class="bg-gray-50">
         <div class="mx-auto max-w-2xl px-4">
             <div class="w-full text-left">
-                <h2 class="mb-2 text-3xl font-bold text-gray-900">
+                <h1 class="mb-2 text-3xl font-bold text-gray-900">
                     {{ $viewData["product"]->getName() }}
-                </h2>
+                </h1>
                 <p class="mb-2 text-xl text-gray-700">
                     {{ formatPrice($viewData["product"]->getPrice()) }}
                 </p>

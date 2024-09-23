@@ -22,6 +22,6 @@ class ProductFilter extends Component
 
     public function render()
     {
-        return view('components.product-filter');
+        return view('components.productFilter');
     }
 }

@@ -47,4 +47,5 @@ return [
     'update_success' => 'Product updated successfully',
     'no_products' => 'No products found',
     'buyer' => 'Buyer',
+    'detail_product' => 'Detail product',
 ];

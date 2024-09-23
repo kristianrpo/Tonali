@@ -1,4 +1,5 @@
 @extends("layouts.admin")
+@section("title", __("product.my_products"))
 @section("content")
     @if (session("success"))
         <x-alert :message="session('success')" />
@@ -10,9 +11,9 @@
 
     <section class="antialiased">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
-            <h2 class="mb-6 text-3xl font-bold text-gray-800">
+            <h1 class="mb-6 text-3xl font-bold text-gray-800">
                 {{ __("product.my_products") }}
-            </h2>
+            </h1>
             <div
                 class="relative overflow-hidden bg-white shadow-md sm:rounded-lg"
             >
@@ -44,7 +45,7 @@
                             </svg>
                             {{ __("product.add_product") }}
                         </a>
-                        <x-product-filter
+                        <x-productFilter
                             :categories="$viewData['categories']"
                             :priceRanges="$viewData['priceRanges']"
                             :route="route('admin.product.index')"

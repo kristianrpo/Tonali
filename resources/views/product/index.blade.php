@@ -1,4 +1,5 @@
 @extends("layouts.app")
+@section("title", __("product.products"))
 @section("content")
     @if (session("success"))
         <x-alert :message="session('success')" />
@@ -8,7 +9,7 @@
         <h1 class="mb-4 text-3xl font-bold text-gray-800">
             {{ __("product.products") }}
         </h1>
-        <x-product-filter
+        <x-productFilter
             :categories="$viewData['categories']"
             :priceRanges="$viewData['priceRanges']"
             :route="route('product.index')"

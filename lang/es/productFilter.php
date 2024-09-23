@@ -10,4 +10,5 @@ return [
     'in_stock' => 'En stock',
     'out_of_stock' => 'Agotado',
     'apply_filters' => 'Aplicar filtros',
+    'to' => 'a',
 ];

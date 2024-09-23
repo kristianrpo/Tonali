@@ -1,4 +1,5 @@
 @extends("layouts.app")
+@section("title", __("product.detail_product"))
 @section("content")
     @if (session("success"))
         <x-alert :message="session('success')" />

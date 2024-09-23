@@ -1,4 +1,5 @@
 @extends("layouts.admin")
+@section("title", __("product.edit_product"))
 @section("content")
     @if ($errors->any())
         @foreach ($errors->all() as $error)
@@ -7,9 +8,9 @@
     @endif
 
     <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
-        <h2 class="mb-4 text-3xl font-bold text-gray-800">
+        <h1 class="mb-4 text-3xl font-bold text-gray-800">
             {{ __("product.edit_product") }}
-        </h2>
+        </h1>
 
         <form
             method="POST"

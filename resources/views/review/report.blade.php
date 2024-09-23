@@ -1,4 +1,5 @@
 @extends("layouts.app")
+@section("title", __("review.report_review"))
 @section("content")
     <div class="flex justify-center">
         <div class="relative max-h-full w-full max-w-2xl p-4">

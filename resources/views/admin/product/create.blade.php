@@ -1,4 +1,5 @@
 @extends("layouts.admin")
+@section("title", __("product.create_product"))
 @section("content")
     @if (session("success"))
         <x-alert :message="session('success')" />
@@ -11,9 +12,9 @@
     @endif
 
     <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
-        <h2 class="mb-4 text-3xl font-bold text-gray-800">
+        <h1 class="mb-4 text-3xl font-bold text-gray-800">
             {{ __("product.create_product") }}
-        </h2>
+        </h1>
 
         <form
             method="POST"

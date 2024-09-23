@@ -1,10 +1,11 @@
 @extends("layouts.admin")
+@section("title", __("category.my_categories"))
 @section("content")
-    <section class="bg-gray-50 antialiased">
+    <section class="antialiased">
         <div class="mx-auto max-w-screen-xl px-4 lg:px-12">
-            <h2 class="mb-6 text-3xl font-bold text-gray-800">
+            <h1 class="mb-6 text-3xl font-bold text-gray-800">
                 {{ __("category.my_categories") }}
-            </h2>
+            </h1>
             <div
                 class="relative overflow-hidden bg-white shadow-md sm:rounded-lg"
             >

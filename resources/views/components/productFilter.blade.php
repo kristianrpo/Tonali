@@ -170,8 +170,9 @@
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="price_low">
-                            {{ formatPrice($priceRanges["min"], 2) }} to
-                            {{ formatPrice($priceRanges["first_tercile"], 2) }}
+                            {{ formatPrice($priceRanges["min"]) }}
+                            {{ __("productFilter.to") }}
+                            {{ formatPrice($priceRanges["first_tercile"]) }}
                         </label>
                     </li>
                     <li>
@@ -183,9 +184,9 @@
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="price_mid">
-                            {{ formatPrice($priceRanges["first_tercile"], 2) }}
-                            to
-                            {{ formatPrice($priceRanges["second_tercile"], 2) }}
+                            {{ formatPrice($priceRanges["first_tercile"]) }}
+                            {{ __("productFilter.to") }}
+                            {{ formatPrice($priceRanges["second_tercile"]) }}
                         </label>
                     </li>
                     <li>
@@ -197,8 +198,9 @@
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
                         <label for="price_high">
-                            {{ formatPrice($priceRanges["second_tercile"], 2) }}
-                            to {{ formatPrice($priceRanges["max"], 2) }}
+                            {{ formatPrice($priceRanges["second_tercile"]) }}
+                            {{ __("productFilter.to") }}
+                            {{ formatPrice($priceRanges["max"]) }}
                         </label>
                     </li>
                 </ul>

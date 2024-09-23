@@ -11,9 +11,9 @@
 
     <section class="bg-white antialiased">
         <div class="mx-auto max-w-screen-xl">
-            <h2 class="text-3xl font-bold text-gray-800">
+            <h1 class="text-3xl font-bold text-gray-800">
                 {{ __("cart.title") }}
-            </h2>
+            </h1>
             <div class="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
                 <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
                     <div class="space-y-6">
@@ -183,9 +183,15 @@
                             </dl>
                         </div>
                         @if (count($viewData["products"]) > 0)
-                            <form action="{{ route('order.place') }}" method="POST">
+                            <form
+                                action="{{ route("order.place") }}"
+                                method="POST"
+                            >
                                 @csrf
-                                <button type="submit" class="hover:bg-primary-800 focus:ring-primary-300 flex w-full items-center justify-center rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4">
+                                <button
+                                    type="submit"
+                                    class="hover:bg-primary-800 focus:ring-primary-300 flex w-full items-center justify-center rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-white focus:outline-none focus:ring-4"
+                                >
                                     {{ __("cart.purchase") }}
                                 </button>
                             </form>

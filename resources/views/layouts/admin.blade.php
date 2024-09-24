@@ -132,7 +132,7 @@
         </nav>
 
         <aside
-            class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white pt-14 transition-transform md:translate-x-0"
+            class="absolute left-0 top-0 z-40 h-screen w-64 -translate-x-full border-r border-gray-200 bg-white pt-14 transition-transform md:translate-x-0"
             aria-label="Sidenav"
             id="drawer-navigation"
         >
@@ -247,11 +247,11 @@
             </div>
         </aside>
 
-        <main class="flex-1 p-4 pt-20 md:ml-64">
+        <main class="flex-1 min-h-60 p-4 pt-20 md:ml-64">
             @yield("content")
         </main>
 
-        <footer class="relative left-0 right-0 z-50 mt-8 bg-brightPink shadow">
+        <footer class="flex left-0 right-0 z-50 mt-8 bg-brightPink shadow">
             <div class="mx-auto w-full max-w-screen-xl p-4 md:py-8">
                 <div class="flex items-center justify-center">
                     <img

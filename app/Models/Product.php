@@ -51,7 +51,7 @@ class Product extends Model
     {
         $this->attributes['name'] = $name;
     }
-    
+
     public function getImage(): string
     {
         return $this->attributes['image'];

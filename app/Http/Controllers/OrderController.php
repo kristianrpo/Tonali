@@ -24,10 +24,10 @@ class OrderController extends Controller
     public function place(Request $request): RedirectResponse
     {
         $productsInSession = $request->session()->get('products');
-        if (!$productsInSession) {
+        if (! $productsInSession) {
             return redirect()->route('cart.index');
         }
-        
+
         $productsInCart = Product::findMany(array_keys($productsInSession));
 
         foreach ($productsInCart as $product) {

@@ -2,8 +2,8 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
 use Illuminate\Support\Collection;
+use Illuminate\View\Component;
 use Illuminate\View\View;
 
 class ProductFilter extends Component

@@ -132,7 +132,7 @@ class User extends Authenticatable
         return $this->attributes['email_verified_at'];
     }
 
-    public function getRememberToken(): string
+    public function getRememberToken(): ?string
     {
         return $this->attributes['remember_token'];
     }

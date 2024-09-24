@@ -15,7 +15,7 @@
                 {{ __("product.my_products") }}
             </h1>
             <div
-                class="relative overflow-hidden bg-white shadow-md sm:rounded-lg"
+                class="relative min-h-60 overflow-hidden bg-white shadow-md sm:rounded-lg"
             >
                 <div
                     class="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0"

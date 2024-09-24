@@ -36,7 +36,7 @@
 
     <div
         id="filterDropdown"
-        class="z-10 hidden w-64 rounded-lg bg-white p-3 shadow-lg"
+        class="z-10 hidden w-64 rounded-lg bg-white p-3 shadow-lg max-h-40 overflow-y-auto"
     >
         <a
             href="{{ $route }}"

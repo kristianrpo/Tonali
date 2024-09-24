@@ -21,10 +21,11 @@ class User extends Authenticatable
      * $this->attributes['password'] - string - contains the user password
      * $this->attributes['created_at'] - timestamp - contains the user creation date
      * $this->attributes['updated_at'] - timestamp - contains the user update date
-     * $this-> orders - Order[] - contains the associated orders
-     * $this-> reviews - Review[] - contains the associated reviews
-     * $this-> colorimetry - Colorimetry - contains the associated colorimetry
+     * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date
+     * $this->attributes['remember_token'] - string - contains the user remember token
      * $this->orders - Order[] - contains the associated orders
+     * $this->reviews - Review[] - contains the associated reviews
+     * $this->colorimetry - Colorimetry - contains the associated colorimetry
      */
 
     protected $fillable = [
@@ -38,6 +39,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $attributes = [
+        'cellphone' => '0',
+        'address' => '#',
+        'role' => 'customer',
     ];
 
     protected function casts(): array
@@ -103,14 +110,19 @@ class User extends Authenticatable
         $this->attributes['role'] = $role;
     }
 
+    public function getPassword(): string
+    {
+        return $this->attributes['password'];
+    }
+
+    public function setPassword(string $password): void
+    {
+        $this->attributes['password'] = $password;
+    }
+
     public function getCreatedAt(): string
     {
         return $this->attributes['created_at'];
-    }
-
-    public function setCreatedAt($createdAt): void
-    {
-        $this->attributes['created_at'] = $createdAt;
     }
 
     public function getUpdatedAt(): string
@@ -118,9 +130,14 @@ class User extends Authenticatable
         return $this->attributes['updated_at'];
     }
 
-    public function setUpdatedAt($updatedAt): void
+    public function getEmailVerifiedAt(): string
     {
-        $this->attributes['updated_at'] = $updatedAt;
+        return $this->attributes['email_verified_at'];
+    }
+
+    public function getRememberToken(): ?string
+    {
+        return $this->attributes['remember_token'];
     }
 
     public function orders(): HasMany
@@ -138,6 +155,21 @@ class User extends Authenticatable
         $this->orders = $orders;
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function getReviews(): Collection
+    {
+        return $this->reviews;
+    }
+
+    public function setReviews($reviews): void
+    {
+        $this->reviews = $reviews;
+    }
+    
     public function colorimetry(): HasOne
     {
         return $this->hasOne(Colorimetry::class);
@@ -145,14 +177,13 @@ class User extends Authenticatable
 
     public function getColorimetry(): Colorimetry
     {
-        return $this->orders;
+        return $this->colorimetry;
     }
 
     public function setColorimetry(Colorimetry $colorimetry): void
     {
         $this->colorimetry = $colorimetry;
     }
-
 
     public static function validate(Request $request)
     {

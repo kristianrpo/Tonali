@@ -6,29 +6,44 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Utils\ImageStorage;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $viewData = [];
-        $products = Product::paginate(10);
+        $query = $request->input('query');
+        $filters = $request->only(['category_ids', 'ratings', 'price_ranges', 'stock_quantities']);
+        $productsQuery = Product::query();
+        if (! empty($query)) {
+            $productsQuery = Product::search($query);
+        }
+        if (! empty($filters)) {
+            $productsQuery = Product::filter($filters);
+        }
+        $products = $productsQuery->paginate(10);
+
+        if ($products->isEmpty()) {
+            session()->flash('message', __('product.no_products'));
+        }
         $viewData['products'] = $products;
+        $viewData['priceRanges'] = Product::getPriceTerciles();
+        $viewData['categories'] = Category::all();
 
         return view('admin.product.index')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View
+    public function suggest(Request $request): JsonResponse
     {
         $query = $request->input('query');
-        $products = Product::where('name', 'like', '%'.$query.'%')
-            ->orWhere('brand', 'like', '%'.$query.'%')
-            ->paginate(10);
+        $suggestions = Product::getSuggestionsByName($query);
 
-        return view('admin.product.index')->with('viewData', ['products' => $products]);
+        return response()->json($suggestions);
     }
 
     public function create(): View
@@ -56,6 +71,7 @@ class AdminProductController extends Controller
             $newProduct->setImage($imageName);
             $newProduct->save();
         }
+        Session::flash('success', __('product.add_success'));
 
         return back();
     }
@@ -97,6 +113,8 @@ class AdminProductController extends Controller
 
         $product->save();
 
+        Session::flash('success', __('product.update_success'));
+
         return redirect()->route('admin.product.show', ['id' => $id]);
     }
 
@@ -105,6 +123,8 @@ class AdminProductController extends Controller
         $product = Product::findOrFail($id);
         ImageStorage::deleteImage($product, 'products');
         $product->delete();
+
+        Session::flash('success', __('product.delete_success'));
 
         return redirect()->route('admin.product.index');
     }

@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Utils;
-use Illuminate\Database\Eloquent\Collection;
-use App\Models\Colorimetry;
+
 use App\Interfaces\LanguageModel;
+use App\Models\Colorimetry;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProductRecommendation
 {

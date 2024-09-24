@@ -19,12 +19,9 @@ class UserController extends Controller
         $viewData = [];
         $viewData['user'] = $user;
 
-        if ($user->getRole() === 'admin')
-        {
+        if ($user->getRole() === 'admin') {
             return view('admin.profile')->with('viewData', $viewData);
-        } 
-        elseif ($user->getRole() === 'customer') 
-        {
+        } elseif ($user->getRole() === 'customer') {
             return view('customer.profile')->with('viewData', $viewData);
         }
     }
@@ -37,12 +34,9 @@ class UserController extends Controller
         $viewData = [];
         $viewData['user'] = $user;
 
-        if ($user->getRole() === 'admin') 
-        {
+        if ($user->getRole() === 'admin') {
             return view('admin.edit')->with('viewData', $viewData);
-        } 
-        elseif ($user->getRole() === 'customer') 
-        {
+        } elseif ($user->getRole() === 'customer') {
             return view('customer.edit')->with('viewData', $viewData);
         }
     }

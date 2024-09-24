@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Product extends Model
 {
@@ -20,9 +22,12 @@ class Product extends Model
      * $this->attributes['stock_quantity'] - int - contains the product stock quantity
      * $this->attributes['quantity_reviews'] - int - contains the product review count
      * $this->attributes['sum_ratings'] - int - contains the product total ratings
-     * $this->attributes['category_id'] - int - contains the product category id
+     * $this->attributes['category_id'] - int - contains the referenced category id
      * $this->attributes['created_at'] - timestamp - contains the product creation date
      * $this->attributes['updated_at'] - timestamp - contains the product update date
+     * $this->items - Item[] - contains the associated items
+     * $this->reviews - Review[] - contains the associated reviews
+     * $this->category - Category - contains the associated category
      */
     protected $fillable = ['name', 'image', 'price', 'description', 'brand', 'stock_quantity'];
 
@@ -47,16 +52,6 @@ class Product extends Model
         $this->attributes['name'] = $name;
     }
 
-    public function getPrice(): int
-    {
-        return $this->attributes['price'];
-    }
-
-    public function setPrice(int $price): void
-    {
-        $this->attributes['price'] = $price;
-    }
-
     public function getImage(): string
     {
         return $this->attributes['image'];
@@ -65,6 +60,16 @@ class Product extends Model
     public function setImage(string $image): void
     {
         $this->attributes['image'] = $image;
+    }
+
+    public function getPrice(): int
+    {
+        return $this->attributes['price'];
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->attributes['price'] = $price;
     }
 
     public function getDescription(): string
@@ -137,6 +142,26 @@ class Product extends Model
         return $this->attributes['updated_at'];
     }
 
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->items;
+    }
+
+    public function setItems(Collection $items): void
+    {
+        $this->items = $items;
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function getReviews(): Collection
     {
         return $this->reviews;
@@ -147,19 +172,19 @@ class Product extends Model
         $this->reviews = $reviews;
     }
 
-    public function getcategory(): Category
-    {
-        return $this->category;
-    }
-
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function reviews(): HasMany
+    public function getCategory(): Category
     {
-        return $this->hasMany(Review::class);
+        return $this->category;
+    }
+
+    public function setCategory(Category $category): void
+    {
+        $this->category = $category;
     }
 
     public function getAverageRating(): float
@@ -172,13 +197,6 @@ class Product extends Model
         return $this->attributes['image'] === 'default.png'
             ? asset('img/product/'.$this->attributes['image'])
             : asset('storage/products/'.$this->attributes['image']);
-    }
-
-    public function getInventory(): string
-    {
-        return $this->attributes['stock_quantity'] == 0
-            ? 'Out of stock'
-            : 'In stock: '.$this->attributes['stock_quantity'];
     }
 
     public function addReviewWithRating(int $rating): void
@@ -201,19 +219,6 @@ class Product extends Model
         $this->save();
     }
 
-    public static function validate(Request $request): void
-    {
-        $request->validate([
-            'name' => 'required',
-            'price' => 'required|numeric|gt:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg',
-            'description' => 'required',
-            'brand' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'stock_quantity' => 'required|numeric|gte:0',
-        ]);
-    }
-
     public static function sumPricesByQuantities(Collection $products, array $productsInSession): int
     {
         $total = 0;
@@ -222,5 +227,118 @@ class Product extends Model
         }
 
         return $total;
+    }
+
+    public static function getPriceTerciles(): array
+    {
+        $minPrice = Product::min('price');
+        $maxPrice = Product::max('price');
+
+        return [
+            'min' => intval($minPrice),
+            'first_tercile' => intval($minPrice + ($maxPrice - $minPrice) / 3),
+            'second_tercile' => intval($minPrice + 2 * ($maxPrice - $minPrice) / 3),
+            'max' => intval($maxPrice),
+        ];
+    }
+
+    public function getRelatedProducts(int $limit = 5): Collection
+    {
+        $recommended = Product::where('category_id', $this->category_id)
+            ->where('brand', $this->brand)
+            ->where('id', '!=', $this->id)
+            ->limit($limit)
+            ->get();
+
+        if ($recommended->count() < $limit) {
+            $additionalProducts = Product::where('category_id', $this->category_id)
+                ->where('id', '!=', $this->id)
+                ->whereNotIn('id', $recommended->pluck('id'))
+                ->limit($limit - $recommended->count())
+                ->get();
+
+            $recommended = $recommended->merge($additionalProducts);
+        }
+
+        if ($recommended->count() < $limit) {
+            $additionalProducts = Product::where('brand', $this->brand)
+                ->where('id', '!=', $this->id)
+                ->whereNotIn('id', $recommended->pluck('id'))
+                ->limit($limit - $recommended->count())
+                ->get();
+
+            $recommended = $recommended->merge($additionalProducts);
+        }
+
+        return $recommended;
+    }
+
+    public static function getSuggestionsByName(string $query): Collection
+    {
+        return Product::where('name', 'like', $query.'%')->distinct()->pluck('name');
+    }
+
+    public static function search(string $query): Builder
+    {
+        return Product::where('name', 'like', '%'.$query.'%')
+            ->orWhere('brand', 'like', '%'.$query.'%');
+    }
+
+    public static function filter(array $filters): Builder
+    {
+        $query = Product::query();
+        $filterMethods = self::getFilterMethods();
+
+        foreach ($filters as $key => $value) {
+            if (isset($filterMethods[$key])) {
+                $filterMethods[$key]($query, $value);
+            }
+        }
+
+        return $query;
+    }
+
+    private static function getFilterMethods(): array
+    {
+        return [
+            'category_ids' => function (Builder $query, array $categoryIds) {
+                $query->whereIn('category_id', (array) $categoryIds);
+            },
+            'ratings' => function (Builder $query, array $ratings) {
+                $ratings = implode(',', $ratings);
+                $query->whereRaw('FLOOR(sum_ratings / quantity_reviews) IN ('.$ratings.')');
+            },
+            'price_ranges' => function (Builder $query, array $priceRanges) {
+                $query->where(function ($query) use ($priceRanges) {
+                    foreach ($priceRanges as $priceRange) {
+                        [$min, $max] = explode('-', $priceRange);
+                        $query->orWhereBetween('price', [(int) $min, (int) $max]);
+                    }
+                });
+            },
+            'stock_quantities' => function (Builder $query, array $stockQuantities) {
+                $query->where(function ($query) use ($stockQuantities) {
+                    if (in_array('in_stock', $stockQuantities)) {
+                        $query->orWhere('stock_quantity', '>=', 1);
+                    }
+                    if (in_array('out_of_stock', $stockQuantities)) {
+                        $query->orWhere('stock_quantity', '=', 0);
+                    }
+                });
+            },
+        ];
+    }
+
+    public static function validate(Request $request): void
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'price' => 'required|numeric|gt:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg',
+            'description' => 'required|string|min:20|max:255',
+            'brand' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'stock_quantity' => 'required|numeric|gte:0',
+        ]);
     }
 }

@@ -27,5 +27,5 @@ return [
     'cancel_button' => 'Cancel',
     'delete_success' => 'User deleted successfully',
     'update_success' => 'User updated successfully',
-    
+
 ];

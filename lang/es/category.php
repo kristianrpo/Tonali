@@ -8,6 +8,7 @@ return [
     'edit_category' => 'Editar Categoría',
     'create_category' => 'Crear Categoría',
     'delete_category' => 'Eliminar Categoría',
+    'detail_category' => 'Detalle de Categoría',
     'send' => 'Enviar',
     'edit' => 'Editar',
     'name' => 'Nombre',

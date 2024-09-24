@@ -49,9 +49,9 @@ class ColorimetryController extends Controller
 
     public function edit(int $id): View
     {
-        
+
         $colorimetry = Colorimetry::findOrFail($id);
-        
+
         $selectedNeeds = json_decode($colorimetry->getSpecificNeeds(), true);
 
         $viewData = [];

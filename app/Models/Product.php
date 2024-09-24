@@ -51,6 +51,16 @@ class Product extends Model
     {
         $this->attributes['name'] = $name;
     }
+    
+    public function getImage(): string
+    {
+        return $this->attributes['image'];
+    }
+
+    public function setImage(string $image): void
+    {
+        $this->attributes['image'] = $image;
+    }
 
     public function getPrice(): int
     {
@@ -60,16 +70,6 @@ class Product extends Model
     public function setPrice(int $price): void
     {
         $this->attributes['price'] = $price;
-    }
-
-    public function getImage(): string
-    {
-        return $this->attributes['image'];
-    }
-
-    public function setImage(string $image): void
-    {
-        $this->attributes['image'] = $image;
     }
 
     public function getDescription(): string
@@ -301,27 +301,27 @@ class Product extends Model
     private static function getFilterMethods(): array
     {
         return [
-            'category_id' => function (Builder $query, $categoryId) {
-                $query->whereIn('category_id', (array) $categoryId);
+            'category_id' => function (Builder $query, array $categoryIds) {
+                $query->whereIn('category_id', (array) $categoryIds);
             },
-            'rating' => function (Builder $query, $ratings) {
+            'rating' => function (Builder $query, array $ratings) {
                 $ratings = implode(',', $ratings);
                 $query->whereRaw('FLOOR(sum_ratings / quantity_reviews) IN ('.$ratings.')');
             },
-            'price_range' => function (Builder $query, array $priceRange) {
-                $query->where(function ($query) use ($priceRange) {
-                    foreach ($priceRange as $range) {
-                        [$min, $max] = explode('-', $range);
+            'price_range' => function (Builder $query, array $priceRanges) {
+                $query->where(function ($query) use ($priceRanges) {
+                    foreach ($priceRanges as $priceRange) {
+                        [$min, $max] = explode('-', $priceRange);
                         $query->orWhereBetween('price', [(int) $min, (int) $max]);
                     }
                 });
             },
-            'stock_quantity' => function (Builder $query, array $stockQuantity) {
-                $query->where(function ($query) use ($stockQuantity) {
-                    if (in_array('in_stock', $stockQuantity)) {
+            'stock_quantity' => function (Builder $query, array $stockQuantities) {
+                $query->where(function ($query) use ($stockQuantities) {
+                    if (in_array('in_stock', $stockQuantities)) {
                         $query->orWhere('stock_quantity', '>=', 1);
                     }
-                    if (in_array('out_of_stock', $stockQuantity)) {
+                    if (in_array('out_of_stock', $stockQuantities)) {
                         $query->orWhere('stock_quantity', '=', 0);
                     }
                 });

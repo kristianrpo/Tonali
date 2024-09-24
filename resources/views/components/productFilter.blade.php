@@ -73,7 +73,7 @@
                             <input
                                 type="checkbox"
                                 id="category_{{ $category->getId() }}"
-                                name="category_id[]"
+                                name="category_ids[]"
                                 value="{{ $category->getId() }}"
                                 class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                             />
@@ -112,7 +112,7 @@
                             <input
                                 type="checkbox"
                                 id="rating_{{ $rating }}"
-                                name="rating[]"
+                                name="ratings[]"
                                 value="{{ $rating }}"
                                 class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                             />
@@ -165,7 +165,7 @@
                         <input
                             type="checkbox"
                             id="price_low"
-                            name="price_range[]"
+                            name="price_ranges[]"
                             value="{{ $priceRanges["min"] }}-{{ $priceRanges["first_tercile"] }}"
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
@@ -179,7 +179,7 @@
                         <input
                             type="checkbox"
                             id="price_mid"
-                            name="price_range[]"
+                            name="price_ranges[]"
                             value="{{ $priceRanges["first_tercile"] }}-{{ $priceRanges["second_tercile"] }}"
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
@@ -193,7 +193,7 @@
                         <input
                             type="checkbox"
                             id="price_high"
-                            name="price_range[]"
+                            name="price_ranges[]"
                             value="{{ $priceRanges["second_tercile"] }}-{{ $priceRanges["max"] }}"
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
@@ -233,7 +233,7 @@
                         <input
                             type="checkbox"
                             id="stock_quantity_in_stock"
-                            name="stock_quantity[]"
+                            name="stock_quantities[]"
                             value="in_stock"
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />
@@ -245,7 +245,7 @@
                         <input
                             type="checkbox"
                             id="stock_quantity_out_of_stock"
-                            name="stock_quantity[]"
+                            name="stock_quantities[]"
                             value="out_of_stock"
                             class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
                         />

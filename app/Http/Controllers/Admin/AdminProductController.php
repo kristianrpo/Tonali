@@ -18,7 +18,7 @@ class AdminProductController extends Controller
     {
         $viewData = [];
         $query = $request->input('query');
-        $filters = $request->only(['category_id', 'rating', 'price_range', 'stock_quantity']);
+        $filters = $request->only(['category_ids', 'ratings', 'price_ranges', 'stock_quantities']);
         $productsQuery = Product::query();
         if (! empty($query)) {
             $productsQuery = Product::search($query);

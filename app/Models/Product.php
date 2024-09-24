@@ -301,14 +301,14 @@ class Product extends Model
     private static function getFilterMethods(): array
     {
         return [
-            'category_id' => function (Builder $query, array $categoryIds) {
+            'category_ids' => function (Builder $query, array $categoryIds) {
                 $query->whereIn('category_id', (array) $categoryIds);
             },
-            'rating' => function (Builder $query, array $ratings) {
+            'ratings' => function (Builder $query, array $ratings) {
                 $ratings = implode(',', $ratings);
                 $query->whereRaw('FLOOR(sum_ratings / quantity_reviews) IN ('.$ratings.')');
             },
-            'price_range' => function (Builder $query, array $priceRanges) {
+            'price_ranges' => function (Builder $query, array $priceRanges) {
                 $query->where(function ($query) use ($priceRanges) {
                     foreach ($priceRanges as $priceRange) {
                         [$min, $max] = explode('-', $priceRange);
@@ -316,7 +316,7 @@ class Product extends Model
                     }
                 });
             },
-            'stock_quantity' => function (Builder $query, array $stockQuantities) {
+            'stock_quantities' => function (Builder $query, array $stockQuantities) {
                 $query->where(function ($query) use ($stockQuantities) {
                     if (in_array('in_stock', $stockQuantities)) {
                         $query->orWhere('stock_quantity', '>=', 1);

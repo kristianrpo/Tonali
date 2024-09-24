@@ -1,11 +1,11 @@
 @extends("layouts.app")
 @section("content")
-    <div class="max-w-screen-lg mx-auto my-12">
-        <h1 class="text-4xl font-bold text-center text-gray-800 mb-6">
+    <div class="container mx-auto w-4/5">
+        <h1 class="text-center mb-4 text-3xl font-bold text-gray-800">
             {{ __("user.profile") }}
         </h1>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-            <div class="bg-white border-2 md:grid-cols-2 rounded-lg px-6 py-8">
+            <div class="bg-white border-2 md:grid-cols-2 rounded-lg px-6 py-4">
                 <div class="grid grid-cols-1 gap-6 items-start">
                     <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">
                         {{ __("user.personal_information") }}

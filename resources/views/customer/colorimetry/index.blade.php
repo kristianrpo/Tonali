@@ -1,35 +1,8 @@
 @extends("layouts.app")
 @section("content")
-@if (session("success"))
-    <div class="mb-10 flex justify-center">
-        <div
-            class="w-3/4 rounded-b bg-palePink px-4 py-3 text-offWhite shadow-md"
-            role="alert"
-        >
-            <div class="flex">
-                <div class="mx-5 py-1">
-                    <svg
-                        class="mr-4 h-6 w-6 fill-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
-                        />
-                    </svg>
-                </div>
-                <div>
-                    <p class="font-bold">
-                        {{ __("product.notification") }}
-                    </p>
-                    <p class="text-sm">
-                        {{ session("success") }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
+    @if (session("success"))
+        <x-alert :message="session('success')" />
+    @endif
 <div class="container mx-auto py-8">
 
     
@@ -66,13 +39,26 @@
                                 </a>
                             </div>
                             <div class="flex justify-center items-start mt-4">
-                                <form method="POST" action="{{ route('colorimetry.delete', ['id' => $viewData['colorimetry']->getId()])}}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300" onclick="return confirm('{{ __('colorimetry.delete') }}');">{{ __("user.delete_colorimetry") }}</button>
-                                </form>
+                                <button onclick="openDeleteModal()" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300">
+                                    {{ __('user.delete_colorimetry') }}
+                                </button>
                             </div>
-                            
+                            <div id="deleteModal" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 hidden">
+                                <div class="bg-white rounded-lg p-6 w-1/3">
+                                    <h2 class="text-lg font-semibold mb-4">{{ __('user.confirm_delete_colorimetry_title') }}</h2>
+                                    <p class="mb-4">{{ __('user.delete_colorimetry_description') }}</p>
+                                    <div class="flex justify-end">
+                                        <button onclick="closeDeleteModal()" class="text-center bg-gray-300 py-2 px-4 rounded-full hover:bg-black hover:text-white transition duration-300">
+                                            {{ __('user.cancel_button') }}
+                                        </button>
+                                        <form method="POST" action="{{ route('colorimetry.delete', ['id' => $viewData['colorimetry']->getId()])}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-center bg-brightPink text-white py-2 px-4 rounded-full hover:bg-black transition duration-300 ml-4">{{ __("user.delete_colorimetry") }}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     @endif
                 </div>

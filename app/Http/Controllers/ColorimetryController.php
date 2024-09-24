@@ -23,10 +23,7 @@ class ColorimetryController extends Controller
 
     public function create(): View
     {
-        $viewData = [];
-        $viewData['title'] = 'Create colorimetry';
-
-        return view('customer.colorimetry.create')->with('viewData', $viewData);
+        return view('customer.colorimetry.create');
     }
 
     public function save(Request $request): RedirectResponse
@@ -52,9 +49,12 @@ class ColorimetryController extends Controller
 
     public function edit(int $id): View
     {
-        $viewData = [];
+        
         $colorimetry = Colorimetry::findOrFail($id);
+        
         $selectedNeeds = json_decode($colorimetry->getSpecificNeeds(), true);
+
+        $viewData = [];
         $viewData['colorimetry'] = $colorimetry;
         $viewData['selectedNeeds'] = $selectedNeeds;
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -19,11 +20,14 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    protected function authenticated(Request $request, $user): RedirectResponse
+    protected function authenticated(Request $request, User $user): RedirectResponse
     {
-        if ($user->getRole() === 'admin') {
+        if ($user->getRole() === 'admin')
+        {
             return redirect()->route('admin.product.index');
-        } elseif ($user->getRole() === 'customer') {
+        } 
+        elseif ($user->getRole() === 'customer') 
+        {
             return redirect()->route('home.index');
         }
     }

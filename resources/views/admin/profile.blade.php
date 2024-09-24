@@ -1,5 +1,8 @@
 @extends("layouts.admin")
 @section("content")
+@if (session("success"))
+        <x-alert :message="session('success')" />
+@endif
     <div class="max-w-screen-lg mx-auto my-12">
         <h1 class="text-4xl font-bold text-center text-gray-800 mb-6">
             {{ __("user.admin_profile") }}

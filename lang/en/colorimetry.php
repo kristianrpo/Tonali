@@ -45,6 +45,6 @@ return [
 
     'create_success' => 'Colorimetry created successfully',
     'edit_success' => 'Colorimetry edited successfully',
-    'delete_succes' => 'COlorimetry deleted succesfully',
+    'delete_success' => 'Colorimetry deleted succesfully',
 
 ];

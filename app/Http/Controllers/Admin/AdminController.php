@@ -20,7 +20,6 @@ class AdminController extends Controller
     {
         $userId = Auth::user()->getId();
         User::destroy($userId);
-
         Session::flash('success', __('user.delete_success'));
 
         return redirect()->route('home.index');

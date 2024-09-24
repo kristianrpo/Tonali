@@ -17,27 +17,32 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
 
         $viewData = [];
-        $viewData['title'] = __('controller.titles.profile');
-        $viewData['subtitle'] = __('controller.profile_information');
         $viewData['user'] = $user;
 
-        if ($user->getRole() === 'admin') {
+        if ($user->getRole() === 'admin')
+        {
             return view('admin.profile')->with('viewData', $viewData);
-        } elseif ($user->getRole() === 'customer') {
+        } 
+        elseif ($user->getRole() === 'customer') 
+        {
             return view('customer.profile')->with('viewData', $viewData);
         }
     }
 
     public function edit(): View
     {
-        $viewData = [];
         $userId = Auth::user()->getId();
         $user = User::findOrFail($userId);
+
+        $viewData = [];
         $viewData['user'] = $user;
 
-        if ($user->getRole() === 'admin') {
+        if ($user->getRole() === 'admin') 
+        {
             return view('admin.edit')->with('viewData', $viewData);
-        } elseif ($user->getRole() === 'customer') {
+        } 
+        elseif ($user->getRole() === 'customer') 
+        {
             return view('customer.edit')->with('viewData', $viewData);
         }
     }
@@ -53,6 +58,8 @@ class UserController extends Controller
         $user->setCellphone($request->input('cellphone'));
         $user->setAddress($request->input('address'));
         $user->save();
+
+        Session::flash('success', __('user.update_success'));
 
         return redirect()->route('profile.index');
     }

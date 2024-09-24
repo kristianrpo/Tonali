@@ -22,7 +22,8 @@ return [
     'delete_colorimetry' => 'Eliminar Colorimetría',
     'delete' => '¿Estás seguro de que quieres eliminar esta cuenta?',
     'confirm_delete_title' => 'Tu cuenta será eliminada!',
+    'confirm_delete_colorimetry_title' => 'Tu colorimetría será eliminada!',
     'cancel_button' => 'Cancelar',
     'delete_success' => 'Usuario eliminado éxitosamente',
-
+    'update_success' => 'Usuario actualizado éxitosamente',
 ];

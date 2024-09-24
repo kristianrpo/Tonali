@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Interfaces\LanguageModel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
@@ -12,7 +11,6 @@ class Colorimetry extends Model
     /**
      * COLORIMETRY ATTRIBUTES
      * $this->attributes['id'] - int - contains the product primary key (id)
-     * $this->attributes['customerName'] - string - contains the customer name
      * $this->attributes['skinTone'] - string - contains the customer skin tone
      * $this->attributes['skinUndertone'] - string - contains the customer skin undertone
      * $this->attributes['hairColor'] - string - contains the customer hair color
@@ -132,29 +130,5 @@ class Colorimetry extends Model
             'specificNeeds' => 'required|array',
             'specificNeeds.*' => 'string',
         ]);
-    }
-
-    public function recommendation($products): string
-    {
-        $languageModelInterface = app(LanguageModel::class);
-        $specificNeedsText = implode(', ', json_decode($this->attributes['specificNeeds']));
-
-        $productList = json_encode($products->map(function ($product) {
-            return [
-                'id' => $product->getId(),
-                'description' => $product->getDescription(),
-            ];
-        })->toArray());
-
-        $prompt = __('prompt.context_recommendation_products');
-        $prompt .= __('prompt.colorimetry_skinTone_label').$this->attributes['skinTone']."\n";
-        $prompt .= __('prompt.colorimetry_skinUndertone_label').$this->attributes['skinUndertone']."\n";
-        $prompt .= __('prompt.colorimetry_hairColor_label').$this->attributes['hairColor']."\n";
-        $prompt .= __('prompt.colorimetry_eyeColor_label').$this->attributes['eyeColor']."\n";
-        $prompt .= __('prompt.colorimetry_specificNeeds_label').$specificNeedsText."\n";
-        $prompt .= __('prompt.products_label').$productList."\n";
-        $response = $languageModelInterface->generateText($prompt);
-
-        return $response;
     }
 }

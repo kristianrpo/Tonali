@@ -20,8 +20,12 @@ return [
     'edit_colorimetry' => 'Edit Colorimetry',
     'create_colorimetry' => 'Create Colorimetry',
     'delete_colorimetry' => 'Delete Colorimetry',
+    'delete_colorimetry_description' => 'Are you sure you want to delete your colorimetry?',
     'delete' => 'Are you sure you want to delete this account?',
     'confirm_delete_title' => 'Your account will be deleted!',
+    'confirm_delete_colorimetry_title' => 'Your colorimetry will be deleted!',
     'cancel_button' => 'Cancel',
     'delete_success' => 'User deleted successfully',
+    'update_success' => 'User updated successfully',
+    
 ];

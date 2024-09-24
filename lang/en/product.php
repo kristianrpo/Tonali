@@ -42,4 +42,5 @@ return [
     'delete_confirmation' => 'Are you sure you want to delete this product?',
     'notification' => 'Notification',
     'recommended' => 'Recommended Products For You',
+    'error_recommended' => 'There was an error in the product recommendation, try again later.',
 ];

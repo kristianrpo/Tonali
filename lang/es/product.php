@@ -41,5 +41,6 @@ return [
     'delete_confirmation' => '¿Estás seguro de que quieres eliminar este producto?',
     'notification' => 'Notificación',
     'recommended' => 'Productos Recomendados Para Ti',
+    'error_recommended' => 'Hubo un error en la recomendación de productos, inténtalo más tarde',
 
 ];

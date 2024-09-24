@@ -3,14 +3,10 @@
     <div class="flex justify-center">
         <div class="relative max-h-full w-full max-w-2xl p-4">
             <div class="relative rounded-lg bg-white shadow">
-                <div
-                    class="flex items-center justify-between rounded-t border-b border-gray-200 p-4 md:p-5 bg-brightPink"
-                >
-                    <div>
-                        <h1 class="mb-1 text-lg font-semibold text-gray-900 text-offWhite">
-                            {{ __("user.edit_colorimetry") }}
-                        </h1>
-                    </div>
+                <div class="flex items-center justify-center rounded-t border-b border-gray-200 p-4 md:p-5 bg-brightPink">
+                    <h1 class="text-3xl font-bold text-white text-center">
+                        {{ __("user.edit_colorimetry") }}
+                    </h1>
                 </div>
                 <form
                     class="p-4 md:p-5"
@@ -88,25 +84,37 @@
                     </div>
 
                     <div class="col-span-2 mb-4 mt-4">
-                        <label class="mb-2 block text-sm font-medium text-gray-900">
-                            {{ __("colorimetry.specificNeeds") }}
-                        </label>
-                        <select 
-                            name="specificNeeds[]" 
-                            id="specificNeeds" 
-                            multiple 
-                            class="focus:border-primary-600 focus:ring-primary-600 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900">
-                            
-                            <option value="{{ __("colorimetry.sensitive_skin") }}" 
-                                {{ in_array("Sensitive Skin", $viewData['selectedNeeds']) ? 'selected' : '' }}>{{ __("colorimetry.sensitive_skin") }}</option>
-                            <option value="{{ __("colorimetry.acne") }}" 
-                                {{ in_array("Acne-Prone", $viewData['selectedNeeds']) ? 'selected' : '' }}>{{ __("colorimetry.acne") }}</option>
-                            <option value="{{ __("colorimetry.dry") }}" 
-                                {{ in_array("Dry Skin", $viewData['selectedNeeds']) ? 'selected' : '' }}>{{ __("colorimetry.dry") }}</option>
-                            <option value="{{ __("colorimetry.oil") }}" 
-                                {{ in_array("Oily Skin", $viewData['selectedNeeds']) ? 'selected' : '' }}>{{ __("colorimetry.oil") }}</option>
-                        </select>
-                    </div>
+    <label class="mb-2 block text-sm font-medium text-gray-900">
+        {{ __("colorimetry.specificNeeds") }}
+    </label>
+    <div class="space-y-2 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900">
+        <label class="block">
+            <input type="checkbox" name="specificNeeds[]" value="{{ __("colorimetry.sensitive_skin") }}" 
+                   {{ in_array("Sensitive Skin", $viewData['selectedNeeds']) ? 'checked' : '' }}
+                   class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink">
+            {{ __("colorimetry.sensitive_skin") }}
+        </label>
+        <label class="block">
+            <input type="checkbox" name="specificNeeds[]" value="{{ __("colorimetry.acne") }}" 
+                   {{ in_array("Acne-Prone", $viewData['selectedNeeds']) ? 'checked' : '' }}
+                   class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink">
+            {{ __("colorimetry.acne") }}
+        </label>
+        <label class="block">
+            <input type="checkbox" name="specificNeeds[]" value="{{ __("colorimetry.dry") }}" 
+                   {{ in_array("Dry Skin", $viewData['selectedNeeds']) ? 'checked' : '' }}
+                   class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink">
+            {{ __("colorimetry.dry") }}
+        </label>
+        <label class="block">
+            <input type="checkbox" name="specificNeeds[]" value="{{ __("colorimetry.oil") }}" 
+                   {{ in_array("Oily Skin", $viewData['selectedNeeds']) ? 'checked' : '' }}
+                   class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink">
+            {{ __("colorimetry.oil") }}
+        </label>
+    </div>
+</div>
+
 
                     <div
                         class="flex justify-center border-t border-gray-200 pt-4 md:pt-5"

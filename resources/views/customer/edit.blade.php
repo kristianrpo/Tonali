@@ -3,14 +3,10 @@
     <div class="flex justify-center">
         <div class="relative max-h-full w-full max-w-2xl p-4">
             <div class="relative rounded-lg bg-white shadow">
-                <div
-                    class="flex items-center justify-between rounded-t border-b border-gray-200 p-4 md:p-5"
-                >
-                    <div>
-                        <h1 class="mb-1 text-lg font-semibold text-gray-900">
-                            {{ __("user.edit_user") }}
-                        </h1>
-                    </div>
+                <div class="flex items-center justify-center rounded-t border-b border-gray-200 p-4 md:p-5 bg-brightPink">
+                    <h1 class="text-3xl font-bold text-white text-center">
+                        {{ __("user.edit_user") }}
+                    </h1>
                 </div>
                 <form
                     class="p-4 md:p-5"

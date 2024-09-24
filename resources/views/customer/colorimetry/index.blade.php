@@ -1,14 +1,12 @@
 @extends("layouts.app")
 @section("content")
-<div class="container mx-auto py-8">
-
-    
+<div class="container mx-auto w-4/5">
     <div class="grid grid-cols-1 gap-6 items-start">
         <div class="bg-white border-2 md:grid-cols-2 rounded-lg px-6 py-8">
             <div class="grid grid-cols-1 gap-6 items-start">
-                <h2 class="text-2xl font-semibold text-center text-gray-800 mb-4">
+                <h1 class="text-center mb-4 text-3xl font-bold text-gray-800">
                     {{ __("colorimetry.colorimetry") }}
-                </h2>
+                </h1>
                 <div class="overflow-hidden rounded-lg bg-gray-50 shadow p-6">
                     @if(!$viewData['colorimetry'])
                         <div class="text-center">

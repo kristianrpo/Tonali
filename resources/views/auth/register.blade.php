@@ -84,6 +84,18 @@
             />
           </div>
 
+                    <input id="role" type="hidden" name="role" value="customer">
+
+                    <div class="mb-4">
+                        <button
+                            type="submit"
+                            class="w-full rounded-full bg-brightPink px-4 py-2 text-white hover:bg-black"
+                        >
+                            {{ __("auth.register") }}
+                        </button>
+                    </div>
+                </form>
+            </div>
           <div class="mb-4">
             <button
               type="submit"

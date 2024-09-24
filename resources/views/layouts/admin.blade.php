@@ -18,82 +18,121 @@
     @vite("resources/css/app.css")
   </head>
 
-  <body class="flex min-h-screen flex-col">
-    <nav
-      class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white px-10 py-2.5 shadow-md"
-    >
-      <div class="flex flex-wrap items-center justify-between">
-        <div class="flex items-center justify-start">
-          <button
-            data-drawer-target="drawer-navigation"
-            data-drawer-toggle="drawer-navigation"
-            aria-controls="drawer-navigation"
-            class="mr-2 cursor-pointer rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 md:hidden"
-          >
-            <svg
-              aria-hidden="true"
-              class="h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="hidden h-6 w-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-            <span class="sr-only">
-              {{ __("layoutApp.toggle_sidebar") }}
-            </span>
-          </button>
-          <div class="mx-6 flex items-center space-x-3 rtl:space-x-reverse">
-            <img
-              src="{{ asset("img/logos/dark/icon.png") }}"
-              class="h-12"
-              alt="{{ __("layoutApp.icon_alt") }}"
-            />
-            <span class="self-center whitespace-nowrap text-2xl font-semibold">
-              {{ __("layoutApp.navbar_title") }}
-            </span>
-          </div>
-        </div>
-        <div class="flex items-center lg:order-2">
-          <div class="group relative">
-            <label for="dropdown-toggle" class="cursor-pointer text-white">
-              <div
-                class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
-                data-dropdown-toggle="dropdown-profile"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-6 w-6"
-                  viewBox="0 0 512 512"
-                  id="profile"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z"
-                  />
-                </svg>
-              </div>
-            </label>
-
+    <body class="flex min-h-screen flex-col">
+        <nav
+            class="fixed left-0 right-0 top-0 z-50 border-b border-gray-200 bg-white px-10 py-2.5 shadow-md"
+        >
+            <div class="flex flex-wrap items-center justify-between">
+                <div class="flex items-center justify-start">
+                    <button
+                        data-drawer-target="drawer-navigation"
+                        data-drawer-toggle="drawer-navigation"
+                        aria-controls="drawer-navigation"
+                        class="mr-2 cursor-pointer rounded-lg p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:ring-2 focus:ring-gray-100 md:hidden"
+                    >
+                        <svg
+                            aria-hidden="true"
+                            class="h-6 w-6"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                        <svg
+                            aria-hidden="true"
+                            class="hidden h-6 w-6"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                        <span class="sr-only">
+                            {{ __("layoutApp.toggle_sidebar") }}
+                        </span>
+                    </button>
+                    <div
+                        class="mx-6 flex items-center space-x-3 rtl:space-x-reverse"
+                    >
+                        <img
+                            src="{{ asset("img/logos/dark/icon.png") }}"
+                            class="h-12"
+                            alt="{{ __("layoutApp.icon_alt") }}"
+                        />
+                        <span
+                            class="self-center whitespace-nowrap text-2xl font-semibold"
+                        >
+                            {{ __("layoutApp.navbar_title") }}
+                        </span>
+                    </div>
+                </div>
+                <div class="mx-10 my-2 flex justify-center">
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <input
+                                type="checkbox"
+                                id="dropdown-toggle"
+                                class="hidden"
+                            />
+                            <label
+                                for="dropdown-toggle"
+                                class="cursor-pointer text-white"
+                            >
+                                <div
+                                    class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        viewBox="0 0 512 512"
+                                        id="profile"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M256 250.8a73.34 73.34 0 1 1 73.33-73.34A73.41 73.41 0 0 1 256 250.8zm0-125.53a52.2 52.2 0 1 0 52.19 52.19A52.25 52.25 0 0 0 256 125.27zm117.07 282.6H138.93l-10.57-10.57a127.64 127.64 0 1 1 255.28 0zM150 386.73h212a106.51 106.51 0 0 0-212 0z"
+                                        />
+                                    </svg>
+                                </div>
+                            </label>
+                            <div
+                                class="absolute right-0 z-20 mt-2 hidden w-48 rounded-md bg-white shadow-lg group-hover:block"
+                            >
+                                <a
+                                    href="{{ route('profile.index') }}"
+                                    class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
+                                >
+                                    {{ __("auth.profile") }}
+                                </a>
+                                <form
+                                    action="{{ route("logout") }}"
+                                    method="POST"
+                                    class="block"
+                                >
+                                    @csrf
+                                    <button
+                                        type="submit"
+                                        class="w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200"
+                                    >
+                                        {{ __("auth.logout") }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
             <div
               id="dropdown-profile"
               class="absolute right-0 z-20 mt-2 hidden w-48 rounded-md bg-white shadow-lg"
@@ -149,7 +188,6 @@
                   d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"
                 />
               </svg>
-
               <span class="ml-3">
                 {{ __("product.buyer") }}
               </span>

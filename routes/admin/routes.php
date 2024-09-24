@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('admin')->group(function () {
-    Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.index');
+    Route::get('/admin', 'App\Http\Controllers\Admin\AdminController@index')->name('admin.index');
+    Route::delete('/admin/delete', 'App\Http\Controllers\Admin\AdminController@delete')->name('admin.delete');
     Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
     Route::get('/admin/products/suggest', 'App\Http\Controllers\Admin\AdminProductController@suggest')->name('admin.product.suggest');
     Route::get('/admin/products/create', 'App\Http\Controllers\Admin\AdminProductController@create')->name('admin.product.create');

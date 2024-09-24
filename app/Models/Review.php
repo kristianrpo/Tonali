@@ -15,11 +15,11 @@ class Review extends Model
      * $this->attributes['rating'] - int - contains the review rating
      * $this->attributes['title'] - string - contains the review title
      * $this->attributes['description'] - string - contains the review description
-     * $this->attributes['created_at'] - string - contains the review creation date
-     * $this->attributes['updated_at'] - string - contains the review update date
-     * $this->attributes['user_id'] - int - contains the referenced user id
      * $this->attributes['product_id'] - int - contains the referenced product id
-     * $$this->product - Product - contains of the associated product
+     * $this->attributes['user_id'] - int - contains the referenced user id
+     * $this->attributes['created_at'] - timestamp - contains the review creation date
+     * $this->attributes['updated_at'] - timestamp - contains the review update date
+     * $this->product - Product - contains the associated product
      * $this->user - User - contains the user who made the review
      */
     protected $fillable = ['rating', 'title', 'description', 'product_id', 'user_id'];
@@ -89,6 +89,11 @@ class Review extends Model
         $this->attributes['user_id'] = $user_id;
     }
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getUser(): User
     {
         return $this->user;
@@ -99,6 +104,11 @@ class Review extends Model
         $this->user = $user;
     }
 
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
     public function getProduct(): Product
     {
         return $this->product;
@@ -107,16 +117,6 @@ class Review extends Model
     public function setProduct(Product $product): void
     {
         $this->product = $product;
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
     }
 
     public static function validate(Request $request): void

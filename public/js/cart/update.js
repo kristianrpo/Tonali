@@ -13,7 +13,7 @@ $(document).ready(function () {
             }
         }
         $.ajax({
-            type: "POST",
+            type: "PUT",
             url: cartUpdateUrl,
             data: {
                 _token: csrfToken,

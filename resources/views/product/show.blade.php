@@ -238,8 +238,8 @@
                   </a>
                 @else
                   <a
-                    href="{{ route("review.report", ["id" => $review->getId()]) }}"
-                    class="wf mb-2 mt-4 inline-flex max-w-xs items-center rounded px-4 py-2 font-bold text-white lg:mx-0"
+                    href="{{ route("review.report", ["id" => $review->getId()]) }}" 
+                    class="wf mb-2 mt-4 inline-flex max-w-xs items-center rounded px-4 py-2 font-bold text-white lg:mx-0 bg-darkGray"
                   >
                     <svg
                       width="24"

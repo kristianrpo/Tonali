@@ -68,9 +68,6 @@ class OrderController extends Controller
         $request->session()->forget('products');
         Session::flash('success', __('order.place_success'));
 
-        $viewData = [];
-        $viewData['order'] = $order;
-
         return redirect()->route('order.index');
     }
 }

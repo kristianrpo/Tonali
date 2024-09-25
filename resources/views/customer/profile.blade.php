@@ -1,9 +1,8 @@
 @extends("layouts.app")
 @section("content")
-  @if (session("success"))
+@if (session("success"))
     <x-alert :message="session('success')" />
-  @endif
-
+@endif
   <div class="mx-auto my-12 max-w-screen-lg">
     <h1
       class="mb-6 flex items-center justify-center text-4xl font-bold text-gray-800"

@@ -93,6 +93,18 @@
               </a>
             </div>
           @else
+            <ul
+              class="ml-4 mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse"
+            >
+              <li>
+                <a
+                  href="{{ route("product.recommended") }}"
+                  class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
+                >
+                  {{ __("layoutApp.recommended") }}
+                </a>
+              </li>
+            </ul>
             <div class="mx-10 my-2 flex justify-center">
               <div class="flex items-center space-x-4">
                 <div class="relative">
@@ -132,7 +144,7 @@
                     @endif
 
                     <a
-                      href="#"
+                      href="{{ route("profile.index") }}"
                       class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
                     >
                       {{ __("auth.profile") }}
@@ -231,5 +243,6 @@
         </span>
       </div>
     </footer>
+    @vite("resources/js/app.js")
   </body>
 </html>

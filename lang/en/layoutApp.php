@@ -14,4 +14,5 @@ return [
     'admin_title' => 'Admin Dashboard',
     'navbar_admin_title' => 'Tonalí Admin',
     'toggle_sidebar' => 'Toggle sidebar',
+    'recommended' => 'Recommended for You',
 ];

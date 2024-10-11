@@ -48,4 +48,6 @@ return [
     'no_products' => 'No products found',
     'buyer' => 'Buyer',
     'detail_product' => 'Detail product',
+    'recommended' => 'Recommended Products For You',
+    'error_recommended' => 'There was an error in the product recommendation, try again later.',
 ];

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class ColorimetryController extends Controller
-{   
+{
     public function index(): View
     {
         $viewData = [];
@@ -18,7 +18,7 @@ class ColorimetryController extends Controller
 
         return view('colorimetry.index')->with('viewData', $viewData);
     }
-    
+
     public function create(): View
     {
         return view('colorimetry.create');

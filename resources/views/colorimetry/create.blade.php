@@ -127,40 +127,66 @@
             </select>
           </div>
 
-                    <div class="mb-4">
-                        <label class="mb-2 block text-sm font-medium text-gray-900">
-                            {{ __("colorimetry.specific_needs_optional") }}
-                        </label>
-                        <div class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900">
-                            <div class="space-y-2">
-                                <label class="block">
-                                    <input type="checkbox" name="specific_needs[]" value="{{ __("colorimetry.sensitive_skin") }}" class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"">
-                                    {{ __("colorimetry.sensitive_skin") }}
-                                </label>
-                                <label class="block">
-                                    <input type="checkbox" name="specific_needs[]" value="{{ __("colorimetry.acne") }}" class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink">
-                                    {{ __("colorimetry.acne") }}
-                                </label>
-                                <label class="block">
-                                    <input type="checkbox" name="specific_needs[]" value="{{ __("colorimetry.dry") }}" class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink">
-                                    {{ __("colorimetry.dry") }}
-                                </label>
-                                <label class="block">
-                                    <input type="checkbox" name="specific_needs[]" value="{{ __("colorimetry.oil") }}" class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink">
-                                    {{ __("colorimetry.oil") }}
-                                </label>
-                            </div>    
-                        </div>
-                    </div>
-
-                    <div class="flex justify-center border-t border-gray-200 pt-4 md:pt-5">
-                        <button type="submit"
-                                class="bg-primary-700 focus:ring-primary-300 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite focus:outline-none focus:ring-4">
-                                {{ __("colorimetry.send_button") }}
-                        </button>
-                    </div>
-                </form>
+          <div class="mb-4">
+            <label class="mb-2 block text-sm font-medium text-gray-900">
+              {{ __("colorimetry.specific_needs_optional") }}
+            </label>
+            <div
+              class="rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+            >
+              <div class="space-y-2">
+                <label class="block">
+                  <input
+                    type="checkbox"
+                    name="specific_needs[]"
+                    value="{{ __("colorimetry.sensitive_skin") }}"
+                    class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
+                  />
+                  {{ __("colorimetry.sensitive_skin") }}
+                </label>
+                <label class="block">
+                  <input
+                    type="checkbox"
+                    name="specific_needs[]"
+                    value="{{ __("colorimetry.acne") }}"
+                    class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
+                  />
+                  {{ __("colorimetry.acne") }}
+                </label>
+                <label class="block">
+                  <input
+                    type="checkbox"
+                    name="specific_needs[]"
+                    value="{{ __("colorimetry.dry") }}"
+                    class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
+                  />
+                  {{ __("colorimetry.dry") }}
+                </label>
+                <label class="block">
+                  <input
+                    type="checkbox"
+                    name="specific_needs[]"
+                    value="{{ __("colorimetry.oil") }}"
+                    class="mr-2 rounded checked:bg-brightPink focus:ring-brightPink"
+                  />
+                  {{ __("colorimetry.oil") }}
+                </label>
+              </div>
             </div>
-        </div>
+          </div>
+
+          <div
+            class="flex justify-center border-t border-gray-200 pt-4 md:pt-5"
+          >
+            <button
+              type="submit"
+              class="bg-primary-700 focus:ring-primary-300 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite focus:outline-none focus:ring-4"
+            >
+              {{ __("colorimetry.send_button") }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 @endsection

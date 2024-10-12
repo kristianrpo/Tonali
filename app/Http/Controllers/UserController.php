@@ -17,6 +17,7 @@ class UserController extends Controller
         $userData = [];
         $userData['user'] = $user;
         $userData['view'] = $user->getRole() === 'admin' ? 'admin.' : 'customer.';
+
         return $userData;
     }
 
@@ -25,7 +26,8 @@ class UserController extends Controller
         $userData = $this->getUserAndViewData();
         $viewData = [];
         $viewData['user'] = $userData['user'];
-        return view($userData['view'] . 'profile')->with('viewData', $viewData);
+
+        return view($userData['view'].'profile')->with('viewData', $viewData);
     }
 
     public function edit(): View
@@ -33,7 +35,8 @@ class UserController extends Controller
         $userData = $this->getUserAndViewData();
         $viewData = [];
         $viewData['user'] = $userData['user'];
-        return view($userData['view'] . 'edit')->with('viewData', $viewData);
+
+        return view($userData['view'].'edit')->with('viewData', $viewData);
     }
 
     public function update(Request $request): RedirectResponse

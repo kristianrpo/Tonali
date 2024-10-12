@@ -2,13 +2,15 @@
 @section("content")
   <div class="container">
     @if (! $viewData["colorimetry"])
-      <p class="mb-10 text-center">{{ __("colorimetry.without_colorimetry") }}</p>
+      <p class="mb-10 text-center">
+        {{ __("colorimetry.without_colorimetry") }}
+      </p>
       <div class="flex justify-center">
         <a
-            href="{{ route("colorimetry.create") }}"
-            class="rounded-full bg-brightPink px-4 py-2 text-white transition duration-300 hover:bg-black"
+          href="{{ route("colorimetry.create") }}"
+          class="rounded-full bg-brightPink px-4 py-2 text-white transition duration-300 hover:bg-black"
         >
-            {{ __("user.create_colorimetry") }}
+          {{ __("user.create_colorimetry") }}
         </a>
       </div>
     @else

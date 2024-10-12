@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Product;
 use App\Models\Colorimetry;
+use App\Models\Product;
 use App\Utils\ProductRecommendation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -76,7 +76,7 @@ class ProductController extends Controller
         $colorimetry = Colorimetry::where('user_id', $userId)->first();
         $viewData = [];
 
-        if (!$colorimetry) {
+        if (! $colorimetry) {
             $viewData['colorimetry'] = null;
             $viewData['recommendation'] = null;
 

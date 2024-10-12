@@ -47,4 +47,6 @@ return [
     'no_products' => 'No se encontraron productos',
     'buyer' => 'Comprador',
     'detail_product' => 'Detalle del producto',
+    'recommended' => 'Productos Recomendados Para Ti',
+    'error_recommended' => 'Hubo un error en la recomendación de productos, inténtalo más tarde',
 ];

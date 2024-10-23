@@ -1,4 +1,5 @@
 @extends("layouts.admin")
+@section("title", __("user.my_profile"))
 @section("content")
   @if (session("success"))
     <x-alert :message="session('success')" />
@@ -62,7 +63,7 @@
                 class="flex rounded-full bg-brightPink px-4 py-2 text-center text-white transition duration-300 hover:bg-black"
               >
                 <svg
-                  class="h-6 w-6 text-gray-800 dark:text-white"
+                  class="h-6 w-6 dark:text-white"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -130,31 +131,51 @@
         </div>
         <div
           id="deleteModal"
+          tabindex="-1"
+          aria-hidden="true"
           class="fixed inset-0 flex hidden items-center justify-center bg-gray-800 bg-opacity-75"
         >
-          <div class="w-1/3 rounded-lg bg-white p-6">
-            <h2 class="mb-4 text-lg font-semibold">
-              {{ __("user.confirm_delete_title") }}
-            </h2>
-            <p class="mb-4">{{ __("user.delete") }}</p>
-            <div class="flex justify-end">
-              <button
-                onclick="closeDeleteModal()"
-                class="rounded-full bg-gray-300 px-4 py-2 text-center transition duration-300 hover:bg-black hover:text-white"
+          <div class="relative h-full w-full max-w-md p-4 md:h-auto">
+            <div
+              class="relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5"
+            >
+              <svg
+                class="mx-auto mb-3.5 h-11 w-11 text-gray-400 dark:text-gray-500"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                {{ __("user.cancel_button") }}
-              </button>
-              <form method="POST" action="{{ route("admin.delete") }}">
-                @csrf
-                @method("DELETE")
+                <path
+                  fill-rule="evenodd"
+                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <p class="mb-4 text-gray-500 dark:text-gray-300">
+                {{ __("user.delete_description") }}
+              </p>
+              <div class="flex items-center justify-center space-x-4">
                 <button
-                  type="submit"
-                  class="ml-4 rounded-full bg-brightPink px-4 py-2 text-center text-white transition duration-300 hover:bg-black"
-                  onclick="openDeleteModal()"
+                  onclick="closeDeleteModal()"
+                  data-modal-toggle="deleteModal"
+                  type="button"
+                  class="focus:ring-primary-300 rounded-full rounded-lg border border-gray-200 bg-white px-3 px-5 py-2 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
                 >
-                  {{ __("user.delete_customer") }}
+                  {{ __("user.cancel_button") }}
                 </button>
-              </form>
+                <form method="POST" action="{{ route("profile.delete") }}">
+                  @csrf
+                  @method("DELETE")
+                  <button
+                    type="submit"
+                    class="bg-primary-700 focus:ring-primary-300 me-2 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite hover:bg-black focus:outline-none focus:ring-4"
+                    onclick="openDeleteModal()"
+                  >
+                    {{ __("user.delete_customer") }}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

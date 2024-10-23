@@ -11,32 +11,32 @@ use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    private function getUserAndViewData(): array
-    {
-        $user = Auth::user();
-        $userData = [];
-        $userData['user'] = $user;
-        $userData['view'] = $user->getRole() === 'admin' ? 'admin.' : 'customer.';
-
-        return $userData;
-    }
-
     public function index(): View
     {
-        $userData = $this->getUserAndViewData();
-        $viewData = [];
-        $viewData['user'] = $userData['user'];
+        $user = Auth::user();
 
-        return view($userData['view'].'profile')->with('viewData', $viewData);
+        $viewData = [];
+        $viewData['user'] = $user;
+
+        if ($user->getRole() === 'admin') {
+            return view('admin.profile')->with('viewData', $viewData);
+        } elseif ($user->getRole() === 'customer') {
+            return view('customer.profile')->with('viewData', $viewData);
+        }
     }
 
     public function edit(): View
     {
-        $userData = $this->getUserAndViewData();
-        $viewData = [];
-        $viewData['user'] = $userData['user'];
+        $user = Auth::user();
 
-        return view($userData['view'].'edit')->with('viewData', $viewData);
+        $viewData = [];
+        $viewData['user'] = $user;
+
+        if ($user->getRole() === 'admin') {
+            return view('admin.edit')->with('viewData', $viewData);
+        } elseif ($user->getRole() === 'customer') {
+            return view('customer.edit')->with('viewData', $viewData);
+        }
     }
 
     public function update(Request $request): RedirectResponse

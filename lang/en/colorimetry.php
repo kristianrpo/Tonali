@@ -3,8 +3,10 @@
 return [
     'colorimetry' => 'Your Colorimetry',
     'without_colorimetry' => "It looks like you haven't created your colorimetry. Do it below :)",
+    'without_colorimetry_description' => 'Your colorimetry is a crucial tool for selecting the right products for you. It helps us understand your skin and hair characteristics, ensuring we recommend products that enhance your natural beauty.',
     'specific_needs_optional' => 'Specific Needs (Optional)',
     'create' => 'Create Colorimetry',
+    'edit' => 'Edit Colorimetry',
     'skin_tone_select' => 'Select Skin Tone',
     'skin_undertone_select' => 'Select Skin Undertone',
     'hair_color_select' => 'Select Hair Color',
@@ -46,4 +48,6 @@ return [
     'create_success' => 'Colorimetry created successfully',
     'edit_success' => 'Colorimetry edited successfully',
     'delete_success' => 'Colorimetry deleted succesfully',
+
+    'default_image' => 'Colorimetry Default Image',
 ];

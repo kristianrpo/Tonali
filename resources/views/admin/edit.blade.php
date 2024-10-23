@@ -1,4 +1,5 @@
 @extends("layouts.admin")
+@section("title", __("user.edit_profile"))
 @section("content")
   <div class="flex justify-center">
     <div class="relative max-h-full w-full max-w-2xl p-4">
@@ -62,5 +63,4 @@
       </div>
     </div>
   </div>
-  <script src="{{ asset("js/review/stars.js") }}"></script>
 @endsection

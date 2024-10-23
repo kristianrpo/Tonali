@@ -3,12 +3,14 @@
 return [
     'colorimetry' => 'Tu Colorimetría',
     'without_colorimetry' => 'Parece que aún no has creado tu colorimetría. Hazlo a continuación :)',
+    'without_colorimetry_description' => 'Tu colorimetría es una herramienta crucial para seleccionar los productos adecuados para ti. Nos ayuda a entender las características de tu piel y cabello, asegurando que recomendemos productos que realcen tu belleza natural.',
     'specific_needs_optional' => 'Necesidades Específicas (Opcional)',
     'create' => 'Crear Colorimetría',
-    'skin_tone_select' => 'Seleccionar Tono de Piel',
-    'skin_undertone_select' => 'Seleccionar Subtono de Piel',
-    'hair_color_select' => 'Seleccionar Color de Cabello',
-    'eye_color_select' => 'Seleccionar Color de Ojos',
+    'edit' => 'Editar Colorimetría',
+    'skin_tone_select' => 'Selecciona el Tono de Piel',
+    'skin_undertone_select' => 'Selecciona el Subtono de Piel',
+    'hair_color_select' => 'Selecciona el Color de Cabello',
+    'eye_color_select' => 'Selecciona el Color de Ojos',
     'send_button' => 'Enviar',
     'delete' => '¿Estás seguro de que quieres eliminar esta colorimetría?',
 
@@ -26,7 +28,7 @@ return [
 
     'warm' => 'Cálido',
     'cool' => 'Frío',
-    'neutral' => 'Neutral',
+    'neutral' => 'Neutro',
 
     'blonde' => 'Rubio',
     'brunette' => 'Castaño',
@@ -46,4 +48,6 @@ return [
     'create_success' => 'Colorimetría creada con éxito',
     'edit_success' => 'Colorimetría editada con éxito',
     'delete_success' => 'Colorimetría eliminada con éxito',
+
+    'default_image' => 'Imagen Predeterminada de Colorimetría',
 ];

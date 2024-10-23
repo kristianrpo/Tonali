@@ -1,29 +1,26 @@
 @extends("layouts.app")
+@section("title", __("colorimetry.create"))
 @section("content")
   <div class="flex justify-center">
-    <div class="relative max-h-full w-full max-w-2xl p-4">
+    <div class="relative w-full max-w-5xl p-4">
       <div class="relative rounded-lg bg-white shadow">
         <div
-          class="flex items-center justify-between rounded-t border-b border-gray-200 p-4 md:p-5"
+          class="flex items-center justify-between rounded-t border-b border-gray-200 bg-brightPink p-4 md:p-5"
         >
-          <div>
-            <h1 class="mb-1 text-lg font-semibold text-gray-900">
-              {{ __("colorimetry.create") }}
-            </h1>
-          </div>
+          <h1 class="mb-1 text-lg font-semibold text-offWhite">
+            {{ __("colorimetry.create") }}
+          </h1>
         </div>
         <form
           method="POST"
           action="{{ route("colorimetry.store") }}"
-          class="p-4 md:p-5"
+          class="p-4 md:flex-grow md:p-5"
         >
           @csrf
           @if ($errors->any())
-            <ul id="errors" class="mb-4 list-disc text-red-500">
-              @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-              @endforeach
-            </ul>
+            @foreach ($errors->all() as $error)
+              <x-alert :message="$error" />
+            @endforeach
           @endif
 
           <div class="mb-4">
@@ -37,16 +34,28 @@
               <option value="" disabled selected>
                 {{ __("colorimetry.skin_tone_select") }}
               </option>
-              <option value="{{ __("colorimetry.fair") }}">
+              <option
+                value="{{ __("colorimetry.fair") }}"
+                style="background-color: #fde9d9"
+              >
                 {{ __("colorimetry.fair") }}
               </option>
-              <option value="{{ __("colorimetry.olive") }}">
+              <option
+                value="{{ __("colorimetry.olive") }}"
+                style="background-color: #dab984"
+              >
                 {{ __("colorimetry.olive") }}
               </option>
-              <option value="{{ __("colorimetry.medium") }}">
+              <option
+                value="{{ __("colorimetry.medium") }}"
+                style="background-color: #c49a6c"
+              >
                 {{ __("colorimetry.medium") }}
               </option>
-              <option value="{{ __("colorimetry.dark") }}">
+              <option
+                value="{{ __("colorimetry.dark") }}"
+                style="background-color: #8c6239"
+              >
                 {{ __("colorimetry.dark") }}
               </option>
             </select>
@@ -63,13 +72,22 @@
               <option value="" disabled selected>
                 {{ __("colorimetry.skin_undertone_select") }}
               </option>
-              <option value="{{ __("colorimetry.warm") }}">
+              <option
+                value="{{ __("colorimetry.warm") }}"
+                style="background-color: #f7d9c4"
+              >
                 {{ __("colorimetry.warm") }}
               </option>
-              <option value="{{ __("colorimetry.cool") }}">
+              <option
+                value="{{ __("colorimetry.cool") }}"
+                style="background-color: #e4e9f0"
+              >
                 {{ __("colorimetry.cool") }}
               </option>
-              <option value="{{ __("colorimetry.neutral") }}">
+              <option
+                value="{{ __("colorimetry.neutral") }}"
+                style="background-color: #f0e4da"
+              >
                 {{ __("colorimetry.neutral") }}
               </option>
             </select>
@@ -86,16 +104,28 @@
               <option value="" disabled selected>
                 {{ __("colorimetry.hair_color_select") }}
               </option>
-              <option value="{{ __("colorimetry.blonde") }}">
+              <option
+                value="{{ __("colorimetry.blonde") }}"
+                style="background-color: #f8e1b4"
+              >
                 {{ __("colorimetry.blonde") }}
               </option>
-              <option value="{{ __("colorimetry.brunette") }}">
+              <option
+                value="{{ __("colorimetry.brunette") }}"
+                style="background-color: #603813"
+              >
                 {{ __("colorimetry.brunette") }}
               </option>
-              <option value="{{ __("colorimetry.red") }}">
+              <option
+                value="{{ __("colorimetry.red") }}"
+                style="background-color: #b83922"
+              >
                 {{ __("colorimetry.red") }}
               </option>
-              <option value="{{ __("colorimetry.black") }}">
+              <option
+                value="{{ __("colorimetry.black") }}"
+                style="background-color: #1b1b1b; color: #fff"
+              >
                 {{ __("colorimetry.black") }}
               </option>
             </select>
@@ -112,16 +142,28 @@
               <option value="" disabled selected>
                 {{ __("colorimetry.eye_color_select") }}
               </option>
-              <option value="{{ __("colorimetry.blue") }}">
+              <option
+                value="{{ __("colorimetry.blue") }}"
+                style="background-color: #7ec8e3"
+              >
                 {{ __("colorimetry.blue") }}
               </option>
-              <option value="{{ __("colorimetry.green") }}">
+              <option
+                value="{{ __("colorimetry.green") }}"
+                style="background-color: #98d382"
+              >
                 {{ __("colorimetry.green") }}
               </option>
-              <option value="{{ __("colorimetry.brown") }}">
+              <option
+                value="{{ __("colorimetry.brown") }}"
+                style="background-color: #a0522d"
+              >
                 {{ __("colorimetry.brown") }}
               </option>
-              <option value="{{ __("colorimetry.hazel") }}">
+              <option
+                value="{{ __("colorimetry.hazel") }}"
+                style="background-color: #d4a16f"
+              >
                 {{ __("colorimetry.hazel") }}
               </option>
             </select>

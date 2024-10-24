@@ -100,7 +100,7 @@
               aria-labelledby="dropdown-toggle"
             >
               <a
-                href="#"
+                href="{{ route("profile.index") }}"
                 class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
               >
                 {{ __("auth.profile") }}
@@ -203,5 +203,6 @@
         </span>
       </div>
     </footer>
+    @vite("resources/js/app.js")
   </body>
 </html>

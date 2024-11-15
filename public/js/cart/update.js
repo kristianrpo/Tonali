@@ -2,7 +2,7 @@ $(document).ready(function () {
     $(".decrease-quantity, .increase-quantity").click(function (e) {
         e.preventDefault();
         let productId = $(this).data("id");
-        let quantitySpan = $('.product-quantity-'+productId);
+        let quantitySpan = $(".product-quantity-" + productId);
         let quantity = parseInt(quantitySpan.text());
 
         if ($(this).hasClass("increase-quantity")) {
@@ -17,7 +17,7 @@ $(document).ready(function () {
             url: cartUpdateUrl,
             data: {
                 _token: csrfToken,
-                _method: 'PUT',
+                _method: "PUT",
                 id: productId,
                 quantity: quantity,
             },
@@ -27,6 +27,5 @@ $(document).ready(function () {
                 $(".total-price").text(response.total);
             },
         });
-        
     });
 });

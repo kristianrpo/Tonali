@@ -97,7 +97,7 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $reportTitle = $request->input('title');
         $reportDescription = $request->input('description');
-        $aiGeneratedResponse = ReviewReport::report($reportTitle, $reportDescription);
+        $aiGeneratedResponse = ReviewReport::report($reportTitle, $reportDescription, $review->getDescription());
         $aiDecision = strtolower(trim(explode("\n", $aiGeneratedResponse)[0]));
         if ($aiDecision === 'delete') {
             $product = Product::findOrFail($review->getProduct()->getId());

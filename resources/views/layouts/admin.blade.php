@@ -71,6 +71,38 @@
             </span>
           </div>
         </div>
+        <div
+          class="d-flex align-items-center justify-content-center mr-5 mt-5 md:mt-0"
+        >
+          <form
+            id="langform"
+            action="{{ route("language.change") }}"
+            method="get"
+            class="d-flex align-items-center justify-content-center"
+          >
+            <select
+              id="small"
+              class="w- block rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-brightPink focus:ring-brightPink"
+              name="lang"
+              id="lang"
+              onchange="this.form.submit()"
+            >
+              <option disabled>{{ __("layoutApp.choose_language") }}</option>
+              <option
+                value="es"
+                @if (session('locale') == 'es') selected @endif
+              >
+                {{ __("layoutApp.spanish") }}
+              </option>
+              <option
+                value="en"
+                @if (session('locale') == 'en') selected @endif
+              >
+                {{ __("layoutApp.english") }}
+              </option>
+            </select>
+          </form>
+        </div>
         <div class="flex items-center lg:order-2">
           <div class="group relative">
             <label for="dropdown-toggle" class="cursor-pointer text-white">
@@ -205,8 +237,7 @@
                 {{ __("admin.client_page") }}
               </span>
             </a>
-          </li>          
-
+          </li>
         </ul>
       </div>
     </aside>

@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Colorimetry;
 use App\Models\Product;
 use App\Utils\ProductRecommendation;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,14 +38,6 @@ class ProductController extends Controller
         return view('product.index')->with('viewData', $viewData);
     }
 
-    public function suggest(Request $request): JsonResponse
-    {
-        $query = $request->input('query');
-        $suggestions = Product::getSuggestionsByName($query);
-
-        return response()->json($suggestions);
-    }
-
     public function show(int $id): View
     {
         $viewData = [];
@@ -77,10 +68,7 @@ class ProductController extends Controller
         $viewData = [];
 
         if (! $colorimetry) {
-            $viewData['colorimetry'] = null;
-            $viewData['recommendation'] = null;
-
-            return view('product.recommended')->with('viewData', $viewData);
+            return redirect()->route('colorimetry.index');
         }
 
         $products = Product::select('id', 'description')->get();

@@ -1,11 +1,9 @@
 <?php
 
 return [
-
     'failed' => 'Estas credenciales no coinciden con nuestros registros.',
     'password' => 'La contraseña proporcionada es incorrecta.',
     'throttle' => 'Demasiados intentos de inicio de sesión. Por favor, intenta de nuevo en :seconds segundos.',
-
     'login' => 'Iniciar sesión',
     'logout' => 'Cerrar sesión',
     'register' => 'Registrarse',
@@ -14,5 +12,4 @@ return [
     'name' => 'Nombre',
     'account_register' => '¿No tienes una cuenta?',
     'account_register' => '¿Ya tienes una cuenta?',
-    'shop' => 'Tienda',
 ];

@@ -13,10 +13,11 @@ $(document).ready(function () {
             }
         }
         $.ajax({
-            type: "PUT",
+            type: "POST",
             url: cartUpdateUrl,
             data: {
                 _token: csrfToken,
+                _method: 'PUT',
                 id: productId,
                 quantity: quantity,
             },
@@ -26,5 +27,6 @@ $(document).ready(function () {
                 $(".total-price").text(response.total);
             },
         });
+        
     });
 });

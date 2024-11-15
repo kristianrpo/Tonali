@@ -180,6 +180,33 @@
               </span>
             </a>
           </li>
+          <li>
+            <a
+              href="{{ route("home.index") }}"
+              class="group flex items-center rounded-lg p-2 text-base font-normal text-gray-900 hover:bg-gray-100"
+            >
+              <svg
+                aria-hidden="true"
+                class="h-6 w-6 text-gray-400 transition duration-75 group-hover:text-gray-900"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 0v.01M8 6v.01M12 6v.01M4 10h16"
+                />
+              </svg>
+              <span class="ml-3">
+                {{ __("admin.client_page") }}
+              </span>
+            </a>
+          </li>          
+
         </ul>
       </div>
     </aside>

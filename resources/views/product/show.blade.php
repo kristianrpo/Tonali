@@ -70,19 +70,25 @@
           </p>
           <div class="mt-4 flex items-center justify-between">
             <div class="flex flex-col">
-              <span class="font-semibold text-gray-700">Category:</span>
+              <span class="font-semibold text-gray-700">
+                {{ __("product.category") }}
+              </span>
               <span class="text-gray-500">
                 {{ $viewData["product"]->getCategory()->getName() }}
               </span>
             </div>
             <div class="flex flex-col">
-              <span class="font-semibold text-gray-700">Brand:</span>
+              <span class="font-semibold text-gray-700">
+                {{ __("product.brand") }}
+              </span>
               <span class="text-gray-500">
                 {{ $viewData["product"]->getBrand() }}
               </span>
             </div>
             <div class="flex flex-col">
-              <span class="font-semibold text-gray-700">Stock:</span>
+              <span class="font-semibold text-gray-700">
+                {{ __("product.stock_quantity") }}
+              </span>
               <span class="text-gray-500">
                 {{ $viewData["product"]->getStockQuantity() }}
               </span>

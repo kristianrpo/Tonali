@@ -72,15 +72,6 @@
               {{ __("auth.login") }}
             </button>
           </div>
-
-          @if (Route::has("password.request"))
-            <a
-              class="text-sm text-brightPink hover:text-black"
-              href="{{ route("password.request") }}"
-            >
-              {{ __("passwords.forgot") }}
-            </a>
-          @endif
         </form>
       </div>
 

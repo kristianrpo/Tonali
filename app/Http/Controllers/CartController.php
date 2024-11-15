@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -41,20 +40,6 @@ class CartController extends Controller
         Session::flash('success', __('cart.add_product_success'));
 
         return redirect()->route('cart.index');
-    }
-
-    public function update(Request $request): JsonResponse
-    {
-        $id = $request->input('id');
-        $productsInSession = $request->session()->get('products');
-        $productsInSession[$id] = $request->input('quantity');
-        $request->session()->put('products', $productsInSession);
-        $productsInCart = Product::findMany(array_keys($productsInSession));
-        $total = formatPrice(Product::sumPricesByQuantities($productsInCart, $productsInSession));
-
-        return response()->json([
-            'total' => $total,
-        ]);
     }
 
     public function delete(Request $request): RedirectResponse

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Utils\ImageStorage;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -36,14 +35,6 @@ class AdminProductController extends Controller
         $viewData['categories'] = Category::all();
 
         return view('admin.product.index')->with('viewData', $viewData);
-    }
-
-    public function suggest(Request $request): JsonResponse
-    {
-        $query = $request->input('query');
-        $suggestions = Product::getSuggestionsByName($query);
-
-        return response()->json($suggestions);
     }
 
     public function create(): View

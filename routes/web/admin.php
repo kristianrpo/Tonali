@@ -7,7 +7,6 @@ Route::middleware('admin')->group(function () {
     Route::get('/admin/edit', 'App\Http\Controllers\UserController@edit')->name('admin.edit');
     Route::delete('/admin/delete', 'App\Http\Controllers\UserController@delete')->name('admin.delete');
     Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
-    Route::get('/admin/products/suggest', 'App\Http\Controllers\Admin\AdminProductController@suggest')->name('admin.product.suggest');
     Route::get('/admin/products/create', 'App\Http\Controllers\Admin\AdminProductController@create')->name('admin.product.create');
     Route::post('/admin/products/store', 'App\Http\Controllers\Admin\AdminProductController@store')->name('admin.product.store');
     Route::get('/admin/products/{id}', 'App\Http\Controllers\Admin\AdminProductController@show')->name('admin.product.show');

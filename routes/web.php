@@ -2,11 +2,11 @@
 
 Auth::routes();
 
-include __DIR__.'/home/routes.php';
-include __DIR__.'/admin/routes.php';
-include __DIR__.'/product/routes.php';
-include __DIR__.'/cart/routes.php';
-include __DIR__.'/review/routes.php';
-include __DIR__.'/order/routes.php';
-include __DIR__.'/colorimetry/routes.php';
-include __DIR__.'/profile/routes.php';
+include __DIR__.'/web/home.php';
+include __DIR__.'/web/admin.php';
+include __DIR__.'/web/product.php';
+include __DIR__.'/web/cart.php';
+include __DIR__.'/web/review.php';
+include __DIR__.'/web/order.php';
+include __DIR__.'/web/colorimetry.php';
+include __DIR__.'/web/profile.php';

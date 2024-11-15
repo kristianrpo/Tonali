@@ -235,7 +235,7 @@
 
   <script>
     let csrfToken = '{{ csrf_token() }}';
-    let cartUpdateUrl = '{{ route("cart.update") }}';
+    let cartUpdateUrl = '{{ route("api.cart.update") }}';
   </script>
   <script src="{{ asset("js/cart/update.js") }}"></script>
 @endsection

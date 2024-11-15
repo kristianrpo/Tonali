@@ -16,6 +16,7 @@
     <title>@yield("title", __("layoutApp.title"))</title>
 
     @vite("resources/css/app.css")
+    @vite("resources/js/app.js")
   </head>
 
   <body class="flex min-h-screen flex-col">
@@ -67,7 +68,7 @@
           >
             <li>
               <a
-                href="#"
+              href="{{ route("home.index") }}"
                 class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
               >
                 {{ __("layoutApp.home") }}
@@ -81,6 +82,14 @@
                 {{ __("layoutApp.products") }}
               </a>
             </li>
+            <li>
+              <a
+              href="{{ route("product.recommended") }}"
+              class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
+              >
+                {{ __("layoutApp.recommended") }}
+            </a>
+            </li>
           </ul>
           @guest
             <div class="mx-4 my-2 flex justify-center">
@@ -93,18 +102,6 @@
               </a>
             </div>
           @else
-            <ul
-              class="ml-4 mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse"
-            >
-              <li>
-                <a
-                  href="{{ route("product.recommended") }}"
-                  class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
-                >
-                  {{ __("layoutApp.recommended") }}
-                </a>
-              </li>
-            </ul>
             <div class="mx-10 my-2 flex justify-center">
               <div class="flex items-center space-x-4">
                 <div class="relative">
@@ -136,13 +133,12 @@
                   >
                     @if (auth()->check() &&auth()->user()->getRole() == "admin")
                       <a
-                        href="{{ route("admin.product.index") }}"
+                        href="{{ route("admin.index") }}"
                         class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
                       >
-                        {{ __("auth.shop") }}
+                        {{ __("admin.admin") }}
                       </a>
                     @endif
-
                     <a
                       href="{{ route("profile.index") }}"
                       class="block px-4 py-2 text-gray-800 hover:bg-gray-200"
@@ -164,64 +160,62 @@
                     </form>
                   </div>
                 </div>
+                @endguest
               </div>
-            </div>
-          @endguest
-          @if (auth()->check() &&auth()->user()->getRole() !== "admin")
-            <a
-              href="{{ route("cart.index") }}"
-              class="text-darkGray hover:text-black"
+              <a
+          href="{{ route("cart.index") }}"
+          class="text-darkGray hover:text-black"
+          >
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink mx-2"
             >
-              <div
-                class="flex h-10 w-10 items-center justify-center rounded-full border-2 border-darkGray hover:bg-palePink"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                viewBox="0 0 256 256"
+                id="shopping-cart"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 256 256"
-                  id="shopping-cart"
-                >
-                  <rect width="256" height="256" fill="none" />
-                  <path
-                    fill="none"
-                    stroke="#000"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="12"
-                    d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16"
-                  />
-                  <circle
-                    cx="80"
-                    cy="204"
-                    r="20"
-                    fill="none"
-                    stroke="#000"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="12"
-                  />
-                  <circle
-                    cx="184"
-                    cy="204"
-                    r="20"
-                    fill="none"
-                    stroke="#000"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="12"
-                  />
-                  <path
-                    fill="none"
-                    stroke="#000"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="12"
-                    d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48"
-                  />
-                </svg>
-              </div>
-            </a>
-          @endif
+                <rect width="256" height="256" fill="none" />
+                <path
+                  fill="none"
+                  stroke="#000"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="12"
+                  d="M184,184H69.81818L41.92162,30.56892A8,8,0,0,0,34.05066,24H16"
+                />
+                <circle
+                  cx="80"
+                  cy="204"
+                  r="20"
+                  fill="none"
+                  stroke="#000"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="12"
+                />
+                <circle
+                  cx="184"
+                  cy="204"
+                  r="20"
+                  fill="none"
+                  stroke="#000"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="12"
+                />
+                <path
+                  fill="none"
+                  stroke="#000"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="12"
+                  d="M62.54543,144H188.10132a16,16,0,0,0,15.74192-13.13783L216,64H48"
+                />
+              </svg>
+            </div>
+          </a>
+            </div>
         </div>
       </div>
     </nav>
@@ -243,6 +237,5 @@
         </span>
       </div>
     </footer>
-    @vite("resources/js/app.js")
   </body>
 </html>

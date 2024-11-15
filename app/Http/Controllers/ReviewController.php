@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Review;
+use App\Utils\ReviewReport;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -96,7 +97,7 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $reportTitle = $request->input('title');
         $reportDescription = $request->input('description');
-        $aiGeneratedResponse = $review->report($reportTitle, $reportDescription);
+        $aiGeneratedResponse = ReviewReport::report($reportTitle, $reportDescription, $review->getDescription());
         $aiDecision = strtolower(trim(explode("\n", $aiGeneratedResponse)[0]));
         if ($aiDecision === 'delete') {
             $product = Product::findOrFail($review->getProduct()->getId());

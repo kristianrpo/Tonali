@@ -6,9 +6,10 @@ function showSuggestions(value) {
         return; 
     }
 
-    fetch(`/products/suggest?query=${value}`, {
+    fetch(`${productSuggestUrl}?query=${value}`, {
         headers: {
-            'X-Requested-With': 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN': csrfToken 
         }
     })
     .then(response => response.json())

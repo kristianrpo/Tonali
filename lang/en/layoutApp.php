@@ -15,4 +15,7 @@ return [
     'navbar_admin_title' => 'Tonalí Admin',
     'toggle_sidebar' => 'Toggle sidebar',
     'recommended' => 'Recommended for You',
+    'choose_language' => 'Choose your language',
+    'spanish' => 'Spanish',
+    'english' => 'English',
 ];

@@ -11,6 +11,7 @@ class OpenAIService implements LanguageModel
 
     public function __construct()
     {
+        $this->serviceName = 'OPENAI';
         $this->client = OpenAI::client(config('services.openai.key'));
     }
 
@@ -26,5 +27,10 @@ class OpenAIService implements LanguageModel
         ]);
 
         return $response['choices'][0]['message']['content'];
+    }
+
+    public function getServiceName(): string
+    {
+        return $this->serviceName;
     }
 }

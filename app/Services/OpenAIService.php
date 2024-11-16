@@ -7,6 +7,7 @@ use OpenAI;
 
 class OpenAIService implements LanguageModel
 {
+    protected $serviceName;
     protected $client;
 
     public function __construct()

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 class HuggingFaceService implements LanguageModel
 {
+    protected $serviceName;
     protected $apiKey;
 
     public function __construct()

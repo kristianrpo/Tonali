@@ -13,9 +13,17 @@ class ProductApiController extends Controller
     public function index(): JsonResponse
     {
         $products = new ProductCollection(Product::where('stock_quantity', '>', 0)->get());
+
         return response()->json($products, 200);
     }
-    
+
+    public function paginate(): JsonResponse
+    {
+        $products = new ProductCollection(Product::where('stock_quantity', '>', 0)->paginate(10));
+
+        return response()->json($products, 200);
+    }
+
     public function suggest(Request $request): JsonResponse
     {
         $query = $request->input('query');

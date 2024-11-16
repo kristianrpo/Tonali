@@ -19,6 +19,5 @@ return [
     'add_success' => 'Review added successfully',
     'update_success' => 'Review updated successfully',
     'delete_success' => 'Review deleted successfully',
-    'report_success' => 'Review reported successfully',
-
+    'report_success' => 'Review reported successfully and evaluated using :model_name model',
 ];

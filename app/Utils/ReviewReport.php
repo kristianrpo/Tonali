@@ -6,7 +6,7 @@ use App\Interfaces\LanguageModel;
 
 class ReviewReport
 {
-    public static function report(string $reportTitle, string $reportDescription, string $reviewDescription): string
+    public static function report(string $reportTitle, string $reportDescription, string $reviewDescription): array
     {
         $languageModelInterface = app(LanguageModel::class);
         $prompt = __('prompt.context_report_review');
@@ -15,6 +15,8 @@ class ReviewReport
         $prompt .= __('prompt.reported_review_label').$reviewDescription."\n";
         $response = $languageModelInterface->generateText($prompt);
 
-        return $response;
+        $reportData = ['modelName' => $languageModelInterface->getServiceName(), 'modelResponse' => strtolower($response)];
+
+        return $reportData;
     }
 }

@@ -31,3 +31,9 @@ jobs:
       
     - name: Execute Laravel Pint
       run: vendor/bin/pint --test
+
+    - name: Commit and push changes if Pint modified files
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: PHP Linting (Pint)
+        skip_fetch: true

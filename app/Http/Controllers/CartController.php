@@ -22,6 +22,10 @@ class CartController extends Controller
         $viewData = [];
         $viewData['total'] = formatPrice($total);
         $viewData['products'] = $productsInCart;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('cart.title'), 'url' => null],
+        ];
 
         return view('cart.index')->with('viewData', $viewData);
     }

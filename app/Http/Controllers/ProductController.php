@@ -34,6 +34,10 @@ class ProductController extends Controller
         $viewData['products'] = $products;
         $viewData['priceRanges'] = Product::getPriceTerciles();
         $viewData['categories'] = Category::all();
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('layoutApp.products'), 'url' => null],
+        ];
 
         return view('product.index')->with('viewData', $viewData);
     }
@@ -57,6 +61,11 @@ class ProductController extends Controller
         $viewData['averageRating'] = $averageRating;
         $viewData['calculatedStars'] = $calculatedStars;
         $viewData['userId'] = $userId;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('layoutApp.products'), 'url' => route('product.index')],
+            ['label' => $product->getName(), 'url' => null],
+        ];
 
         return view('product.show')->with('viewData', $viewData);
     }
@@ -86,6 +95,10 @@ class ProductController extends Controller
         $recommendedProducts = Product::whereIn('id', $productIds)->get();
         $viewData['colorimetry'] = $colorimetry;
         $viewData['recommendation'] = $recommendedProducts;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('product.recommended'), 'url' => null],
+        ];
 
         return view('product.recommended')->with('viewData', $viewData);
     }

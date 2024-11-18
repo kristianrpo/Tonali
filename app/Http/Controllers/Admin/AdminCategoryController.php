@@ -15,13 +15,22 @@ class AdminCategoryController extends Controller
         $viewData = [];
         $categories = Category::all();
         $viewData['categories'] = $categories;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('admin.admin'), 'url' => route('admin.index')],
+            ['label' => __('category.my_categories'), 'url' => null],
+        ];
 
         return view('admin.category.index')->with('viewData', $viewData);
     }
 
     public function create(): View
-    {
-        return view('admin.category.create');
+    {   
+        $viewData['breadcrumbs'] = [
+            ['label' => __('admin.admin'), 'url' => route('admin.index')],
+            ['label' => __('category.my_categories'), 'url' => route('admin.category.index')],
+            ['label' => __('product.create_product'), 'url' => null],
+        ];
+        return view('admin.category.create')->with('viewData', $viewData);
     }
 
     public function store(Request $request): RedirectResponse
@@ -40,6 +49,12 @@ class AdminCategoryController extends Controller
         $viewData = [];
         $category = Category::findOrFail($id);
         $viewData['category'] = $category;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('admin.admin'), 'url' => route('admin.index')],
+            ['label' => __('category.my_categories'), 'url' => route('admin.category.index')],
+            ['label' => $category->getName(), 'url' => route('admin.category.show', $id)],
+            ['label' => __('category.edit_category'), 'url' => null],
+        ];
 
         return view('admin.category.edit')->with('viewData', $viewData);
     }

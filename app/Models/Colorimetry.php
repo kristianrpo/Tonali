@@ -32,6 +32,7 @@ class Colorimetry extends Model
 
     public function getId(): int
     {
+
         return $this->attributes['id'];
     }
 

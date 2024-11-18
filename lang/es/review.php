@@ -19,6 +19,6 @@ return [
     'add_success' => 'Reseña agregada exitosamente',
     'update_success' => 'Reseña actualizada exitosamente',
     'delete_success' => 'Reseña eliminada exitosamente',
-    'report_success' => 'Reseña reportada exitosamente',
+    'report_success' => 'Reseña reportada exitosamente y evaluada usando el modelo :model_name',
 
 ];

@@ -97,15 +97,15 @@ class ReviewController extends Controller
         $review = Review::findOrFail($id);
         $reportTitle = $request->input('title');
         $reportDescription = $request->input('description');
-        $aiGeneratedResponse = ReviewReport::report($reportTitle, $reportDescription, $review->getDescription());
-        $aiDecision = strtolower(trim(explode("\n", $aiGeneratedResponse)[0]));
-        if ($aiDecision === 'delete') {
+        $reportData = ReviewReport::report($reportTitle, $reportDescription, $review->getDescription());
+
+        if (str_contains($reportData['modelResponse'], 'delete')) {
             $product = Product::findOrFail($review->getProduct()->getId());
             $product->deleteReviewWithRating($review->getRating());
             Review::destroy($id);
         }
 
-        Session::flash('success', __('review.report_success'));
+        Session::flash('success', __('review.report_success', ['model_name' => $reportData['modelName']]));
 
         return redirect()->route('product.show', $review->getProduct()->getId());
     }

@@ -205,8 +205,7 @@
                 {{ __("admin.client_page") }}
               </span>
             </a>
-          </li>          
-
+          </li>
         </ul>
       </div>
     </aside>

@@ -11,8 +11,11 @@ class ProductCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
-            'additional_data' => [
-                'store_name' => 'Tonalí',
+            'meta' => [
+                'current_page' => $this->currentPage(),
+                'last_page' => $this->lastPage(),
+                'per_page' => $this->perPage(),
+                'total_products' => $this->total(),
             ],
         ];
     }

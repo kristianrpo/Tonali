@@ -33,6 +33,10 @@ class AdminProductController extends Controller
         $viewData['products'] = $products;
         $viewData['priceRanges'] = Product::getPriceTerciles();
         $viewData['categories'] = Category::all();
+        $viewData['breadcrumbs'] = [
+            ['label' => __('admin.admin'), 'url' => route('admin.index')],
+            ['label' => __('product.my_products'), 'url' => null],
+        ];
 
         return view('admin.product.index')->with('viewData', $viewData);
     }
@@ -42,6 +46,11 @@ class AdminProductController extends Controller
         $viewData = [];
         $categories = Category::all();
         $viewData['categories'] = $categories;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('admin.admin'), 'url' => route('admin.index')],
+            ['label' => __('product.my_products'), 'url' => route('admin.product.index')],
+            ['label' => __('product.create_product'), 'url' => null],
+        ];
 
         return view('admin.product.create')->with('viewData', $viewData);
     }
@@ -72,6 +81,11 @@ class AdminProductController extends Controller
         $viewData = [];
         $product = Product::findOrFail($id);
         $viewData['product'] = $product;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('admin.admin'), 'url' => route('admin.index')],
+            ['label' => __('product.my_products'), 'url' => route('admin.product.index')],
+            ['label' => $product->getName(), 'url' => null],
+        ];
 
         return view('admin.product.show')->with('viewData', $viewData);
     }
@@ -83,6 +97,12 @@ class AdminProductController extends Controller
         $categories = Category::all();
         $viewData['product'] = $product;
         $viewData['categories'] = $categories;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('admin.admin'), 'url' => route('admin.index')],
+            ['label' => __('product.my_products'), 'url' => route('admin.product.index')],
+            ['label' => $product->getName(), 'url' => route('admin.product.show', $id)],
+            ['label' => __('product.edit_product'), 'url' => null],
+        ];
 
         return view('admin.product.edit')->with('viewData', $viewData);
     }

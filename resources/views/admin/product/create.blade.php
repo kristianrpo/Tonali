@@ -2,12 +2,12 @@
 @section("title", __("product.create_product"))
 @section("content")
   @if (session("success"))
-    <x-alert :message="session('success')" />
+    <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 
   @if ($errors->any())
     @foreach ($errors->all() as $error)
-      <x-alert :message="$error" />
+      <x-alert :message="$error" color="bg-red-500" />
     @endforeach
   @endif
 

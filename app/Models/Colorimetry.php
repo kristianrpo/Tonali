@@ -128,7 +128,7 @@ class Colorimetry extends Model
             'skin_undertone' => 'required|string',
             'hair_color' => 'required|string',
             'eye_color' => 'required|string',
-            'specific_needs' => 'required|array',
+            'specific_needs' => 'array',
             'specific_needs.*' => 'string',
         ]);
     }

@@ -18,6 +18,12 @@ class ReviewController extends Controller
         $viewData = [];
         $product = Product::findOrFail($productId);
         $viewData['product'] = $product;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('product.product'), 'url' => route('product.index')],
+            ['label' => $product->getName(), 'url' => route('product.show', $productId)],
+            ['label' => __('review.create_review'), 'url' => null],
+        ];
 
         return view('review.create')->with('viewData', $viewData);
     }
@@ -48,6 +54,13 @@ class ReviewController extends Controller
         $viewData = [];
         $review = Review::findOrFail($id);
         $viewData['review'] = $review;
+        $product = $review->getProduct();
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('product.product'), 'url' => route('product.index')],
+            ['label' => $product->getName(), 'url' => route('product.show', $product->getId())],
+            ['label' => __('review.edit_review'), 'url' => null],
+        ];
 
         return view('review.edit')->with('viewData', $viewData);
     }

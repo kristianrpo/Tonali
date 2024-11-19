@@ -8,9 +8,12 @@ class Alert extends Component
 {
     public $message;
 
-    public function __construct(string $message)
+    public $color;
+
+    public function __construct(string $message, string $color = 'bg-palePink')
     {
         $this->message = $message;
+        $this->color = $color;
     }
 
     public function render()

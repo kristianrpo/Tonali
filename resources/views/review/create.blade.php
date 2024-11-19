@@ -3,7 +3,7 @@
 @section("content")
   @if ($errors->any())
     @foreach ($errors->all() as $error)
-      <x-alert :message="$error" />
+      <x-alert :message="$error" color="bg-red-500" />
     @endforeach
   @endif
 

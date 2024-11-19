@@ -2,7 +2,7 @@
 @section("title", __("colorimetry.colorimetry"))
 @section("content")
   @if (session("success"))
-    <x-alert :message="session('success')" />
+    <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 
   <div class="container mx-auto w-4/5">

@@ -15,4 +15,7 @@ return [
     'description' => 'Descripción',
     'actions' => 'Acciones',
     'delete_confirmation' => '¿Estás seguro de que quieres eliminar esta categoría?',
+    'create_success' => 'Categoría creada exitosamente',
+    'update_success' => 'Categoría actualizada exitosamente',
+    'delete_success' => 'Categoría eliminada exitosamente',
 ];

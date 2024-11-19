@@ -17,6 +17,10 @@ class OrderController extends Controller
     {
         $viewData = [];
         $viewData['orders'] = Order::where('user_id', Auth::user()->getId())->get();
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('order.order'), 'url' => null],
+        ];
 
         return view('order.index')->with('viewData', $viewData);
     }

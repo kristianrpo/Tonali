@@ -17,6 +17,15 @@ class UserController extends Controller
 
         $viewData = [];
         $viewData['user'] = $user;
+        $viewData['breadcrumbs'] = [];
+
+        if ($user->getRole() === 'admin') {
+            $viewData['breadcrumbs'][] = ['label' => __('admin.admin'), 'url' => route('admin.index')];
+        } elseif ($user->getRole() === 'customer') {
+            $viewData['breadcrumbs'][] = ['label' => __('layoutApp.home'), 'url' => route('home.index')];
+        }
+
+        $viewData['breadcrumbs'][] = ['label' => __('user.profile'), 'url' => null];
 
         if ($user->getRole() === 'admin') {
             return view('admin.profile')->with('viewData', $viewData);
@@ -31,6 +40,17 @@ class UserController extends Controller
 
         $viewData = [];
         $viewData['user'] = $user;
+        $viewData['breadcrumbs'] = [];
+
+        if ($user->getRole() === 'admin') {
+            $viewData['breadcrumbs'][] = ['label' => __('admin.admin'), 'url' => route('admin.index')];
+        } elseif ($user->getRole() === 'customer') {
+            $viewData['breadcrumbs'][] = ['label' => __('layoutApp.home'), 'url' => route('home.index')];
+        }
+
+        $viewData['breadcrumbs'][] = ['label' => __('layoutApp.home'), 'url' => route('home.index')];
+        $viewData['breadcrumbs'][] = ['label' => __('user.profile'), 'url' => route('profile.index')];
+        $viewData['breadcrumbs'][] = ['label' => __('user.edit_profile'), 'url' => null];
 
         if ($user->getRole() === 'admin') {
             return view('admin.edit')->with('viewData', $viewData);

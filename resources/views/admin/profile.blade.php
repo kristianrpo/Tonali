@@ -2,7 +2,7 @@
 @section("title", __("user.my_profile"))
 @section("content")
   @if (session("success"))
-    <x-alert :message="session('success')" />
+    <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 
   <div class="mx-auto my-12 max-w-screen-lg">

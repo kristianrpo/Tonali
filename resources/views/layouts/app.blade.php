@@ -254,6 +254,10 @@
       </div>
     </nav>
     <main class="mx-12 my-12">
+      @if (! empty($viewData["breadcrumbs"]))
+        <x-breadcrumbs :breadcrumbs="$viewData['breadcrumbs']" />
+      @endif
+
       @yield("content")
     </main>
     <footer class="bg-brightPink p-4 shadow">

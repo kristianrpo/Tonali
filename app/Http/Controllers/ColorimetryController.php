@@ -15,13 +15,23 @@ class ColorimetryController extends Controller
     {
         $viewData = [];
         $viewData['colorimetry'] = Colorimetry::where('user_id', Auth::user()->getId())->first();
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('colorimetry.colorimetry'), 'url' => null],
+        ];
 
         return view('colorimetry.index')->with('viewData', $viewData);
     }
 
     public function create(): View
     {
-        return view('colorimetry.create');
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('colorimetry.colorimetry'), 'url' => route('colorimetry.index')],
+            ['label' => __('colorimetry.create'), 'url' => null],
+        ];
+
+        return view('colorimetry.create')->with('viewData', $viewData);
     }
 
     public function store(Request $request): RedirectResponse
@@ -55,6 +65,11 @@ class ColorimetryController extends Controller
         $viewData = [];
         $viewData['colorimetry'] = $colorimetry;
         $viewData['selected_needs'] = $selectedNeeds;
+        $viewData['breadcrumbs'] = [
+            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+            ['label' => __('colorimetry.colorimetry'), 'url' => route('colorimetry.index')],
+            ['label' => __('colorimetry.edit'), 'url' => null],
+        ];
 
         return view('colorimetry.edit')->with('viewData', $viewData);
     }

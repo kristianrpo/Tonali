@@ -243,6 +243,10 @@
     </aside>
 
     <main class="min-h-60 flex-1 p-4 pt-20 md:ml-64">
+      @if (! empty($viewData["breadcrumbs"]))
+        <x-breadcrumbs :breadcrumbs="$viewData['breadcrumbs']" />
+      @endif
+
       @yield("content")
     </main>
 

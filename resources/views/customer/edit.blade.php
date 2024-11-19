@@ -1,6 +1,14 @@
 @extends("layouts.app")
 @section("title", __("user.edit_profile"))
 @section("content")
+  @if (session("success"))
+    <x-alert :message="session('success')" color="bg-green-500" />
+  @endif
+
+  @if (session("error"))
+    <x-alert :message="session('error')" color="bg-red-500" />
+  @endif
+
   <div class="flex justify-center">
     <div class="relative max-h-full w-full max-w-2xl p-4">
       <div class="relative rounded-lg bg-white shadow">

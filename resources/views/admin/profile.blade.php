@@ -5,6 +5,10 @@
     <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 
+  @if (session("error"))
+    <x-alert :message="session('error')" color="bg-red-500" />
+  @endif
+
   <div class="mx-auto my-12 max-w-screen-lg">
     <h1
       class="mb-6 flex items-center justify-center text-center text-4xl font-bold text-gray-800"

@@ -60,16 +60,21 @@
               {{ __("layoutApp.toggle_sidebar") }}
             </span>
           </button>
+          <a href="{{ route("home.index") }}">
           <div class="mx-6 flex items-center space-x-3 rtl:space-x-reverse">
+          
             <img
               src="{{ asset("img/logos/dark/icon.png") }}"
               class="h-12"
               alt="{{ __("layoutApp.icon_alt") }}"
             />
+          
             <span class="self-center whitespace-nowrap text-2xl font-semibold">
               {{ __("layoutApp.navbar_title") }}
             </span>
+            
           </div>
+          </a>
         </div>
         <div
           class="d-flex align-items-center justify-content-center mr-5 mt-5 md:mt-0"

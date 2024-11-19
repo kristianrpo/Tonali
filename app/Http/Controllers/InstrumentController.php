@@ -8,17 +8,10 @@ use Illuminate\View\View;
 
 class InstrumentController extends Controller
 {
-    protected $instrumentService;
-
-    public function __construct(InstrumentService $instrumentService)
-    {
-        $this->instrumentService = $instrumentService;
-    }
-
     public function index(): View
     {
         $viewData = [];
-        $instruments = $this->instrumentService->getAllInstruments();
+        $instruments = InstrumentService::getAllInstruments(); 
 
         if (isset($instruments['error']) && $instruments['error'] === true) {
             Session::flash('error', $instruments['message']);
@@ -38,7 +31,7 @@ class InstrumentController extends Controller
     public function show(int $id): View
     {
         $viewData = [];
-        $instrument = $this->instrumentService->getInstrumentById($id);
+        $instrument = InstrumentService::getInstrumentById($id);
 
         if (isset($instrument['error']) && $instrument['error'] === true) {
             Session::flash('error', $instrument['message']);

@@ -32,7 +32,7 @@
                   </p>
                   <a
                     href="{{ route("colorimetry.create") }}"
-                    class="rounded-full bg-brightPink px-4 py-2 text-white transition duration-300 hover:bg-black"
+                    class="bg-primary-700 focus:ring-primary-300 me-2 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite hover:bg-black focus:outline-none focus:ring-4"
                   >
                     {{ __("user.create_colorimetry") }}
                   </a>

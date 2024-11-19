@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 @section("title", __("category.detail_category"))
 @section("content")
-@if (session("success"))
+  @if (session("success"))
     <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 

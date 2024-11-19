@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Product;
 
-use PHPUnit\Framework\TestCase;
 use App\Models\Product;
+use PHPUnit\Framework\TestCase;
 
 class AddReviewWithRatingTest extends TestCase
 {

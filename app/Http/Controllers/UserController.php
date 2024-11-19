@@ -25,7 +25,7 @@ class UserController extends Controller
             $viewData['breadcrumbs'][] = ['label' => __('layoutApp.home'), 'url' => route('home.index')];
         }
 
-        $viewData['breadcrumbs'][] =    ['label' => __('user.profile'), 'url' => null];
+        $viewData['breadcrumbs'][] = ['label' => __('user.profile'), 'url' => null];
 
         if ($user->getRole() === 'admin') {
             return view('admin.profile')->with('viewData', $viewData);
@@ -51,7 +51,6 @@ class UserController extends Controller
         $viewData['breadcrumbs'][] = ['label' => __('layoutApp.home'), 'url' => route('home.index')];
         $viewData['breadcrumbs'][] = ['label' => __('user.profile'), 'url' => route('profile.index')];
         $viewData['breadcrumbs'][] = ['label' => __('user.edit_profile'), 'url' => null];
-
 
         if ($user->getRole() === 'admin') {
             return view('admin.edit')->with('viewData', $viewData);

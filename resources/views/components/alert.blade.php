@@ -1,6 +1,6 @@
 <div class="mb-10 flex justify-center">
   <div
-    class="w-3/4 rounded-b {{ $color }} px-4 py-3 text-offWhite shadow-md"
+    class="{{ $color }} w-3/4 rounded-b px-4 py-3 text-offWhite shadow-md"
     role="alert"
   >
     <div class="flex">

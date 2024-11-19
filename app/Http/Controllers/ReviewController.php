@@ -58,7 +58,7 @@ class ReviewController extends Controller
         $viewData['breadcrumbs'] = [
             ['label' => __('layoutApp.home'), 'url' => route('home.index')],
             ['label' => __('product.product'), 'url' => route('product.index')],
-            ['label' => $product->getName(), 'url' => route('product.show',  $product->getId())],
+            ['label' => $product->getName(), 'url' => route('product.show', $product->getId())],
             ['label' => __('review.edit_review'), 'url' => null],
         ];
 

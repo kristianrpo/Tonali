@@ -24,6 +24,7 @@ class BreadcrumbService
     public function reset(): self
     {
         $this->breadcrumbs = [];
+
         return $this;
     }
 }

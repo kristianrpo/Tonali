@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 use Illuminate\Support\Facades\Session;
+use Illuminate\View\View;
 
 class AdminCategoryController extends Controller
 {
@@ -25,12 +25,13 @@ class AdminCategoryController extends Controller
     }
 
     public function create(): View
-    {   
+    {
         $viewData['breadcrumbs'] = [
             ['label' => __('admin.admin'), 'url' => route('admin.index')],
             ['label' => __('category.my_categories'), 'url' => route('admin.category.index')],
             ['label' => __('product.create_product'), 'url' => null],
         ];
+
         return view('admin.category.create')->with('viewData', $viewData);
     }
 

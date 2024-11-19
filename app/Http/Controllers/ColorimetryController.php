@@ -19,7 +19,6 @@ class ColorimetryController extends Controller
             ['label' => __('layoutApp.home'), 'url' => route('home.index')],
             ['label' => __('colorimetry.colorimetry'), 'url' => null],
         ];
-        
 
         return view('colorimetry.index')->with('viewData', $viewData);
     }
@@ -31,6 +30,7 @@ class ColorimetryController extends Controller
             ['label' => __('colorimetry.colorimetry'), 'url' => route('colorimetry.index')],
             ['label' => __('colorimetry.create'), 'url' => null],
         ];
+
         return view('colorimetry.create')->with('viewData', $viewData);
     }
 

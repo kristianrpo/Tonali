@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Product;
 
-use PHPUnit\Framework\TestCase;
 use App\Models\Product;
+use PHPUnit\Framework\TestCase;
 
 class GetAverageRatingTest extends TestCase
 {
@@ -21,4 +21,3 @@ class GetAverageRatingTest extends TestCase
         $this->assertEquals(0, $productMock->getAverageRating());
     }
 }
-

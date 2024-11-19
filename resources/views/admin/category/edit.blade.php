@@ -2,11 +2,12 @@
 @section("title", __("category.edit_category"))
 @section("content")
   @if ($errors->any())
-      @foreach ($errors->all() as $error)
-        <x-alert :message="$error" color="bg-red-500" />
-      @endforeach
-    @endif
-   <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
+    @foreach ($errors->all() as $error)
+      <x-alert :message="$error" color="bg-red-500" />
+    @endforeach
+  @endif
+
+  <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
     <h1 class="mb-4 text-3xl font-bold text-gray-800">
       {{ __("category.edit_category") }}
     </h1>

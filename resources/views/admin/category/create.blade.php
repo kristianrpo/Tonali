@@ -15,7 +15,6 @@
     <h1 class="mb-4 text-3xl font-bold text-gray-800">
       {{ __("category.create_category") }}
     </h1>
-    
 
     <form method="POST" action="{{ route("admin.category.store") }}">
       @csrf

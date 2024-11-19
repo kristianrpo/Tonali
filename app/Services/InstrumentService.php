@@ -10,7 +10,7 @@ class InstrumentService
 
     protected static function init()
     {
-        if (!self::$baseUrl) {
+        if (! self::$baseUrl) {
             self::$baseUrl = config('services.instruments_api.base_url');
         }
     }
@@ -20,7 +20,7 @@ class InstrumentService
         self::init();
 
         try {
-            $response = Http::get(self::$baseUrl . '/products');
+            $response = Http::get(self::$baseUrl.'/products');
 
             if ($response->successful()) {
                 return $response->json();
@@ -34,7 +34,7 @@ class InstrumentService
         } catch (\Exception $e) {
             return [
                 'error' => true,
-                'message' => __('instrument.unespected_error') . $e->getMessage(),
+                'message' => __('instrument.unespected_error').$e->getMessage(),
             ];
         }
     }
@@ -44,7 +44,7 @@ class InstrumentService
         self::init();
 
         try {
-            $response = Http::get(self::$baseUrl . "/products/{$id}");
+            $response = Http::get(self::$baseUrl."/products/{$id}");
 
             if ($response->successful()) {
                 return $response->json();
@@ -58,7 +58,7 @@ class InstrumentService
         } catch (\Exception $e) {
             return [
                 'error' => true,
-                'message' => __('instrument.unespected_error') . $e->getMessage(),
+                'message' => __('instrument.unespected_error').$e->getMessage(),
             ];
         }
     }

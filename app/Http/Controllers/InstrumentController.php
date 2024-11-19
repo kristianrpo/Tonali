@@ -11,7 +11,7 @@ class InstrumentController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $instruments = InstrumentService::getAllInstruments(); 
+        $instruments = InstrumentService::getAllInstruments();
 
         if (isset($instruments['error']) && $instruments['error'] === true) {
             Session::flash('error', $instruments['message']);

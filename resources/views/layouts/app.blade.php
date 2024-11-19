@@ -23,16 +23,18 @@
       <div
         class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-around p-4"
       >
-        <div class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="{{ asset("img/logos/dark/icon.png") }}"
-            class="h-12"
-            alt="{{ __("layoutApp.icon_alt") }}"
-          />
-          <span class="self-center whitespace-nowrap text-2xl font-semibold">
-            {{ __("layoutApp.navbar_title") }}
-          </span>
-        </div>
+        <a href="{{ route("home.index") }}">
+          <div class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img
+              src="{{ asset("img/logos/dark/icon.png") }}"
+              class="h-12"
+              alt="{{ __("layoutApp.icon_alt") }}"
+            />
+            <span class="self-center whitespace-nowrap text-2xl font-semibold">
+              {{ __("layoutApp.navbar_title") }}
+            </span>
+          </div>
+        </a>
         <div class="flex md:order-1">
           <button
             data-collapse-toggle="navbar-search"
@@ -115,11 +117,21 @@
             </li>
             <li>
               <a
-                href="{{ route("product.recommended") }}"
+                href="{{ route("instrument.index") }}"
                 class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
               >
-                {{ __("layoutApp.recommended") }}
+                {{ __("layoutApp.instruments") }}
               </a>
+              @auth
+                <li>
+                  <a
+                    href="{{ route("product.recommended") }}"
+                    class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
+                  >
+                    {{ __("layoutApp.recommended") }}
+                  </a>
+                </li>
+              @endauth
             </li>
           </ul>
           @guest
@@ -269,7 +281,7 @@
             alt="{{ __("layoutApp.combination_mark_alt") }}"
           />
         </div>
-        <hr class="mx-auto my-6 my-8 border-offWhite" />
+        <hr class="mx-auto my-6 border-offWhite" />
         <span class="block text-center text-sm font-bold text-offWhite">
           {{ __("layoutApp.copyright") }}
         </span>

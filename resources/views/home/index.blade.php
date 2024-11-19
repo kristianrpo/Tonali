@@ -126,7 +126,7 @@
       <div class="mt-6">
         <a
           href="{{ route("login") }}"
-          class="rounded-lg bg-pink-600 px-6 py-3 text-lg font-medium text-white hover:bg-pink-700"
+          class="rounded-lg bg-brightPink px-6 py-3 text-lg font-medium text-white hover:bg-black hover:text-white"
         >
           {{ __("home.signup_button") }}
         </a>

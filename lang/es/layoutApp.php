@@ -4,6 +4,7 @@ return [
     'home' => 'Inicio',
     'create_product' => 'Crear',
     'products' => 'Productos',
+    'instruments' => 'Instrumentos',
     'search' => 'Buscar...',
     'get_started' => 'Empezar',
     'copyright' => '©2024 Evelyn Zapata, Ana Sofía Rodríguez, Kristian Restrepo. Todos los derechos reservados.',

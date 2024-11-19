@@ -5,6 +5,10 @@
     <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 
+  @if (session("error"))
+    <x-alert :message="session('error')" color="bg-red-500" />
+  @endif
+
   <div class="mx-auto my-12 max-w-screen-lg">
     <h1
       class="mb-6 flex items-center justify-center text-center text-4xl font-bold text-gray-800"
@@ -133,7 +137,7 @@
           id="deleteModal"
           tabindex="-1"
           aria-hidden="true"
-          class="fixed inset-0 flex hidden items-center justify-center bg-gray-800 bg-opacity-75"
+          class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75"
         >
           <div class="relative h-full w-full max-w-md p-4 md:h-auto">
             <div
@@ -160,7 +164,7 @@
                   onclick="closeDeleteModal()"
                   data-modal-toggle="deleteModal"
                   type="button"
-                  class="focus:ring-primary-300 rounded-full rounded-lg border border-gray-200 bg-white px-3 px-5 py-2 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
+                  class="focus:ring-primary-300 rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
                 >
                   {{ __("user.cancel_button") }}
                 </button>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\InstrumentService;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class InstrumentController extends Controller
@@ -15,36 +15,47 @@ class InstrumentController extends Controller
         $this->instrumentService = $instrumentService;
     }
 
-    public function index(): View|JsonResponse
+    public function index(): View
     {
         $viewData = [];
-        $viewData['instruments'] = $this->instrumentService->getAllInstruments();
+        $instruments = $this->instrumentService->getAllInstruments();
+
+        if (isset($instruments['error']) && $instruments['error'] === true) {
+            Session::flash('error', $instruments['message']);
+            $viewData['instruments'] = [];
+        } else {
+            $viewData['instruments'] = $instruments;
+        }
+
         $viewData['breadcrumbs'] = [
             ['label' => __('layoutApp.home'), 'url' => route('home.index')],
             ['label' => __('layoutApp.instruments'), 'url' => null],
         ];
 
-        if ($viewData['instruments']) {
-            return view('instrument.index')->with('viewData', $viewData);
-        }
-
-        return response()->json(['error' => __('instrument.error')], 500);
+        return view('instrument.index')->with('viewData', $viewData);
     }
 
-    public function show(int $id): View|JsonResponse
+    public function show(int $id): View
     {
         $viewData = [];
-        $viewData['instrument'] = $this->instrumentService->getInstrumentById($id);
-        $viewData['breadcrumbs'] = [
-            ['label' => __('layoutApp.home'), 'url' => route('home.index')],
-            ['label' => __('layoutApp.instruments'), 'url' => route('instrument.index')],
-            ['label' => $viewData['instrument']['name'], 'url' => null],
-        ];
+        $instrument = $this->instrumentService->getInstrumentById($id);
 
-        if ($viewData['instrument']) {
-            return view('instrument.show')->with('viewData', $viewData);
+        if (isset($instrument['error']) && $instrument['error'] === true) {
+            Session::flash('error', $instrument['message']);
+            $viewData['instrument'] = null;
+            $viewData['breadcrumbs'] = [
+                ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+                ['label' => __('layoutApp.instruments'), 'url' => route('instrument.index')],
+            ];
+        } else {
+            $viewData['instrument'] = $instrument;
+            $viewData['breadcrumbs'] = [
+                ['label' => __('layoutApp.home'), 'url' => route('home.index')],
+                ['label' => __('layoutApp.instruments'), 'url' => route('instrument.index')],
+                ['label' => $viewData['instrument']['name'], 'url' => null],
+            ];
         }
 
-        return response()->json(['error' => __('instrument.not_found')], 404);
+        return view('instrument.show')->with('viewData', $viewData);
     }
 }

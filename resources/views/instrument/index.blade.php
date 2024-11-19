@@ -1,6 +1,14 @@
 @extends("layouts.app")
 @section("title", __("instrument.instruments"))
 @section("content")
+  @if (session("success"))
+    <x-alert :message="session('success')" color="bg-green-500" />
+  @endif
+
+  @if (session("error"))
+    <x-alert :message="session('error')" color="bg-red-500" />
+  @endif
+
   <div class="container mx-auto w-4/5">
     <div class="mb-5 flex items-center rounded-lg bg-pink-100 p-6 shadow-md">
       <div class="mr-4 text-pink-600">

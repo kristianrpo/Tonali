@@ -1,6 +1,14 @@
 @extends("layouts.app")
 
 @section("content")
+  @if (session("success"))
+    <x-alert :message="session('success')" color="bg-green-500" />
+  @endif
+
+  @if (session("error"))
+    <x-alert :message="session('error')" color="bg-red-500" />
+  @endif
+
   <head>
     <title>{{ $viewData["instrument"]["name"] }}</title>
   </head>

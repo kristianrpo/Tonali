@@ -10,7 +10,7 @@ class InstrumentService
 
     public function __construct()
     {
-        $this->baseUrl = config('services.api.base_url');
+        $this->baseUrl = config('services.instruments_api.base_url');
     }
 
     public function getAllInstruments()

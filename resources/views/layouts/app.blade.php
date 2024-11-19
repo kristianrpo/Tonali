@@ -115,6 +115,7 @@
                 {{ __("layoutApp.products") }}
               </a>
             </li>
+            @auth
             <li>
               <a
                 href="{{ route("product.recommended") }}"
@@ -123,6 +124,7 @@
                 {{ __("layoutApp.recommended") }}
               </a>
             </li>
+            @endauth
           </ul>
           @guest
             <div class="mx-4 my-2 flex justify-center">
@@ -271,7 +273,7 @@
             alt="{{ __("layoutApp.combination_mark_alt") }}"
           />
         </div>
-        <hr class="mx-auto my-6 my-8 border-offWhite" />
+        <hr class="mx-auto my-6 border-offWhite" />
         <span class="block text-center text-sm font-bold text-offWhite">
           {{ __("layoutApp.copyright") }}
         </span>

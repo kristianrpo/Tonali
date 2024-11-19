@@ -25,7 +25,7 @@ class LoginController extends Controller
         if ($user->getRole() === 'admin') {
             return redirect()->route('admin.index');
         } elseif ($user->getRole() === 'customer') {
-            return redirect()->route('home.index');
+            return redirect()->route('product.index');
         }
     }
 }

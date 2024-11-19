@@ -23,6 +23,7 @@
       <div
         class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-around p-4"
       >
+        <a href="{{ route("home.index") }}">
         <div class="flex items-center space-x-3 rtl:space-x-reverse">
           <img
             src="{{ asset("img/logos/dark/icon.png") }}"
@@ -33,6 +34,7 @@
             {{ __("layoutApp.navbar_title") }}
           </span>
         </div>
+        </a>
         <div class="flex md:order-1">
           <button
             data-collapse-toggle="navbar-search"

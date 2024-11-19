@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Session;
 
 class AdminCategoryController extends Controller
 {
@@ -41,6 +42,8 @@ class AdminCategoryController extends Controller
         $newCategory->setDescription($request->input('description'));
         $newCategory->save();
 
+        Session::flash('success', __('category.create_success'));
+
         return back();
     }
 
@@ -67,6 +70,8 @@ class AdminCategoryController extends Controller
         $category->setDescription($request->input('description'));
         $category->save();
 
+        Session::flash('success', __('category.update_success'));
+
         return redirect()->route('admin.category.index');
     }
 
@@ -74,6 +79,8 @@ class AdminCategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
+
+        Session::flash('success', __('category.delete_success'));
 
         return redirect()->route('admin.category.index');
     }

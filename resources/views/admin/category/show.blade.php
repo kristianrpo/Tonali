@@ -1,6 +1,10 @@
 @extends("layouts.admin")
 @section("title", __("category.detail_category"))
 @section("content")
+@if (session("success"))
+    <x-alert :message="session('success')" color="bg-green-500" />
+  @endif
+
   <section class="bg-gray-50">
     <div class="mx-auto max-w-2xl px-4">
       <div class="w-full text-left">

@@ -1,15 +1,21 @@
 @extends("layouts.admin")
 @section("title", __("category.create_category"))
 @section("content")
+  @if (session("success"))
+    <x-alert :message="session('success')" color="bg-green-500" />
+  @endif
+
+  @if ($errors->any())
+    @foreach ($errors->all() as $error)
+      <x-alert :message="$error" color="bg-red-500" />
+    @endforeach
+  @endif
+
   <div class="bottom-0 mx-auto max-w-screen-xl px-4 lg:px-12">
     <h1 class="mb-4 text-3xl font-bold text-gray-800">
       {{ __("category.create_category") }}
     </h1>
-    @if ($errors->any())
-      @foreach ($errors->all() as $error)
-        <x-alert :message="$error" />
-      @endforeach
-    @endif
+    
 
     <form method="POST" action="{{ route("admin.category.store") }}">
       @csrf

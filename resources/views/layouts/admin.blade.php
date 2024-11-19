@@ -60,16 +60,53 @@
               {{ __("layoutApp.toggle_sidebar") }}
             </span>
           </button>
-          <div class="mx-6 flex items-center space-x-3 rtl:space-x-reverse">
-            <img
-              src="{{ asset("img/logos/dark/icon.png") }}"
-              class="h-12"
-              alt="{{ __("layoutApp.icon_alt") }}"
-            />
-            <span class="self-center whitespace-nowrap text-2xl font-semibold">
-              {{ __("layoutApp.navbar_title") }}
-            </span>
-          </div>
+          <a href="{{ route("home.index") }}">
+            <div class="mx-6 flex items-center space-x-3 rtl:space-x-reverse">
+              <img
+                src="{{ asset("img/logos/dark/icon.png") }}"
+                class="h-12"
+                alt="{{ __("layoutApp.icon_alt") }}"
+              />
+
+              <span
+                class="self-center whitespace-nowrap text-2xl font-semibold"
+              >
+                {{ __("layoutApp.navbar_title") }}
+              </span>
+            </div>
+          </a>
+        </div>
+        <div
+          class="d-flex align-items-center justify-content-center mr-5 mt-5 md:mt-0"
+        >
+          <form
+            id="langform"
+            action="{{ route("language.change") }}"
+            method="get"
+            class="d-flex align-items-center justify-content-center"
+          >
+            <select
+              id="small"
+              class="w- block rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:border-brightPink focus:ring-brightPink"
+              name="lang"
+              id="lang"
+              onchange="this.form.submit()"
+            >
+              <option disabled>{{ __("layoutApp.choose_language") }}</option>
+              <option
+                value="es"
+                @if (session('locale') == 'es') selected @endif
+              >
+                {{ __("layoutApp.spanish") }}
+              </option>
+              <option
+                value="en"
+                @if (session('locale') == 'en') selected @endif
+              >
+                {{ __("layoutApp.english") }}
+              </option>
+            </select>
+          </form>
         </div>
         <div class="flex items-center lg:order-2">
           <div class="group relative">

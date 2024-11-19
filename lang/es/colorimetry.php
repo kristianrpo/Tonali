@@ -12,7 +12,8 @@ return [
     'hair_color_select' => 'Selecciona el Color de Cabello',
     'eye_color_select' => 'Selecciona el Color de Ojos',
     'send_button' => 'Enviar',
-    'delete' => '¿Estás seguro de que quieres eliminar esta colorimetría?',
+    'delete_description' => '¿Estás seguro de que quieres eliminar esta colorimetría?',
+    'cancel' => 'Cancelar',
 
     'skin_tone' => 'Tono de Piel',
     'skin_undertone' => 'Subtono de Piel',

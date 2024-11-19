@@ -205,7 +205,6 @@
             d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
           />
         </svg>
-        <a href=""></a>
         <button
           onclick="openDeleteModal()"
           type="button"
@@ -243,7 +242,7 @@
       aria-hidden="true"
       class="fixed inset-0 flex hidden items-center justify-center bg-gray-800 bg-opacity-75"
     >
-      <div class="relative h-full w-full max-w-md p-4 md:h-auto">
+      <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4"">
         <div
           class="relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5"
         >

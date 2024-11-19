@@ -60,7 +60,7 @@
             <div class="mt-4 flex justify-center">
               <a
                 href="{{ route("profile.edit") }}"
-                class="flex rounded-full bg-brightPink px-4 py-2 text-center text-white transition duration-300 hover:bg-black"
+                class="bg-primary-700 focus:ring-primary-300 me-2 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite hover:bg-black focus:outline-none focus:ring-4"
               >
                 <svg
                   class="h-6 w-6 dark:text-white"
@@ -89,93 +89,97 @@
         </div>
       </div>
 
-      <div class="overflow-hidden rounded-lg bg-gray-50 p-6 shadow">
-        <div class="mt-4 flex items-start justify-center">
-          <button
-            onclick="openDeleteModal()"
-            class="flex rounded-full bg-brightPink px-4 py-2 text-center text-white transition duration-300 hover:bg-black"
+      <div>
+        <button
+          onclick="openDeleteModal()"
+          type="button"
+          class="bg-primary-700 focus:ring-primary-300 me-2 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite hover:bg-black focus:outline-none focus:ring-4"
+        >
+          <svg
+              class="h-6 w-6 text-white"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                clip-rule="evenodd"
+              ></path>
+          </svg>
+
+          {{ __("user.delete_admin") }}
+        </button>
+        <p
+          class="mt-2 flex items-center text-sm text-gray-500 dark:text-gray-400 sm:text-base"
+        >
+          <svg
+            class="me-1.5 h-4 w-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 11h2v5m-2 0h4m-2.592-8.5h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          {{ __("user.information_delete_customer") }}
+        </p>
+      </div>
+      <div
+        id="deleteModal"
+        tabindex="-1"
+        aria-hidden="true"
+        class="fixed inset-0 hidden items-center justify-center bg-gray-800 bg-opacity-75"
+      >
+        <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4"">
+          <div
+            class="relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5"
           >
             <svg
+              class="mx-auto mb-3.5 h-11 w-11 text-gray-400 dark:text-gray-500"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              width="20"
-              height="20"
-              viewBox="0,0,300,150"
             >
-              <g
-                fill="#ffffff"
-                fill-rule="nonzero"
-                stroke="none"
-                stroke-width="1"
-                stroke-linecap="butt"
-                stroke-linejoin="miter"
-                stroke-miterlimit="10"
-                stroke-dasharray=""
-                stroke-dashoffset="0"
-                font-family="none"
-                font-weight="none"
-                font-size="none"
-                text-anchor="none"
-                style="mix-blend-mode: normal"
-              >
-                <g transform="scale(10.66667,10.66667)">
-                  <path
-                    d="M10.80664,2c-0.517,0 -1.01095,0.20431 -1.37695,0.57031l-0.42969,0.42969h-5c-0.36064,-0.0051 -0.69608,0.18438 -0.87789,0.49587c-0.18181,0.3115 -0.18181,0.69676 0,1.00825c0.18181,0.3115 0.51725,0.50097 0.87789,0.49587h16c0.36064,0.0051 0.69608,-0.18438 0.87789,-0.49587c0.18181,-0.3115 0.18181,-0.69676 0,-1.00825c-0.18181,-0.3115 -0.51725,-0.50097 -0.87789,-0.49587h-5l-0.42969,-0.42969c-0.365,-0.366 -0.85995,-0.57031 -1.37695,-0.57031zM4.36523,7l1.52734,13.26367c0.132,0.99 0.98442,1.73633 1.98242,1.73633h8.24805c0.998,0 1.85138,-0.74514 1.98438,-1.74414l1.52734,-13.25586z"
-                  ></path>
-                </g>
-              </g>
+              <path
+                fill-rule="evenodd"
+                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                clip-rule="evenodd"
+              ></path>
             </svg>
-            {{ __("user.delete_customer") }}
-          </button>
-        </div>
-        <div
-          id="deleteModal"
-          tabindex="-1"
-          aria-hidden="true"
-          class="fixed inset-0 flex hidden items-center justify-center bg-gray-800 bg-opacity-75"
-        >
-          <div class="relative h-full w-full max-w-md p-4 md:h-auto">
-            <div
-              class="relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5"
-            >
-              <svg
-                class="mx-auto mb-3.5 h-11 w-11 text-gray-400 dark:text-gray-500"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+            <p class="mb-4 text-gray-500 dark:text-gray-300">
+              {{ __("user.delete_description") }}
+            </p>
+            <div class="flex items-center justify-center space-x-4">
+              <button
+                onclick="closeDeleteModal()"
+                data-modal-toggle="deleteModal"
+                type="button"
+                class="focus:ring-primary-300 rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <p class="mb-4 text-gray-500 dark:text-gray-300">
-                {{ __("user.delete_description") }}
-              </p>
-              <div class="flex items-center justify-center space-x-4">
+                {{ __("user.cancel_button") }}
+              </button>
+              <form method="POST" action="{{ route("profile.delete") }}">
+                @csrf
+                @method("DELETE")
                 <button
-                  onclick="closeDeleteModal()"
-                  data-modal-toggle="deleteModal"
-                  type="button"
-                  class="focus:ring-primary-300 rounded-full rounded-lg border border-gray-200 bg-white px-3 px-5 py-2 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
+                  type="submit"
+                  class="bg-primary-700 focus:ring-primary-300 me-2 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite hover:bg-black focus:outline-none focus:ring-4"
+                  onclick="openDeleteModal()"
                 >
-                  {{ __("user.cancel_button") }}
+                  {{ __("user.delete_admin") }}
                 </button>
-                <form method="POST" action="{{ route("profile.delete") }}">
-                  @csrf
-                  @method("DELETE")
-                  <button
-                    type="submit"
-                    class="bg-primary-700 focus:ring-primary-300 me-2 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite hover:bg-black focus:outline-none focus:ring-4"
-                    onclick="openDeleteModal()"
-                  >
-                    {{ __("user.delete_customer") }}
-                  </button>
-                </form>
-              </div>
+              </form>
             </div>
           </div>
         </div>

@@ -117,10 +117,10 @@
             </li>
             <li>
               <a
-                href="{{ route("instrument.index") }}"
+                href="{{ route("petProduct.index") }}"
                 class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
               >
-                {{ __("layoutApp.instruments") }}
+                {{ __("layoutApp.pet_products") }}
               </a>
               @auth
                 <li>

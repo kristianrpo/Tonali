@@ -2,7 +2,7 @@
 @section("title", __("order.order"))
 @section("content")
   @if (session("success"))
-    <x-alert :message="session('success')" />
+    <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 
   @forelse ($viewData["orders"] as $order)

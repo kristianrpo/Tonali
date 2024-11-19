@@ -2,7 +2,7 @@
 @section("title", __("product.detail_product"))
 @section("content")
   @if (session("success"))
-    <x-alert :message="session('success')" />
+    <x-alert :message="session('success')" color="bg-green-500" />
   @endif
 
   <section class="bg-gray-50">

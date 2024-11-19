@@ -1,6 +1,14 @@
 @extends("layouts.app")
 @section("title", __("user.my_profile"))
 @section("content")
+  @if (session("success"))
+    <x-alert :message="session('success')" color="bg-green-500" />
+  @endif
+
+  @if (session("error"))
+    <x-alert :message="session('error')" color="bg-red-500" />
+  @endif
+
   <div class="mx-auto max-w-screen-lg px-4 2xl:px-0">
     <h2
       class="mb-4 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl md:mb-6"
@@ -240,7 +248,7 @@
       id="deleteModal"
       tabindex="-1"
       aria-hidden="true"
-      class="fixed inset-0 flex hidden items-center justify-center bg-gray-800 bg-opacity-75"
+      class="fixed inset-0 hidden items-center justify-center bg-gray-800 bg-opacity-75"
     >
       <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4"">
         <div
@@ -267,7 +275,7 @@
               onclick="closeDeleteModal()"
               data-modal-toggle="deleteModal"
               type="button"
-              class="focus:ring-primary-300 rounded-full rounded-lg border border-gray-200 bg-white px-3 px-5 py-2 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
+              class="focus:ring-primary-300 rounded-full border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
             >
               {{ __("user.cancel_button") }}
             </button>

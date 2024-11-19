@@ -6,17 +6,21 @@ use Illuminate\Support\Facades\Http;
 
 class InstrumentService
 {
-    protected $baseUrl;
+    protected static $baseUrl;
 
-    public function __construct()
+    protected static function init()
     {
-        $this->baseUrl = config('services.instruments_api.base_url');
+        if (!self::$baseUrl) {
+            self::$baseUrl = config('services.instruments_api.base_url');
+        }
     }
 
-    public function getAllInstruments()
+    public static function getAllInstruments()
     {
+        self::init();
+
         try {
-            $response = Http::get("{$this->baseUrl}/products");
+            $response = Http::get(self::$baseUrl . '/products');
 
             if ($response->successful()) {
                 return $response->json();
@@ -30,15 +34,17 @@ class InstrumentService
         } catch (\Exception $e) {
             return [
                 'error' => true,
-                'message' => __('instrument.unespected_error').$e->getMessage(),
+                'message' => __('instrument.unespected_error') . $e->getMessage(),
             ];
         }
     }
 
-    public function getInstrumentById($id)
+    public static function getInstrumentById($id)
     {
+        self::init();
+
         try {
-            $response = Http::get("{$this->baseUrl}/products/{$id}");
+            $response = Http::get(self::$baseUrl . "/products/{$id}");
 
             if ($response->successful()) {
                 return $response->json();
@@ -52,7 +58,7 @@ class InstrumentService
         } catch (\Exception $e) {
             return [
                 'error' => true,
-                'message' => __('instrument.unespected_error').$e->getMessage(),
+                'message' => __('instrument.unespected_error') . $e->getMessage(),
             ];
         }
     }

@@ -13,7 +13,8 @@ return [
     'hair_color_select' => 'Select Hair Color',
     'eye_color_select' => 'Select Eye Color',
     'send_button' => 'Send',
-    'delete_confirmation' => 'Are you sure you want to remove this colorimetry?',
+    'delete_description' => 'Are you sure you want to remove this colorimetry?',
+    'cancel' => 'Cancel',
 
     'skin_tone' => 'Skin Tone',
     'skin_undertone' => 'Skin Undertone',

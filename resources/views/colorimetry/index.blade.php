@@ -176,42 +176,11 @@
                     </p>
                   </div>
                   <div class="justify-center">
-                    <div class="mt-4 flex items-start justify-center">
-                      <a
-                        href="{{ route("colorimetry.edit", ["id" => $viewData["colorimetry"]->getId()]) }}"
-                        class="flex items-center justify-center rounded-lg bg-palePink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
-                      >
-                        <svg
-                          class="h-6 w-6 text-white"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="24"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            stroke="white"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
-                          />
-                        </svg>
-                        {{ __("colorimetry.edit") }}
-                      </a>
-                    </div>
-                    <div class="mt-4 flex items-start justify-center">
-                      <form
-                        action="{{ route("colorimetry.delete", $viewData["colorimetry"]->getId()) }}"
-                        method="POST"
-                        onsubmit="return confirmDelete(deleteConfirmationMessage)"
-                      >
-                        @csrf
-                        @method("DELETE")
-                        <button
-                          type="submit"
-                          class="flex items-center justify-center rounded-lg bg-red-500 px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
+                    <div class="border-2 rounded-lg p-4 bg-white shadow flex justify-center items-center">
+                      <div class="flex flex-col gap-4 max-w-xs mr-5">
+                        <a
+                          href="{{ route("colorimetry.edit", ["id" => $viewData["colorimetry"]->getId()]) }}"
+                          class="flex items-center justify-center rounded-lg bg-palePink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
                         >
                           <svg
                             class="h-6 w-6 text-white"
@@ -227,12 +196,86 @@
                               stroke-linecap="round"
                               stroke-linejoin="round"
                               stroke-width="2"
-                              d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+                              d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"
                             />
                           </svg>
-                          {{ __("colorimetry.delete") }}
-                        </button>
-                      </form>
+                          {{ __("colorimetry.edit") }}
+                        </a>
+                      </div>
+                      <button
+                        onclick="openDeleteModal()"
+                        type="button"
+                        class="flex items-center justify-center rounded-lg bg-brightPink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-primary-300"
+                      >
+                        <svg
+                          class="h-6 w-6 text-white"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke="white"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
+                          />
+                        </svg>
+                        {{ __("colorimetry.delete") }}
+                      </button>
+                    </div>
+                    <div
+                      id="deleteModal"
+                      tabindex="-1"
+                      aria-hidden="true"
+                      class="fixed inset-0 hidden items-center justify-center bg-gray-800 bg-opacity-75"
+                    >
+                      <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4"">
+                        <div
+                          class="relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5"
+                        >
+                          <svg
+                            class="mx-auto mb-3.5 h-11 w-11 text-gray-400 dark:text-gray-500"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                              clip-rule="evenodd"
+                            ></path>
+                          </svg>
+                          <p class="mb-4 text-gray-500 dark:text-gray-300">
+                            {{ __("colorimetry.delete_description") }}
+                          </p>
+                          <div class="flex items-center justify-center space-x-4">
+                            <button
+                              onclick="closeDeleteModal()"
+                              data-modal-toggle="deleteModal"
+                              type="button"
+                              class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
+                            >
+                              {{ __("colorimetry.cancel") }}
+                            </button>
+                            <form method="POST" action="{{ route("colorimetry.delete", $viewData["colorimetry"]->getId()) }}">
+                              @csrf
+                              @method("DELETE")
+                              <button
+                                type="submit"
+                                class="bg-primary-700 focus:ring-primary-300 me-2 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite hover:bg-black focus:outline-none focus:ring-4"
+                                onclick="openDeleteModal()"
+                              >
+                                {{ __("colorimetry.delete") }}
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -243,8 +286,4 @@
       </div>
     </div>
   </div>
-  <script>
-    let deleteConfirmationMessage = '{{ __("product.delete_confirmation") }}';
-  </script>
-  <script src="{{ asset("js/common/confirmDelete.js") }}"></script>
 @endsection

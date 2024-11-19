@@ -122,16 +122,17 @@
               >
                 {{ __("layoutApp.instruments") }}
               </a>
-            @auth
-              <li>
-                <a
-                  href="{{ route("product.recommended") }}"
-                  class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
-                >
-                  {{ __("layoutApp.recommended") }}
-                </a>
-              </li>
-            @endauth
+              @auth
+                <li>
+                  <a
+                    href="{{ route("product.recommended") }}"
+                    class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
+                  >
+                    {{ __("layoutApp.recommended") }}
+                  </a>
+                </li>
+              @endauth
+            </li>
           </ul>
           @guest
             <div class="mx-4 my-2 flex justify-center">

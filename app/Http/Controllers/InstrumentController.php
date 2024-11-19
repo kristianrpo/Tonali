@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\InstrumentService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
-use App\Services\InstrumentService;
 
 class InstrumentController extends Controller
 {
@@ -16,7 +16,7 @@ class InstrumentController extends Controller
     }
 
     public function index(): View|JsonResponse
-    {   
+    {
         $viewData = [];
         $viewData['instruments'] = $this->instrumentService->getAllInstruments();
         $viewData['breadcrumbs'] = [
@@ -25,7 +25,7 @@ class InstrumentController extends Controller
         ];
 
         if ($viewData['instruments']) {
-            return view('instrument.index') ->with('viewData', $viewData);
+            return view('instrument.index')->with('viewData', $viewData);
         }
 
         return response()->json(['error' => __('instrument.error')], 500);
@@ -40,10 +40,9 @@ class InstrumentController extends Controller
             ['label' => __('layoutApp.instruments'), 'url' => route('instrument.index')],
             ['label' => $viewData['instrument']['name'], 'url' => null],
         ];
-        
 
         if ($viewData['instrument']) {
-            return view('instrument.show') ->with('viewData', $viewData);
+            return view('instrument.show')->with('viewData', $viewData);
         }
 
         return response()->json(['error' => __('instrument.not_found')], 404);

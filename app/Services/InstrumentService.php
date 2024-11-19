@@ -10,7 +10,7 @@ class InstrumentService
 
     public function __construct()
     {
-        $this->baseUrl = config('services.api.base_url'); 
+        $this->baseUrl = config('services.api.base_url');
     }
 
     public function getAllInstruments()
@@ -30,7 +30,7 @@ class InstrumentService
         } catch (\Exception $e) {
             return [
                 'error' => true,
-                'message' => __('instrument.unespected_error') . $e->getMessage(),
+                'message' => __('instrument.unespected_error').$e->getMessage(),
             ];
         }
     }
@@ -52,7 +52,7 @@ class InstrumentService
         } catch (\Exception $e) {
             return [
                 'error' => true,
-                'message' => __('instrument.unespected_error') . $e->getMessage(),
+                'message' => __('instrument.unespected_error').$e->getMessage(),
             ];
         }
     }

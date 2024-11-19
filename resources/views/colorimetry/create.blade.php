@@ -2,12 +2,12 @@
 @section("title", __("colorimetry.create"))
 @section("content")
   <div class="flex justify-center">
-    <div class="relative w-full max-w-5xl p-4">
+    <div class="relative max-h-full w-full max-w-2xl p-4">
       <div class="relative rounded-lg bg-white shadow">
         <div
-          class="flex items-center justify-between rounded-t border-b border-gray-200 bg-brightPink p-4 md:p-5"
+          class="flex items-center justify-center rounded-t border-b border-gray-200 bg-brightPink p-4 md:p-5"
         >
-          <h1 class="mb-1 text-lg font-semibold text-offWhite">
+          <h1 class="text-center text-3xl font-bold text-white">
             {{ __("colorimetry.create") }}
           </h1>
         </div>

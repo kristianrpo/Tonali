@@ -24,16 +24,16 @@
         class="mx-auto flex max-w-screen-xl flex-wrap items-center justify-around p-4"
       >
         <a href="{{ route("home.index") }}">
-        <div class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="{{ asset("img/logos/dark/icon.png") }}"
-            class="h-12"
-            alt="{{ __("layoutApp.icon_alt") }}"
-          />
-          <span class="self-center whitespace-nowrap text-2xl font-semibold">
-            {{ __("layoutApp.navbar_title") }}
-          </span>
-        </div>
+          <div class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img
+              src="{{ asset("img/logos/dark/icon.png") }}"
+              class="h-12"
+              alt="{{ __("layoutApp.icon_alt") }}"
+            />
+            <span class="self-center whitespace-nowrap text-2xl font-semibold">
+              {{ __("layoutApp.navbar_title") }}
+            </span>
+          </div>
         </a>
         <div class="flex md:order-1">
           <button
@@ -116,14 +116,14 @@
               </a>
             </li>
             @auth
-            <li>
-              <a
-                href="{{ route("product.recommended") }}"
-                class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
-              >
-                {{ __("layoutApp.recommended") }}
-              </a>
-            </li>
+              <li>
+                <a
+                  href="{{ route("product.recommended") }}"
+                  class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
+                >
+                  {{ __("layoutApp.recommended") }}
+                </a>
+              </li>
             @endauth
           </ul>
           @guest

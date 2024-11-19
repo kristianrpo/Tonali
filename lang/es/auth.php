@@ -11,5 +11,5 @@ return [
     'remember_me' => 'Recuérdame',
     'name' => 'Nombre',
     'account_register' => '¿No tienes una cuenta?',
-    'account_register' => '¿Ya tienes una cuenta?',
+    'account_login' => '¿Ya tienes una cuenta?',
 ];

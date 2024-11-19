@@ -2,6 +2,7 @@
 
 return [
     'order' => 'Order',
+    'notification' => 'Notification',
     'product_name' => 'Product Name',
     'quantity' => 'Quantity',
     'price' => 'Price',

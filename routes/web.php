@@ -11,3 +11,4 @@ include __DIR__.'/web/order.php';
 include __DIR__.'/web/colorimetry.php';
 include __DIR__.'/web/profile.php';
 include __DIR__.'/web/language.php';
+include __DIR__.'/web/instrument.php';

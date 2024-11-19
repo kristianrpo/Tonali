@@ -43,4 +43,8 @@ return [
         'key' => env('HUGGINGFACE_API_KEY'),
     ],
 
+    'api' => [
+        'base_url' => env('API_BASE_URL'),
+    ],
+
 ];

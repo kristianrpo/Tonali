@@ -16,6 +16,7 @@
     <title>@yield("title", __("layoutApp.title"))</title>
 
     @vite("resources/css/app.css")
+    @vite("resources/js/app.js")
   </head>
 
   <body class="flex min-h-screen flex-col">
@@ -287,6 +288,5 @@
         </span>
       </div>
     </footer>
-    @vite("resources/js/app.js")
   </body>
 </html>

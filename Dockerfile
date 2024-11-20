@@ -18,7 +18,7 @@ RUN composer install \
 RUN npm install
 RUN npm run build
 RUN php artisan key:generate
-RUN php artisan migrate
+RUN php artisan migrate --force
 RUN php artisan storage:link
 RUN chmod -R 777 storage
 RUN a2enmod rewrite

@@ -105,6 +105,7 @@
         </div>
       @endforeach
     </div>
+    <x-pagination :paginator="$viewData['products']" />
   </div>
   <script>
     let csrfToken = '{{ csrf_token() }}';

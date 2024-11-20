@@ -26,7 +26,7 @@ class ProductController extends Controller
         if (! empty($filters)) {
             $productsQuery = Product::filter($filters);
         }
-        $products = $productsQuery->get();
+        $products = $productsQuery->paginate(10);
 
         if ($products->isEmpty()) {
             session()->flash('message', __('product.no_products'));

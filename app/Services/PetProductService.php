@@ -21,6 +21,7 @@ class PetProductService
 
         try {
             $response = Http::get(self::$baseUrl.'/products');
+            $response = Http::get(self::$baseUrl.'/products');
 
             if ($response->successful()) {
                 return $response->json();
@@ -44,6 +45,7 @@ class PetProductService
         self::init();
 
         try {
+            $response = Http::get(self::$baseUrl."/products/{$id}");
             $response = Http::get(self::$baseUrl."/products/{$id}");
 
             if ($response->successful()) {

@@ -4,7 +4,7 @@ return [
     'home' => 'Home',
     'create_product' => 'Create',
     'products' => 'Products',
-    'instruments' => 'Instruments',
+    'pet_products' => 'Pet Products',
     'search' => 'Search...',
     'get_started' => 'Get started',
     'copyright' => '©2024 Evelyn Zapata, Ana Sofía Rodríguez, Kristian Restrepo. All rights reserved.',

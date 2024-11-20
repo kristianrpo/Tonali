@@ -162,7 +162,7 @@
         type="submit"
         class="mt-4 rounded-md bg-brightPink px-4 py-2 text-white hover:bg-black"
       >
-        {{ __("product.send") }}
+        {{ __("product.create") }}
       </button>
     </form>
   </div>

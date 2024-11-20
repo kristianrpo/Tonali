@@ -70,7 +70,7 @@
               type="submit"
               class="bg-primary-700 focus:ring-primary-300 inline-flex items-center rounded-lg bg-brightPink px-5 py-2.5 text-center text-sm font-medium text-offWhite focus:outline-none focus:ring-4"
             >
-              {{ __("colorimetry.send_button") }}
+              {{ __("colorimetry.create") }}
             </button>
           </div>
         </form>

@@ -31,6 +31,7 @@ return [
     'edit_product' => 'Edit product',
     'edit' => 'Edit',
     'delete' => 'Delete',
+    'create' => 'Create',
     'add_product' => 'Add product',
     'inventory' => 'Inventory',
     'showing' => 'Showing',

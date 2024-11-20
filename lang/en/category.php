@@ -11,6 +11,7 @@ return [
     'detail_category' => 'Detail Category',
     'send' => 'Send',
     'edit' => 'Edit',
+    'create' => 'Create',
     'name' => 'Name',
     'description' => 'Description',
     'actions' => 'Actions',

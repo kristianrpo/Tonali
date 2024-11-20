@@ -176,8 +176,10 @@
                     </p>
                   </div>
                   <div class="justify-center">
-                    <div class="border-2 rounded-lg p-4 bg-white shadow flex justify-center items-center">
-                      <div class="flex flex-col gap-4 max-w-xs mr-5">
+                    <div
+                      class="flex items-center justify-center rounded-lg border-2 bg-white p-4 shadow"
+                    >
+                      <div class="mr-5 flex max-w-xs flex-col gap-4">
                         <a
                           href="{{ route("colorimetry.edit", ["id" => $viewData["colorimetry"]->getId()]) }}"
                           class="flex items-center justify-center rounded-lg bg-palePink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-blue-300"
@@ -205,7 +207,7 @@
                       <button
                         onclick="openDeleteModal()"
                         type="button"
-                        class="flex items-center justify-center rounded-lg bg-brightPink px-4 py-2 text-white hover:bg-black focus:ring-4 focus:ring-primary-300"
+                        class="focus:ring-primary-300 flex items-center justify-center rounded-lg bg-brightPink px-4 py-2 text-white hover:bg-black focus:ring-4"
                       >
                         <svg
                           class="h-6 w-6 text-white"
@@ -233,7 +235,9 @@
                       aria-hidden="true"
                       class="fixed inset-0 hidden items-center justify-center bg-gray-800 bg-opacity-75"
                     >
-                      <div class="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4"">
+                      <div
+                        class="relative left-1/2 top-1/2 w-full max-w-md -translate-x-1/2 -translate-y-1/2 transform p-4"
+                      >
                         <div
                           class="relative rounded-lg bg-white p-4 text-center shadow dark:bg-gray-800 sm:p-5"
                         >
@@ -253,16 +257,21 @@
                           <p class="mb-4 text-gray-500 dark:text-gray-300">
                             {{ __("colorimetry.delete_description") }}
                           </p>
-                          <div class="flex items-center justify-center space-x-4">
+                          <div
+                            class="flex items-center justify-center space-x-4"
+                          >
                             <button
                               onclick="closeDeleteModal()"
                               data-modal-toggle="deleteModal"
                               type="button"
-                              class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
+                              class="focus:ring-primary-300 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:outline-none focus:ring-4 dark:border-gray-500 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-600"
                             >
                               {{ __("colorimetry.cancel") }}
                             </button>
-                            <form method="POST" action="{{ route("colorimetry.delete", $viewData["colorimetry"]->getId()) }}">
+                            <form
+                              method="POST"
+                              action="{{ route("colorimetry.delete", $viewData["colorimetry"]->getId()) }}"
+                            >
                               @csrf
                               @method("DELETE")
                               <button

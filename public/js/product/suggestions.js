@@ -1,3 +1,5 @@
+let latestFetchValue = "";
+
 function showSuggestions(value) {
     let suggestionBox = document.getElementById("suggestions");
     suggestionBox.innerHTML = "";
@@ -5,6 +7,8 @@ function showSuggestions(value) {
     if (value.length === 0) {
         return;
     }
+
+    latestFetchValue = value;
 
     fetch(`${productSuggestUrl}?query=${value}`, {
         headers: {
@@ -14,12 +18,26 @@ function showSuggestions(value) {
     })
         .then((response) => response.json())
         .then((data) => {
-            let suggestions = new Set(data);
+            if (value !== latestFetchValue) {
+                return;
+            }
 
-            let filteredSuggestions = Array.from(suggestions).filter(
-                (suggestion) =>
-                    suggestion.toLowerCase().includes(value.toLowerCase()),
+            let suggestionMap = new Map();
+
+            data.forEach((suggestion) => {
+                let normalized = suggestion.toLowerCase();
+                if (!suggestionMap.has(normalized)) {
+                    suggestionMap.set(normalized, suggestion);
+                }
+            });
+
+            let suggestions = Array.from(suggestionMap.values());
+
+            let filteredSuggestions = suggestions.filter((suggestion) =>
+                suggestion.toLowerCase().includes(value.toLowerCase()),
             );
+
+            suggestionBox.innerHTML = "";
 
             filteredSuggestions.forEach((suggestion) => {
                 let suggestionItem = document.createElement("div");

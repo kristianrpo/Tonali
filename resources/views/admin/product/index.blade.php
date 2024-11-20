@@ -146,6 +146,10 @@
       </div>
     </div>
   </section>
+  <script>
+    let csrfToken = '{{ csrf_token() }}';
+    let productSuggestUrl = '{{ route("api.product.suggest") }}';
+  </script>
   <script src="{{ asset("js/product/filter.js") }}"></script>
   <script src="{{ asset("js/product/suggestions.js") }}"></script>
 @endsection

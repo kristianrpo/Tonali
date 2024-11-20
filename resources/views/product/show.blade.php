@@ -27,40 +27,42 @@
           </div>
 
           <div class="mt-6 sm:mt-8 sm:flex sm:items-center sm:gap-4">
-            <form
-              action="{{ route("cart.add", ["id" => $viewData["product"]->getId()]) }}"
-              method="POST"
-            >
-              @csrf
-              @if ($viewData["product"]->getStockQuantity() === 0)
-                <p
-                  class="mt-2 space-x-2 rounded bg-darkGray px-3 py-1 text-center text-sm text-white hover:bg-black hover:text-white"
-                >
-                  {{ __("product.out_of_stock") }}
-                </p>
-              @else
-                <button
-                  class="mt-2 flex items-center space-x-2 rounded bg-brightPink px-3 py-1 text-sm text-white hover:bg-black hover:text-white"
-                >
-                  <svg
-                    class="h-6 w-6 text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
+            @if (auth()->check() &&auth()->user()->getRole() == "customer")
+              <form
+                action="{{ route("cart.add", ["id" => $viewData["product"]->getId()]) }}"
+                method="POST"
+              >
+                @csrf
+                @if ($viewData["product"]->getStockQuantity() === 0)
+                  <p
+                    class="mt-2 space-x-2 rounded bg-darkGray px-3 py-1 text-center text-sm text-white hover:bg-black hover:text-white"
                   >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
-                    />
-                  </svg>
-                  {{ __("product.add_to_cart") }}
-                </button>
-              @endif
-            </form>
+                    {{ __("product.out_of_stock") }}
+                  </p>
+                @else
+                  <button
+                    class="mt-2 flex items-center space-x-2 rounded bg-brightPink px-3 py-1 text-sm text-white hover:bg-black hover:text-white"
+                  >
+                    <svg
+                      class="h-6 w-6 text-white"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6"
+                      />
+                    </svg>
+                    {{ __("product.add_to_cart") }}
+                  </button>
+                @endif
+              </form>
+            @endif
           </div>
 
           <hr class="my-6 border-gray-200 md:my-8" />
@@ -137,12 +139,14 @@
           </div>
           <br />
           @auth
-            <a
-              href="{{ route("review.create", ["id" => $viewData["product"]->getId()]) }}"
-              class="hover:bg-primary-800 focus:ring-primary-300 mb-2 me-2 rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-offWhite focus:outline-none focus:ring-4"
-            >
-              {{ __("review.create_button") }}
-            </a>
+            @if (auth()->check() &&auth()->user()->getRole() == "customer")
+              <a
+                href="{{ route("review.create", ["id" => $viewData["product"]->getId()]) }}"
+                class="hover:bg-primary-800 focus:ring-primary-300 mb-2 me-2 rounded-lg bg-brightPink px-5 py-2.5 text-sm font-medium text-offWhite focus:outline-none focus:ring-4"
+              >
+                {{ __("review.create_button") }}
+              </a>
+            @endif
           @endauth
         </div>
       </div>

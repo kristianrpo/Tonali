@@ -1,22 +1,34 @@
 FROM php:8.2-apache
-RUN apt-get update -y && apt-get install -y openssl zip unzip git 
+
+RUN apt-get update -y && apt-get install -y \
+    openssl zip unzip git curl \
+    libpng-dev libonig-dev libxml2-dev \
+    && docker-php-ext-install pdo_mysql
+
+RUN a2enmod rewrite
+
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN docker-php-ext-install pdo_mysql
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs
+
 COPY . /var/www/html
-COPY ./public/.htaccess /var/www/html/.htaccess
+
 WORKDIR /var/www/html
+
 RUN composer install \
     --ignore-platform-reqs \
     --no-interaction \
     --no-plugins \
     --no-scripts \
     --prefer-dist
+
 RUN npm install
 RUN npm run build
+
 RUN php artisan storage:link
-RUN chmod -R 777 storage
-RUN a2enmod rewrite
-RUN service apache2 restart
+RUN chmod -R 775 storage bootstrap/cache
+
+CMD ["apache2-foreground"]

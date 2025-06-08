@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("content")
-  <section class="bg-white">
+  <section class="bg-white mb-[100px]">
     <div
       class="mx-auto grid max-w-screen-xl px-4 pb-8 pt-20 lg:grid-cols-12 lg:gap-8 lg:py-16 lg:pt-10 xl:gap-0"
     >
@@ -35,7 +35,7 @@
     </div>
   </section>
 
-  <section class="bg-white">
+  <section class="bg-white mb-[100px]">
     <div
       class="grid grid-cols-2 gap-8 text-gray-500 sm:grid-cols-3 sm:gap-12 lg:grid-cols-5"
     >
@@ -67,7 +67,7 @@
     </div>
   </section>
 
-  <section class="mt-5 bg-white py-16">
+  <section class="mt-5 bg-white py-16 mb-[100px]">
     <div class="container mx-auto px-6 text-center">
       <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
         {{ __("home.experience_title") }}

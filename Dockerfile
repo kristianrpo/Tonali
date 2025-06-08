@@ -3,9 +3,8 @@ RUN apt-get update -y && apt-get install -y openssl zip unzip git
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN docker-php-ext-install pdo_mysql
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g npm@latest
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
 COPY . /var/www/html
 COPY ./public/.htaccess /var/www/html/.htaccess
 WORKDIR /var/www/html

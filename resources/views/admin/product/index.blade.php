@@ -18,7 +18,7 @@
         class="relative min-h-60 overflow-hidden bg-white shadow-md sm:rounded-lg"
       >
         <div
-          class="flex flex-col items-center justify-between space-y-3 p-4 md:flex-row md:space-x-4 md:space-y-0"
+          class="flex flex-col items-start justify-between md:flex-row md:space-x-4"
         >
           <div class="w-full md:w-2/3">
             <x-search :route="route('admin.product.index')" />
@@ -45,6 +45,8 @@
               </svg>
               {{ __("product.add_product") }}
             </a>
+          </div>
+          <div class="w-full md:w-1/3 my-2 md:my-0">
             <x-productFilter
               :categories="$viewData['categories']"
               :priceRanges="$viewData['priceRanges']"
@@ -103,7 +105,7 @@
                     @endif
                   </td>
                   <td
-                    class="inline-block rounded-full bg-gray-200 px-3 py-1 text-black"
+                    class="px-4 py-3"
                   >
                     {{ $product->getCategory()->getName() }}
                   </td>

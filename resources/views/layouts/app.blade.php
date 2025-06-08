@@ -116,26 +116,18 @@
                 {{ __("layoutApp.products") }}
               </a>
             </li>
-            <li>
-              <a
-                href="{{ route("petProduct.index") }}"
-                class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
-              >
-                {{ __("layoutApp.pet_products") }}
-              </a>
-              @auth
-                @if (auth()->check() &&auth()->user()->getRole() == "customer")
-                  <li>
-                    <a
-                      href="{{ route("product.recommended") }}"
-                      class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
-                    >
-                      {{ __("layoutApp.recommended") }}
-                    </a>
-                  </li>
-                @endif
-              @endauth
-            </li>
+            @auth
+              @if (auth()->check() &&auth()->user()->getRole() == "customer")
+                <li>
+                  <a
+                    href="{{ route("product.recommended") }}"
+                    class="block rounded px-3 py-2 text-gray-900 hover:bg-palePink md:p-0 md:hover:bg-transparent md:hover:text-brightPink"
+                  >
+                    {{ __("layoutApp.recommended") }}
+                  </a>
+                </li>
+              @endif
+            @endauth
           </ul>
           @guest
             <div class="mx-4 my-2 flex justify-center">

@@ -30,5 +30,6 @@ RUN npm run build
 
 RUN php artisan storage:link
 RUN chmod -R 775 storage bootstrap/cache
-
+RUN chmod -R guo+w storage
+RUN php artisan cache:clear
 CMD ["apache2-foreground"]
